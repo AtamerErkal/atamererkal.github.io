@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atamer Erkal | MLOps Engineer & Healthcare/Defence AI Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text: #8892b0;
+            --text-light: #ccd6f6;
+            --white: #e6f1ff;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .highlight { color: var(--accent); font-weight: 600; }
+
+        .tags-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tag-hero {
+            padding: 0.6rem 1.2rem;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            color: var(--accent);
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        .btn-primary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+
+        section { padding: 100px 0; }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 3rem;
+        }
+
+        .section-title::before {
+            content: attr(data-number) ' ';
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .about-text { color: var(--text); font-size: 1.1rem; line-height: 1.8; }
+        .about-text p { margin-bottom: 1.5rem; }
+
+        .military-badge {
+            padding: 0.8rem 1.2rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            color: #f59e0b;
+            display: inline-block;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--accent); }
+        .stat-label { font-size: 0.9rem; color: var(--text); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill-item {
+            background: var(--secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+        .skill-name { color: var(--text-light); font-size: 0.95rem; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--secondary);
+            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(59, 130, 246, 0.1));
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.05), rgba(59, 130, 246, 0.05));
+        }
+
+        .project-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .project-title { color: var(--white); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .project-category { color: var(--accent); font-size: 0.9rem; }
+
+        .project-body { padding: 2rem; }
+        .project-description { color: var(--text); margin-bottom: 1.5rem; line-height: 1.7; }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            padding: 0.4rem 1rem;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover { transform: translateX(5px); }
+
+        .contact {
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        .contact h2 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .contact-icon-link {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-icon-link:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: var(--secondary);
+            text-align: center;
+            padding: 2rem;
+            color: var(--text);
+        }
+
+        @media (max-width: 968px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">AE</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Atamer Erkal</h1>
+            <h2 class="hero-subtitle">MLOps Engineer & Healthcare/Defence AI Specialist</h2>
+            <p class="hero-description">
+                Former <span class="highlight">NATO Naval Officer</span> turned MLOps Engineer, specializing in 
+                <span class="highlight">production-ready AI solutions</span> for healthcare and defence. 
+                Expert in <span class="highlight">Explainable AI, Medical Imaging, and MLOps pipelines</span> 
+                with strong awareness of <span class="highlight">GDPR and EU AI Act</span> compliance.
+            </p>
+            
+            <div class="tags-hero">
+                <span class="tag-hero">🛡️ Defence AI</span>
+                <span class="tag-hero">⚕️ Medical Imaging</span>
+                <span class="tag-hero">🎯 MLOps</span>
+                <span class="tag-hero">🔍 Explainable AI</span>
+                <span class="tag-hero">🏆 Award Winner</span>
+                <span class="tag-hero">📜 GDPR/EU AI Act</span>
+            </div>
+
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-number="01.">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Machine Learning Engineer specializing in <strong>Healthcare AI, MLOps, and Explainable AI</strong>. 
+                        With over <strong>15 years of experience in safety-critical and regulated environments</strong> including 
+                        NATO ARRC Headquarters, I bring expertise in building end-to-end ML pipelines with a focus on 
+                        <strong>medical imaging, clinical decision support, and predictive healthcare analytics</strong>.
+                    </p>
+                    
+                    <div class="military-badge">
+                        🎖️ Naval Officer (Retired) | NATO Planning Officer | Electronics Engineer
+                    </div>
+
+                    <p>
+                        <strong>Healthcare AI Expertise:</strong> Production-ready systems with <strong>85.2% sensitivity</strong> 
+                        for malignant skin lesion detection, <strong>R²=0.918</strong> for patient stay prediction, full MLOps 
+                        implementation with automated CI/CD, drift detection, and model monitoring. Strong awareness of 
+                        <strong>GDPR, EU AI Act, MDR/IVDR</strong> regulations and their implications for healthcare ML systems.
+                    </p>
+
+                    <p>
+                        <strong>Defence AI Background:</strong> Former <strong>Maritime Joint Fires Planner at NATO ARRC</strong>, 
+                        experienced in multinational operations, quantitative analysis for resource allocation, and safety-critical 
+                        decision systems. Developed AI classification systems for air track threat assessment compatible with NATO 
+                        command and control infrastructure.
+                    </p>
+
+                    <p>
+                        <strong>Technical Leadership:</strong> As <strong>Program Director</strong> at Clarusway IT School, trained 
+                        200+ data scientists with 90% placement rate. Expert in MLflow, DVC, Docker, Azure ML, implementing full 
+                        CI/CD pipelines, and ensuring model explainability (SHAP, LIME) for high-stakes applications.
+                    </p>
+
+                    <p>
+                        <strong>🏆 Awards & Recognition:</strong><br>
+                        • Best Data Science & Analytics Bootcamp (2021 & 2022) - Two independent evaluation institutes<br>
+                        • Certificate of Honor for Leadership and Management - Turkish Naval Forces Commander<br>
+                        • Success Certificate - Essay Competition, National Defence University
+                    </p>
+
+                    <p>
+                        <strong>🎓 Education:</strong> Dual Master's degrees in Organization Management & Leadership (87.00/100) 
+                        and Public Relations (87.08/100) from Turkish National Defence University, Bachelor's in 
+                        <strong>Electronics Engineering</strong> with Naval Officer training.
+                    </p>
+
+                    <p>
+                        <strong>🌍 Languages:</strong> Turkish (Native) · English (Fluent) · German (B2 - TELC Beruf)
+                    </p>
+                </div>
+
+                <div>
+                    <img src="https://i.imgur.com/placeholder-photo.jpg" alt="Atamer Erkal - MLOps Engineer" class="profile-image">
+                    <!-- Replace above URL with your actual photo URL from Notion or upload to GitHub -->
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years NATO & Navy Service</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Data Scientists Trained</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Academic Degrees</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">85.2%</div>
+                        <div class="stat-label">Sensitivity (SkinxAI)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title" data-number="02.">Skills & Technologies</h2>
+            
+            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">💻 Programming & Data Science</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
+                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">Pandas</div></div>
+                <div class="skill-item"><div class="skill-icon">🔢</div><div class="skill-name">NumPy</div></div>
+                <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-name">Matplotlib</div></div>
+                <div class="skill-item"><div class="skill-icon">🌊</div><div class="skill-name">Seaborn</div></div>
+                <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">Plotly</div></div>
+            </div>
+
+            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">🤖 Machine Learning & AI</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><div class="skill-icon">🧠</div><div class="skill-name">TensorFlow</div></div>
+                <div class="skill-item"><div class="skill-icon">🔥</div><div class="skill-name">PyTorch</div></div>
+                <div class="skill-item"><div class="skill-icon">🎯</div><div class="skill-name">Scikit-learn</div></div>
+                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">MLflow</div></div>
+                <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">SHAP</div></div>
+                <div class="skill-item"><div class="skill-icon">💡</div><div class="skill-name">LIME</div></div>
+                <div class="skill-item"><div class="skill-icon">📷</div><div class="skill-name">CNNs</div></div>
+                <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-name">XGBoost</div></div>
+            </div>
+
+            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">🏥 Healthcare & Regulatory</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><div class="skill-icon">🏥</div><div class="skill-name">Medical Imaging</div></div>
+                <div class="skill-item"><div class="skill-icon">🩺</div><div class="skill-name">Clinical Decision Support</div></div>
+                <div class="skill-item"><div class="skill-icon">📋</div><div class="skill-name">EHR Integration</div></div>
+                <div class="skill-item"><div class="skill-icon">🔒</div><div class="skill-name">GDPR Compliance</div></div>
+                <div class="skill-item"><div class="skill-icon">⚖️</div><div class="skill-name">EU AI Act</div></div>
+                <div class="skill-item"><div class="skill-icon">🏭</div><div class="skill-name">MDR/IVDR</div></div>
+                <div class="skill-item"><div class="skill-icon">📡</div><div class="skill-name">HL7/FHIR</div></div>
+                <div class="skill-item"><div class="skill-icon">🔐</div><div class="skill-name">Patient Data Anonymization</div></div>
+            </div>
+
+            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">📊 MLOps & Cloud</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><div class="skill-icon">☁️</div><div class="skill-name">Azure ML</div></div>
+                <div class="skill-item"><div class="skill-icon">🐳</div><div class="skill-name">Docker</div></div>
+                <div class="skill-item"><div class="skill-icon">⚙️</div><div class="skill-name">GitHub Actions</div></div>
+                <div class="skill-item"><div class="skill-icon">📦</div><div class="skill-name">DVC</div></div>
+                <div class="skill-item"><div class="skill-icon">🔄</div><div class="skill-name">CI/CD Pipelines</div></div>
+                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">Power BI</div></div>
+                <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-name">Model Monitoring</div></div>
+                <div class="skill-item"><div class="skill-icon">🎯</div><div class="skill-name">Drift Detection</div></div>
+            </div>
+
+            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">🛡️ Defence & Security</h3>
+            <div class="skills-grid">
+                <div class="skill-item"><div class="skill-icon">🎖️</div><div class="skill-name">NATO Operations</div></div>
+                <div class="skill-item"><div class="skill-icon">🎯</div><div class="skill-name">Threat Assessment</div></div>
+                <div class="skill-item"><div class="skill-icon">🛡️</div><div class="skill-name">Safety-Critical Systems</div></div>
+                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">Operational Analysis</div></div>
+                <div class="skill-item"><div class="skill-icon">🔧</div><div class="skill-name">Fire Control Systems</div></div>
+                <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">Real-Time Decision Systems</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title" data-number="03.">Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🛡️</div>
+                        <h3 class="project-title">VANGUARD Project</h3>
+                        <p class="project-category">Defence AI System</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Advanced AI-powered air track classification system for defence applications. Implements supervised 
+                            learning algorithms for real-time threat assessment and classification of aerial targets. Features 
+                            multi-class classification with high accuracy metrics, designed for integration into NATO-compatible 
+                            command and control systems. Includes comprehensive data preprocessing pipeline and model validation framework.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Scikit-learn</span>
+                            <span class="tech-badge">XGBoost</span>
+                            <span class="tech-badge">Classification</span>
+                            <span class="tech-badge">Defence</span>
+                        </div>
+                        <a href="https://github.com/AtamerErkal/VANGUARD_Project" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x200/0a192f/64ffda?text=SkinxAI+Screenshot" alt="SkinxAI Project" class="project-image">
+                    <!-- Replace with actual screenshot from your Notion page -->
+                    <div class="project-header">
+                        <div class="project-icon">⚕️</div>
+                        <h3 class="project-title">SkinxAI - AI Skin Lesion Classifier</h3>
+                        <p class="project-category">Healthcare AI - Medical Imaging</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Production-ready CNN-based dermatology diagnostic tool using PyTorch and EfficientNet-B7 trained on 
+                            HAM10000 dataset. Achieved <strong>85.2% sensitivity for malignant cases</strong>, significantly reducing 
+                            false negatives. Features Grad-CAM visual explainability for clinical trust, risk stratification system 
+                            (HIGH/MEDIUM/LOW), and GDPR-compliant design for medical data handling.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">PyTorch</span>
+                            <span class="tech-badge">EfficientNet-B7</span>
+                            <span class="tech-badge">Grad-CAM</span>
+                            <span class="tech-badge">Streamlit</span>
+                            <span class="tech-badge">GDPR</span>
+                            <span class="tech-badge">Medical Imaging</span>
+                        </div>
+                        <a href="https://github.com/AtamerErkal/skin-lesion-classifier" target="_blank" class="project-link">GitHub →</a>
+                        <a href="https://skinxai.streamlit.app/" target="_blank" class="project-link">Live Demo →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/600x200/0a192f/64ffda?text=ClinicOps+Screenshot" alt="ClinicOps Project" class="project-image">
+                    <!-- Replace with actual screenshot from your Notion page -->
+                    <div class="project-header">
+                        <div class="project-icon">🏥</div>
+                        <h3 class="project-title">ClinicOps - End-to-End MLOps Pipeline</h3>
+                        <p class="project-category">Healthcare MLOps & Predictive Analytics</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Full-stack MLOps solution for hospital patient stay duration prediction achieving <strong>R²=0.918 and 
+                            MAE=0.68 days</strong>. Implements complete ML lifecycle with MLflow experiment tracking, DVC data versioning, 
+                            Docker containerization, and Azure/GitHub Actions CI/CD. Features automated drift detection, real-time API 
+                            (<100ms response), and cost-optimized deployment (€2/month, 95% cost reduction).
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">MLflow</span>
+                            <span class="tech-badge">DVC</span>
+                            <span class="tech-badge">Docker</span>
+                            <span class="tech-badge">Azure ML</span>
+                            <span class="tech-badge">GitHub Actions</span>
+                            <span class="tech-badge">CI/CD</span>
+                        </div>
+                        <a href="https://github.com/AtamerErkal/ClinicOps" target="_blank" class="project-link">GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">🔍</div>
+                        <h3 class="project-title">Explainable AI Dashboard</h3>
+                        <p class="project-category">Model Interpretability & XAI</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Interactive web application for understanding and explaining machine learning model predictions. 
+                            Implements multiple XAI techniques including SHAP (SHapley Additive exPlanations) and LIME (Local 
+                            Interpretable Model-agnostic Explanations) for comprehensive model transparency. Features include 
+                            feature importance visualization, decision boundary analysis, and counterfactual explanations. 
+                            Essential for high-stakes applications in healthcare and defence where model decisions must be 
+                            transparent and justifiable.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">SHAP</span>
+                            <span class="tech-badge">LIME</span>
+                            <span class="tech-badge">Streamlit</span>
+                            <span class="tech-badge">XAI</span>
+                        </div>
+                        <a href="https://github.com/AtamerErkal/explainable_ai_dashboard" target="_blank" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <p style="color: var(--accent); margin-bottom: 1rem;">What's Next?</p>
+                <h2>Get In Touch</h2>
+                <p>
+                    I'm currently open to new opportunities in Defence AI and Healthcare ML. Whether you have a question 
+                    or just want to say hi, feel free to reach out!
+                </p>
+                
+                <div class="contact-links">
+                    <a href="mailto:atamererkal.eu@gmail.com" class="contact-icon-link" title="Email">📧</a>
+                    <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="contact-icon-link" title="LinkedIn">💼</a>
+                    <a href="https://github.com/AtamerErkal" target="_blank" class="contact-icon-link" title="GitHub">💻</a>
+                    <a href="https://sphenoid-vulcanodon-6eb.notion.site/Atamer-Erkal-283444bc01578008b0cceb23e4fa86ca" target="_blank" class="contact-icon-link" title="Resume">📄</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Built by Atamer Erkal | © 2025</p>
+        </div>
+    </footer>
+
+</body>
+</html>
