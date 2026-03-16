@@ -3,648 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atamer Erkal | MLOps Engineer & Healthcare/Defence AI Specialist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Atamer Erkal | Healthcare & Defence AI Engineer</title>
+    <meta name="description" content="Healthcare & Defence AI Engineer. Former NATO Planning Officer building production-grade AI systems for regulated domains. Based in Bavaria, Germany.">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #0a192f;
-            --secondary: #112240;
-            --accent: #64ffda;
-            --text: #8892b0;
-            --text-light: #ccd6f6;
-            --white: #e6f1ff;
+            --bg-deep: #0b1120; --bg-card: #111827;
+            --accent: #5eead4; --accent-dim: rgba(94,234,212,0.08);
+            --text-primary: #e2e8f0; --text-secondary: #94a3b8; --text-muted: #64748b;
+            --healthcare: #34d399; --healthcare-bg: rgba(52,211,153,0.08); --healthcare-border: rgba(52,211,153,0.25);
+            --defence: #60a5fa; --defence-bg: rgba(96,165,250,0.08); --defence-border: rgba(96,165,250,0.25);
+            --responsible: #fbbf24; --responsible-bg: rgba(251,191,36,0.08); --responsible-border: rgba(251,191,36,0.25);
+            --border: rgba(148,163,184,0.08); --radius-lg: 16px;
         }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'IBM Plex Sans', sans-serif; background: var(--bg-deep); color: var(--text-secondary); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
+        .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
 
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--primary);
-            color: var(--text);
-            line-height: 1.6;
-        }
+        /* Language visibility */
+        .lang-en, .lang-de { display: none; }
+        html[lang="en"] .lang-en { display: block; }
+        html[lang="de"] .lang-de { display: block; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-
-        nav {
-            position: fixed;
-            width: 100%;
-            background: rgba(10, 25, 47, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
+        /* ===== NAV ===== */
+        nav { position: fixed; width: 100%; top: 0; background: rgba(11,17,32,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 1000; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 2rem; }
+        .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--accent); letter-spacing: -0.5px; text-decoration: none; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.25s; }
         .nav-links a:hover { color: var(--accent); }
+        .lang-switch { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+        .lang-btn { padding: 0.35rem 0.7rem; font-size: 0.75rem; font-weight: 600; background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-family: inherit; transition: 0.2s; }
+        .lang-btn.active { background: var(--accent-dim); color: var(--accent); }
+        .lang-btn:hover { color: var(--accent); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
 
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 100px;
-        }
+        /* ===== HERO ===== */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; background: radial-gradient(ellipse 60% 50% at 70% 30%, rgba(94,234,212,0.04) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 20% 70%, rgba(96,165,250,0.03) 0%, transparent 60%); }
+        .hero-content { max-width: 720px; }
+        .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.6s 0.1s forwards; }
+        .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 800; color: var(--text-primary); line-height: 1.1; margin-bottom: 0.6rem; letter-spacing: -1.5px; opacity: 0; animation: fadeUp 0.6s 0.2s forwards; }
+        .hero-subtitle { font-family: 'Syne', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 500; color: var(--text-muted); margin-bottom: 1.8rem; opacity: 0; animation: fadeUp 0.6s 0.35s forwards; }
+        .hero-desc { font-size: 1.05rem; max-width: 580px; margin-bottom: 2rem; line-height: 1.8; opacity: 0; animation: fadeUp 0.6s 0.45s forwards; }
+        .hero-desc .hl { color: var(--accent); font-weight: 600; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.2rem; opacity: 0; animation: fadeUp 0.6s 0.55s forwards; }
+        .hero-tag { padding: 0.45rem 1rem; border-radius: 6px; font-size: 0.82rem; font-weight: 600; }
+        .hero-tag--health { background: var(--healthcare-bg); border: 1px solid var(--healthcare-border); color: var(--healthcare); }
+        .hero-tag--defence { background: var(--defence-bg); border: 1px solid var(--defence-border); color: var(--defence); }
+        .hero-tag--responsible { background: var(--responsible-bg); border: 1px solid var(--responsible-border); color: var(--responsible); }
+        .hero-tag--azure { background: var(--accent-dim); border: 1px solid rgba(94,234,212,0.2); color: var(--accent); }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; opacity: 0; animation: fadeUp 0.6s 0.65s forwards; }
+        .btn { padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.25s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-accent { background: var(--accent); color: var(--bg-deep); border: 2px solid var(--accent); }
+        .btn-accent:hover { background: #4fd1c5; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(94,234,212,0.2); }
+        .btn-outline { background: transparent; color: var(--accent); border: 2px solid rgba(94,234,212,0.3); }
+        .btn-outline:hover { border-color: var(--accent); background: var(--accent-dim); transform: translateY(-2px); }
+        .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem; opacity: 0; animation: fadeUp 0.6s 0.8s forwards; }
+        .hero-stat { text-align: center; }
+        .hero-stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1.2; }
+        .hero-stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; }
 
-        .hero-title {
-            font-size: 5rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 2rem;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .highlight { color: var(--accent); font-weight: 600; }
-
-        .tags-hero {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .tag-hero {
-            padding: 0.6rem 1.2rem;
-            background: rgba(100, 255, 218, 0.1);
-            border: 1px solid var(--accent);
-            border-radius: 6px;
-            color: var(--accent);
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            margin-right: 1rem;
-        }
-
-        .btn-primary {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-
-        .btn-primary:hover {
-            background: rgba(100, 255, 218, 0.1);
-            transform: translateY(-2px);
-        }
-
+        /* ===== SECTIONS ===== */
         section { padding: 100px 0; }
+        .section-label { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.8rem; }
+        .section-heading { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: var(--text-primary); letter-spacing: -1px; margin-bottom: 1rem; }
+        .section-desc { max-width: 560px; margin-bottom: 3rem; font-size: 1rem; }
 
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 3rem;
-        }
+        /* ===== ABOUT ===== */
+        .about-grid { display: grid; grid-template-columns: 5fr 3fr; gap: 4rem; align-items: start; }
+        .about-text { font-size: 1.05rem; line-height: 1.9; }
+        .about-text p { margin-bottom: 1.4rem; }
+        .about-text strong { color: var(--text-primary); font-weight: 600; }
+        .about-sidebar { position: sticky; top: 100px; }
+        .profile-img { width: 100%; max-width: 280px; border-radius: var(--radius-lg); border: 2px solid rgba(94,234,212,0.15); margin-bottom: 2rem; filter: grayscale(10%); transition: 0.4s; }
+        .profile-img:hover { border-color: var(--accent); filter: grayscale(0%); transform: scale(1.02); }
+        .credentials-list { list-style: none; }
+        .credentials-list li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 0.7rem; font-size: 0.9rem; }
+        .credentials-list li:last-child { border-bottom: none; }
+        .cred-icon { font-size: 0.85rem; flex-shrink: 0; }
+        .cred-label { color: var(--text-primary); font-weight: 500; }
+        .cred-detail { color: var(--text-muted); font-size: 0.83rem; }
+        .awards-grid { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+        .award-chip { padding: 0.55rem 0.9rem; background: var(--responsible-bg); border: 1px solid var(--responsible-border); border-radius: 6px; font-size: 0.8rem; color: var(--responsible); font-weight: 500; }
 
-        .section-title::before {
-            content: attr(data-number) ' ';
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
+        /* ===== SKILLS ===== */
+        .skills-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .skill-col-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1.2rem; padding-bottom: 0.6rem; border-bottom: 2px solid; }
+        .skill-col--aiml .skill-col-title { border-color: var(--accent); }
+        .skill-col--domain .skill-col-title { border-color: var(--defence); }
+        .skill-col--reg .skill-col-title { border-color: var(--responsible); }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag { padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.82rem; font-weight: 500; background: var(--accent-dim); color: var(--text-secondary); border: 1px solid var(--border); transition: 0.2s; }
+        .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-        }
+        /* ===== PROJECTS ===== */
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+        .filter-btn { padding: 0.55rem 1.3rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; background: transparent; border: 1.5px solid var(--border); color: var(--text-muted); cursor: pointer; font-family: inherit; transition: all 0.25s; }
+        .filter-btn:hover { border-color: var(--text-secondary); color: var(--text-secondary); }
+        .filter-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+        .filter-btn[data-cat="healthcare"].active { border-color: var(--healthcare); color: var(--healthcare); background: var(--healthcare-bg); }
+        .filter-btn[data-cat="defence"].active { border-color: var(--defence); color: var(--defence); background: var(--defence-bg); }
+        .filter-btn[data-cat="responsible"].active { border-color: var(--responsible); color: var(--responsible); background: var(--responsible-bg); }
+        .streamlit-notice { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1.2rem; margin-bottom: 2rem; background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.15); border-radius: 8px; font-size: 0.82rem; color: var(--responsible); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+        .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.35s; display: flex; flex-direction: column; }
+        .project-card.hidden { display: none; }
+        .project-card:hover { transform: translateY(-6px); border-color: rgba(148,163,184,0.15); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
+        .project-card.coming-soon { opacity: 0.7; }
+        .project-card.coming-soon:hover { opacity: 0.85; transform: translateY(-3px); }
+        .project-img { width: 100%; height: 190px; object-fit: cover; border-bottom: 1px solid var(--border); }
+        .project-img-placeholder { width: 100%; height: 190px; display: flex; align-items: center; justify-content: center; font-size: 3rem; border-bottom: 1px solid var(--border); }
+        .project-img-placeholder--health { background: linear-gradient(135deg, var(--healthcare-bg), rgba(52,211,153,0.02)); }
+        .project-img-placeholder--defence { background: linear-gradient(135deg, var(--defence-bg), rgba(96,165,250,0.02)); }
+        .project-img-placeholder--responsible { background: linear-gradient(135deg, var(--responsible-bg), rgba(251,191,36,0.02)); }
+        .project-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+        .project-cat-tag { display: inline-block; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.8rem; width: fit-content; }
+        .cat--health { background: var(--healthcare-bg); color: var(--healthcare); }
+        .cat--defence { background: var(--defence-bg); color: var(--defence); }
+        .cat--responsible { background: var(--responsible-bg); color: var(--responsible); }
+        .project-name { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; }
+        .project-subtitle { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .project-desc { font-size: 0.9rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.2rem; flex: 1; }
+        .project-desc strong { color: var(--text-primary); }
+        .project-techs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+        .project-tech { padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500; background: var(--accent-dim); color: var(--text-muted); }
+        .project-links { display: flex; gap: 1rem; align-items: center; }
+        .project-link { font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: 0.2s; }
+        .project-link--health { color: var(--healthcare); } .project-link--health:hover { color: #6ee7b7; }
+        .project-link--defence { color: var(--defence); } .project-link--defence:hover { color: #93bbfd; }
+        .project-link--responsible { color: var(--responsible); } .project-link--responsible:hover { color: #fcd34d; }
+        .coming-badge { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; background: rgba(148,163,184,0.1); color: var(--text-muted); border: 1px dashed var(--text-muted); vertical-align: middle; margin-left: 0.4rem; }
+        .upcoming-bar { display: flex; flex-wrap: wrap; gap: 1.2rem; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-top: 2rem; }
+        .upcoming-item { flex: 1; min-width: 200px; padding: 1rem 1.2rem; border-left: 3px solid var(--text-muted); }
+        .upcoming-title { font-weight: 600; color: var(--text-primary); font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .upcoming-desc { font-size: 0.83rem; color: var(--text-muted); }
 
-        .profile-image {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 12px;
-            border: 3px solid var(--accent);
-            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
-            margin-bottom: 2rem;
-        }
+        /* ===== INSIGHTS ===== */
+        .insights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .insight-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden; }
+        .insight-card:hover { border-color: rgba(148,163,184,0.15); transform: translateY(-4px); }
+        .insight-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .insight-card--health::before { background: var(--healthcare); }
+        .insight-card--defence::before { background: var(--defence); }
+        .insight-card--reg::before { background: var(--responsible); }
+        .insight-tag { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; }
+        .insight-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.8rem; line-height: 1.4; }
+        .insight-excerpt { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .insight-meta { font-size: 0.78rem; color: var(--text-muted); }
 
-        .about-text { color: var(--text); font-size: 1.1rem; line-height: 1.8; }
-        .about-text p { margin-bottom: 1.5rem; }
+        /* ===== CONTACT ===== */
+        .contact-section { text-align: center; padding: 120px 0; }
+        .contact-cta { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 1rem; line-height: 1.8; }
+        .contact-cta strong { color: var(--text-primary); }
+        .contact-location { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.2rem; border-radius: 8px; background: var(--accent-dim); border: 1px solid rgba(94,234,212,0.15); color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 2.5rem; }
+        .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .contact-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.25s; }
+        .contact-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .contact-pill-icon { font-size: 1.1rem; }
 
-        .military-badge {
-            padding: 0.8rem 1.2rem;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid #f59e0b;
-            border-radius: 6px;
-            color: #f59e0b;
-            display: inline-block;
-            margin: 1.5rem 0;
-        }
+        footer { border-top: 1px solid var(--border); text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem; }
 
-        .stat-card {
-            background: var(--secondary);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            margin-bottom: 1rem;
-            transition: all 0.3s;
-        }
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+        .stagger.visible > *:nth-child(1) { opacity:1;transform:translateY(0);transition-delay:.05s }
+        .stagger.visible > *:nth-child(2) { opacity:1;transform:translateY(0);transition-delay:.1s }
+        .stagger.visible > *:nth-child(3) { opacity:1;transform:translateY(0);transition-delay:.15s }
+        .stagger.visible > *:nth-child(4) { opacity:1;transform:translateY(0);transition-delay:.2s }
+        .stagger.visible > *:nth-child(5) { opacity:1;transform:translateY(0);transition-delay:.25s }
+        .stagger.visible > *:nth-child(6) { opacity:1;transform:translateY(0);transition-delay:.3s }
+        .stagger.visible > *:nth-child(7) { opacity:1;transform:translateY(0);transition-delay:.35s }
+        .stagger.visible > *:nth-child(8) { opacity:1;transform:translateY(0);transition-delay:.4s }
+        .stagger.visible > *:nth-child(9) { opacity:1;transform:translateY(0);transition-delay:.45s }
+        .stagger.visible > *:nth-child(10){ opacity:1;transform:translateY(0);transition-delay:.5s }
 
-        .stat-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--accent); }
-        .stat-label { font-size: 0.9rem; color: var(--text); }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .skill-item {
-            background: var(--secondary);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .skill-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .skill-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
-        .skill-name { color: var(--text-light); font-size: 0.95rem; }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--secondary);
-            border-radius: 12px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            transition: all 0.3s;
-            overflow: hidden;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(59, 130, 246, 0.1));
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-        }
-
-        .project-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.05), rgba(59, 130, 246, 0.05));
-        }
-
-        .project-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .project-title { color: var(--white); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .project-category { color: var(--accent); font-size: 0.9rem; }
-
-        .project-body { padding: 2rem; }
-        .project-description { color: var(--text); margin-bottom: 1.5rem; line-height: 1.7; }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-badge {
-            padding: 0.4rem 1rem;
-            background: rgba(100, 255, 218, 0.1);
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--accent);
-        }
-
-        .project-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .project-link:hover { transform: translateX(5px); }
-
-        .contact {
-            text-align: center;
-            padding: 150px 0;
-        }
-
-        .contact h2 {
-            font-size: 3.5rem;
-            color: var(--white);
-            margin-bottom: 2rem;
-        }
-
-        .contact p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            line-height: 1.8;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .contact-icon-link {
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .contact-icon-link:hover {
-            background: rgba(100, 255, 218, 0.1);
-            transform: translateY(-5px);
-        }
-
-        footer {
-            background: var(--secondary);
-            text-align: center;
-            padding: 2rem;
-            color: var(--text);
-        }
-
-        @media (max-width: 968px) {
-            .hero-title { font-size: 3.5rem; }
-            .hero-subtitle { font-size: 2.5rem; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
             .about-grid { grid-template-columns: 1fr; }
+            .about-sidebar { position: static; display: flex; flex-direction: column; align-items: center; }
+            .skills-columns { grid-template-columns: 1fr; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
             .projects-grid { grid-template-columns: 1fr; }
+            .insights-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(11,17,32,0.98); padding: 1.5rem 2rem; gap: 1.2rem; border-bottom: 1px solid var(--border); }
+            .nav-toggle { display: block; }
+            .hero-title { font-size: 2.4rem; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
+            .upcoming-bar { flex-direction: column; }
+            .container { padding: 0 1.2rem; }
+            section { padding: 70px 0; }
+            .filter-bar { gap: 0.4rem; }
+            .filter-btn { padding: 0.45rem 0.9rem; font-size: 0.78rem; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="logo">AE</div>
+
+<nav>
+    <div class="container">
+        <a href="#" class="logo">Atamer Erkal</a>
+        <div class="nav-right">
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#insights">Insights</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Atamer Erkal</h1>
-            <h2 class="hero-subtitle">MLOps Engineer & Healthcare/Defence AI Specialist</h2>
-            <p class="hero-description">
-                Former NATO Planning Officer turned <span class="highlight">MLOps Engineer</span>, specializing in <span class="highlight">production-ready AI solutions</span> for healthcare and defence.<br> 
-                Expert in <span class="highlight">Defence AI, Medical Imaging, MLOps pipelines and Explainable AI</span> with strong awareness of <span class="highlight">GDPR and EU AI Act</span> compliance.
-            </p>
-            
-            <div class="tags-hero">
-                <span class="tag-hero">⚕️ Medical Imaging</span>
-                <span class="tag-hero">🎯 MLOps</span>
-                <span class="tag-hero">🛡️ Defence AI</span>
-                <span class="tag-hero">🔍 Explainable AI</span>
-            </div>
-
-            <a href="#projects" class="btn btn-primary">View My Work</a>
-            <a href="#contact" class="btn btn-primary">Get In Touch</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title" data-number="01.">About Me</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <div class="military-badge">
-                        MLOps Engineer | Electronics Engineer | NATO Planning Officer (R)
-                    </div>
-                    <p>
-                        <strong>Machine Learning Ops Engineer building production-grade AI systems for regulated and safety-critical domains, 
-                        including Healthcare and Defence.</strong> With 15+ years of experience across NATO and national command environments, 
-                        I design end-to-end ML pipelines for medical imaging, clinical decision support, and predictive healthcare analytics.
-                    </p>
-                    
-                    <p>
-                        <strong>Healthcare AI Expertise:</strong><br> Production-ready systems with <strong>85.2% sensitivity</strong> 
-                        for malignant skin lesion detection, <strong>R²=0.918</strong> for patient stay prediction, full MLOps 
-                        implementation with automated CI/CD, drift detection, and model monitoring. Strong awareness of 
-                        <strong>GDPR, EU AI Act</strong> regulations and their implications for healthcare ML systems.
-                    </p>
-
-                    <p>
-                        <strong>Defence AI Background:</strong><br> Former <strong>Joint Planner at NATO</strong>, 
-                        experienced in multinational operations, quantitative analysis for resource allocation, and safety-critical 
-                        decision systems. Developed AI classification systems for air track threat assessment compatible with 
-                        command and control infrastructure.
-                    </p>
-
-                    <p>
-                        <strong>Technical Leadership:</strong><br> As <strong>Program Director</strong> at Clarusway IT School, trained 
-                        200+ data scientists with 90% placement rate. Expert in MLflow, DVC, Docker, Azure ML, implementing full 
-                        CI/CD pipelines, and ensuring model explainability (SHAP, LIME) for high-stakes applications.
-                    </p>
-
-                    <p>
-                        <strong>🎖️ Awards & Recognition:</strong><br>
-                        • <strong>Best Data Science & Analytics Bootcamp (2021 & 2022)</strong> - Two independent evaluation institutes<br>
-                        • <strong>Certificate of Honor for Leadership and Management</strong> - Turkish Naval Forces Commander<br>
-                        • <strong>Success Certificate</strong> - Essay Competition, National Defence University
-                    </p>
-
-                    <p>
-                        <strong>🎓 Education:</strong><br>
-                        Dual Master's degrees in Organization Management & Leadership (87.00/100) 
-                        and Public Relations (87.08/100) from Turkish National Defence University, Bachelor's in 
-                        <strong>Electronics Engineering</strong> with Naval Officer training.
-                    </p>
-
-                    <p>
-                        <strong>🌍 Languages:</strong><br>
-                        Turkish (Native) · English (Fluent) · German (B2 - TELC Beruf/2025)
-                    </p>
-                </div>
-
-                <div>
-                    <img src="images/bildjpg.jpg" alt="Atamer Erkal - MLOps Engineer" class="profile-image">
-                    
-                    <div class="stat-card">
-                        <div class="stat-number">15+ Years</div>
-                        <div class="stat-label">Safety-Critical & Regulated Environments</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">5+ Years</div>
-                        <div class="stat-label">Data Science & Technical Leadership</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">2 Engagements</div>
-                        <div class="stat-label">Healthcare & Clinical Support</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">10+ Systems</div>
-                        <div class="stat-label">AI/ML Deployed in Production</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">3 Awards</div>
-                        <div class="stat-label">Data, Defence & Academia</div>
-                    </div>
-
-                </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" onclick="setLang('de')">DE</button>
             </div>
         </div>
-    </section>
+    </div>
+</nav>
 
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title" data-number="02.">Skills & Technologies</h2>
-            
-            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">💻 Programming & Data Science</h3>
-            <div class="skills-grid">
-                <div class="skill-item"><div class="skill-icon">🐍</div><div class="skill-name">Python</div></div>
-                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">Power BI</div></div>
-                <div class="skill-item"><div class="skill-icon">🔢</div><div class="skill-name">NumPy & Pandas</div></div>
-                <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-name">Plotly</div></div>
-                <div class="skill-item"><div class="skill-icon">🌊</div><div class="skill-name">SQL</div></div>
-            </div>
-
-            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">🤖 Machine Learning & AI</h3>
-            <div class="skills-grid">
-                <div class="skill-item"><div class="skill-icon">🧠</div><div class="skill-name">TensorFlow</div></div>
-                <div class="skill-item"><div class="skill-icon">🔥</div><div class="skill-name">PyTorch</div></div>
-                <div class="skill-item"><div class="skill-icon">🎯</div><div class="skill-name">Scikit-learn</div></div>
-                <div class="skill-item"><div class="skill-icon">📷</div><div class="skill-name">CNNs</div></div>
-                <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-name">XGBoost</div></div>
-                <div class="skill-item"><div class="skill-icon">🔍</div><div class="skill-name">SHAP</div></div>
-                <div class="skill-item"><div class="skill-icon">💡</div><div class="skill-name">LIME</div></div>
-            </div>
-
-            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">📊 MLOps & Cloud</h3>
-            <div class="skills-grid">
-                <div class="skill-item"><div class="skill-icon">☁️</div><div class="skill-name">Azure ML</div></div>
-                <div class="skill-item"><div class="skill-icon">⚙️</div><div class="skill-name">GitHub Actions</div></div>
-                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">MLflow</div></div>
-                <div class="skill-item"><div class="skill-icon">🔄</div><div class="skill-name">CI/CD Pipelines</div></div>
-                <div class="skill-item"><div class="skill-icon">🐳</div><div class="skill-name">Docker</div></div>
-                <div class="skill-item"><div class="skill-icon">📦</div><div class="skill-name">DVC</div></div>
-                <div class="skill-item"><div class="skill-icon">📈</div><div class="skill-name">Model Monitoring</div></div>
-            </div>
-
-            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">🏥 Healthcare & Regulatory</h3>
-            <div class="skills-grid">
-                <div class="skill-item"><div class="skill-icon">🏥</div><div class="skill-name">Medical Imaging</div></div>
-                <div class="skill-item"><div class="skill-icon">🩺</div><div class="skill-name">Clinical Decision Support</div></div>
-                <div class="skill-item"><div class="skill-icon">🔒</div><div class="skill-name">GDPR Compliance</div></div>
-                <div class="skill-item"><div class="skill-icon">⚖️</div><div class="skill-name">EU AI Act</div></div>
-                <div class="skill-item"><div class="skill-icon">📋</div><div class="skill-name">EHR Integration</div></div>
-                <div class="skill-item"><div class="skill-icon">📡</div><div class="skill-name">HL7/FHIR</div></div>
-                <div class="skill-item"><div class="skill-icon">🔐</div><div class="skill-name">Patient Data Anonymization</div></div>
-            </div>
-
-            <h3 style="color: var(--white); margin-bottom: 1.5rem; font-size: 1.3rem;">🛡️ Defence & Security</h3>
-            <div class="skills-grid">
-                <div class="skill-item"><div class="skill-icon">🎖️</div><div class="skill-name">NATO Operations</div></div>
-                <div class="skill-item"><div class="skill-icon">🎯</div><div class="skill-name">Threat Assessment</div></div>
-                <div class="skill-item"><div class="skill-icon">🛡️</div><div class="skill-name">Safety-Critical Systems</div></div>
-                <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">Operational Analysis</div></div>
-                <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">Real-Time Decision Systems</div></div>
-            </div>
-        </div>
-    </section>
-
-<section id="projects">
+<!-- ====== HERO ====== -->
+<section class="hero">
     <div class="container">
-        <h2 class="section-title" data-number="03.">Featured Projects</h2>
-        <div class="projects-grid">
-            
-            <div class="project-card">
-                <img src="images/VANGUARD.png" alt="VANGUARDAI Project" class="project-image">
-                <div class="project-header">
-                    <div class="project-icon">🛡️ VANGUARD</div>
-                    <h3 class="project-title">Air Track Classification</h3>
-                    <p class="project-category">Defence AI & Threat Assessment</p>
-                </div>
-                <div class="project-body">
-                    <ul class="project-bullet-list">
-                        <li><strong>Tactical Classification:</strong> Implemented <b>XGBoost</b> and supervised ML to classify aerial targets (Hostile, Friendly, Civilian) for real-time situational awareness.</li>
-                        <li><strong>3D Visualization:</strong> Developed <b>3D flight path monitoring</b> to enhance operational decision-making in high-stress defence scenarios.</li>
-                        <li><strong>NATO Compliance:</strong> Designed architecture compatible with <b>NATO C2 standards</b>, focusing on advanced data preprocessing and model validation.</li>
-                        <li><strong>Anomaly Detection:</strong> Integrated automated threat assessment to identify suspicious flight behaviors instantly.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">XGBoost</span>
-                        <span class="tech-badge">3D Visualization</span>
-                        <span class="tech-badge">Defence AI</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/AtamerErkal/VANGUARD_Project" target="_blank" class="project-link">GitHub →</a><br>
-                        <a href="https://vanguard-ai.streamlit.app/" target="_blank" class="project-link">Live Demo →</a>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Former NATO Planning Officer · Based in Bavaria</p>
+            <h1 class="hero-title">Healthcare &<br>Defence AI Engineer</h1>
+            <h2 class="hero-subtitle">Building production-grade AI for regulated domains.</h2>
 
-            <div class="project-card">
-                <img src="images/SkinXAI.png" alt="SkinxAI Project" class="project-image">
-                <div class="project-header">
-                    <div class="project-icon">⚕️ SkinxAI</div>
-                    <h3 class="project-title">AI Skin Lesion Classifier</h3>
-                    <p class="project-category">Healthcare AI - Medical Imaging</p>
-                </div>
-                <div class="project-body">
-                    <ul class="project-bullet-list">
-                        <li><strong>High Sensitivity:</strong> Optimized <b>EfficientNet-B7 CNN</b> on HAM10000 dataset, achieving <b>85.2% sensitivity</b> for malignant cases to minimize false negatives.</li>
-                        <li><strong>Clinical Trust:</strong> Integrated <b>Grad-CAM visual explainability</b>, allowing dermatologists to see the "why" behind AI-driven diagnoses.</li>
-                        <li><strong>Compliance:</strong> Engineered with <b>GDPR-compliant</b> medical data handling and a tiered risk stratification system (High/Med/Low).</li>
-                        <li><strong>Operational Readiness:</strong> Production-ready system designed for early detection support in clinical dermatology workflows.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-badge">PyTorch</span>
-                        <span class="tech-badge">EfficientNet-B7</span>
-                        <span class="tech-badge">Grad-CAM</span>
-                        <span class="tech-badge">GDPR</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/AtamerErkal/skin-lesion-classifier" target="_blank" class="project-link">GitHub →</a><br>
-                        <a href="https://skinxai.streamlit.app/" target="_blank" class="project-link">Live Demo →</a>
-                    </div>
-                </div>
-            </div>
+            <p class="hero-desc lang-en">
+                I design and deploy <span class="hl">end-to-end AI/ML systems</span> for safety-critical and regulated environments —
+                from <span class="hl">healthcare analytics</span> and <span class="hl">defence operations</span> to
+                <span class="hl">explainable & compliant AI</span>. Focused on turning complex domain challenges into
+                reliable, production-ready solutions.
+            </p>
+            <p class="hero-desc lang-de">
+                Ich entwickle und implementiere <span class="hl">End-to-End AI/ML-Systeme</span> für sicherheitskritische
+                und regulierte Umgebungen — von <span class="hl">Healthcare Analytics</span> und <span class="hl">Defence Operations</span>
+                bis hin zu <span class="hl">erklärbarer & konformer KI</span>. Mein Fokus liegt auf robusten, produktionsreifen Lösungen.
+            </p>
 
-            <div class="project-card">
-                <img src="images/ClinicOps.png" alt="ClinicOps Project" class="project-image">
-                <div class="project-header">
-                    <div class="project-icon">🏥 ClinicOps</div>
-                    <h3 class="project-title">End-to-End MLOps Platform</h3>
-                    <p class="project-category">Healthcare Operations & Analytics</p>
-                </div>
-                <div class="project-body">
-                    <ul class="project-bullet-list">
-                        <li><strong>Predictive Excellence:</strong> Achieved <b>R²=0.918</b> in hospital stay duration prediction, enabling optimized bed allocation and resource management.</li>
-                        <li><strong>Full Lifecycle MLOps:</strong> Implemented <b>MLflow</b> (tracking), <b>DVC</b> (versioning), and <b>Docker</b> for a scalable, reproducible ML environment.</li>
-                        <li><strong>CI/CD Pipeline:</strong> Automated deployment using <b>Azure</b> and <b>GitHub Actions</b>, featuring real-time drift detection and sub-second API latency.</li>
-                        <li><strong>Business Impact:</strong> Designed to reduce operational costs by streamlining staff scheduling and patient throughput.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-badge">MLflow</span>
-                        <span class="tech-badge">DVC</span>
-                        <span class="tech-badge">Azure</span>
-                        <span class="tech-badge">Docker</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/AtamerErkal/ClinicOps" target="_blank" class="project-link">GitHub →</a>
-                    </div>
-                </div>
+            <div class="hero-tags">
+                <span class="hero-tag hero-tag--health">Healthcare AI</span>
+                <span class="hero-tag hero-tag--defence">Defence AI</span>
+                <span class="hero-tag hero-tag--responsible">Responsible AI</span>
+                <span class="hero-tag hero-tag--azure">Azure AI · AI-102 Apr 2026</span>
             </div>
-
-            <div class="project-card">
-                <img src="images/XAI.png" alt="Explainable AI Project" class="project-image">
-                <div class="project-header">
-                    <div class="project-icon">🔍 XAI</div>
-                    <h3 class="project-title">eXplainable AI Dashboard</h3>
-                    <p class="project-category">Model Interpretability & Trust</p>
-                </div>
-                <div class="project-body">
-                    <ul class="project-bullet-list">
-                        <li><strong>Transparency:</strong> Developed interactive visualizations using <b>SHAP</b> and <b>LIME</b> to deconstruct black-box model predictions.</li>
-                        <li><strong>Audit Ready:</strong> Features <b>counterfactual explanations</b> and decision boundary analysis, essential for high-stakes Healthcare and Defence audits.</li>
-                        <li><strong>Decision Support:</strong> Provides feature importance and performance metrics to build clinical and operational trust.</li>
-                        <li><strong>Cross-Industry Utility:</strong> Enabling transparent and auditable AI decision-making for mission-critical deployments.</li>
-                    </ul>
-                    <div class="project-tech">
-                        <span class="tech-badge">SHAP</span>
-                        <span class="tech-badge">LIME</span>
-                        <span class="tech-badge">Streamlit</span>
-                        <span class="tech-badge">Explainable AI</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/AtamerErkal/explainable_ai_dashboard" target="_blank" class="project-link">GitHub →</a><br>
-                        <a href="https://xai-dashboard.streamlit.app/" target="_blank" class="project-link">Live Demo →</a>
-                    </div>
-                </div>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-accent">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
             </div>
-
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="hero-stat-num">15+</div><div class="hero-stat-label">Years in Safety-Critical Environments</div></div>
+            <div class="hero-stat"><div class="hero-stat-num">200+</div><div class="hero-stat-label">Data Scientists Trained</div></div>
+            <div class="hero-stat"><div class="hero-stat-num">90%</div><div class="hero-stat-label">Placement Rate</div></div>
+            <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-label">AI/ML Systems Built</div></div>
         </div>
     </div>
 </section>
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <p style="color: var(--accent); margin-bottom: 1rem;">What's Next?</p>
-                <h2>Get In Touch</h2>
-                <p>
-                    I'm currently open to new opportunities in Healthcare & Defence AI. Whether you have a question 
-                    or just want to say hi, feel free to reach out!
-                </p>
-                
-                <div class="contact-links">
-                    <a href="mailto:atamererkal.eu@gmail.com" class="contact-icon-link" title="Email">📧</a>
-                    <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="contact-icon-link" title="LinkedIn">💼</a>
-                    <a href="https://github.com/AtamerErkal" target="_blank" class="contact-icon-link" title="GitHub">💻</a>
+
+<!-- ====== ABOUT ====== -->
+<section id="about" class="reveal">
+    <div class="container">
+        <p class="section-label">01 — About</p>
+        <h2 class="section-heading lang-en">Domain Expertise Meets ML Engineering</h2>
+        <h2 class="section-heading lang-de">Domänenwissen trifft ML-Engineering</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="lang-en">
+                    <p><strong>AI & MLOps Engineer building production-grade AI systems for regulated and safety-critical domains.</strong> With 15+ years across NATO and national command environments, I design end-to-end ML pipelines for healthcare, defence, and high-stakes decision support.</p>
+                    <p><strong>Healthcare AI:</strong> Built production-ready systems for medical imaging, clinical analytics, and predictive healthcare operations — with full MLOps lifecycle including CI/CD, drift detection, and model monitoring. Strong focus on GDPR and EU AI Act compliance.</p>
+                    <p><strong>Defence AI:</strong> Former <strong>Joint Planner at NATO</strong>, experienced in multinational operations, quantitative resource allocation, and safety-critical decision systems. Developed AI classification systems for air track threat assessment compatible with NATO C2 infrastructure.</p>
+                    <p><strong>Technical Leadership:</strong> As <strong>Program Director</strong> at Clarusway IT School, trained 200+ data scientists with 90% placement rate. Expert in MLflow, DVC, Docker, Azure ML, and model explainability (SHAP, LIME, Grad-CAM) for high-stakes applications.</p>
+                </div>
+                <div class="lang-de">
+                    <p><strong>AI & MLOps Engineer für regulierte und sicherheitskritische Domänen.</strong> Mit über 15 Jahren Erfahrung in NATO- und nationalen Kommandoumgebungen entwickle ich End-to-End ML-Pipelines für Healthcare, Defence und kritische Entscheidungsunterstützung.</p>
+                    <p><strong>Healthcare AI:</strong> Produktionsreife Systeme für medizinische Bildgebung, klinische Analytik und prädiktive Healthcare-Operationen — mit vollständigem MLOps-Lifecycle. Starker Fokus auf DSGVO- und EU AI Act-Konformität.</p>
+                    <p><strong>Defence AI:</strong> Ehemaliger <strong>Joint Planner bei der NATO</strong>, erfahren in multinationalen Operationen, quantitativer Ressourcenplanung und sicherheitskritischen Entscheidungssystemen.</p>
+                    <p><strong>Technische Führung:</strong> Als <strong>Program Director</strong> bei der Clarusway IT School 200+ Data Scientists ausgebildet mit 90% Vermittlungsquote.</p>
+                </div>
+            </div>
+            <div class="about-sidebar">
+                <img src="images/bildjpg.jpg" alt="Atamer Erkal" class="profile-img">
+                <ul class="credentials-list">
+                    <li><span class="cred-icon">🎓</span><div><div class="cred-label">Electronics Engineering BSc</div><div class="cred-detail">Naval Officer Training</div></div></li>
+                    <li><span class="cred-icon">🎓</span><div><div class="cred-label">Dual Master's Degrees</div><div class="cred-detail">Leadership & Public Relations — National Defence University</div></div></li>
+                    <li><span class="cred-icon">☁️</span><div><div class="cred-label">Azure AI Engineer — AI-102</div><div class="cred-detail">Scheduled April 2026</div></div></li>
+                    <li><span class="cred-icon">🌍</span><div><div class="cred-label">Languages</div><div class="cred-detail">Turkish (Native) · English (Fluent) · German (B2 TELC Beruf)</div></div></li>
+                </ul>
+                <div class="awards-grid">
+                    <div class="award-chip">🏆 Best Data Science Bootcamp 2021 & 2022</div>
+                    <div class="award-chip">🎖️ Honor — Turkish Naval Forces Commander</div>
+                    <div class="award-chip">📝 Essay Winner — National Defence University</div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>Built by Atamer Erkal | © 2026</p>
+<!-- ====== SKILLS ====== -->
+<section id="skills" class="reveal">
+    <div class="container">
+        <p class="section-label">02 — Skills</p>
+        <h2 class="section-heading">Technologies & Expertise</h2>
+        <div class="skills-columns stagger">
+            <div class="skill-col skill-col--aiml"><div class="skill-col-title">AI / ML & MLOps</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">XGBoost</span><span class="skill-tag">EfficientNet</span><span class="skill-tag">CNNs</span><span class="skill-tag">Azure ML</span><span class="skill-tag">MLflow</span><span class="skill-tag">DVC</span><span class="skill-tag">Docker</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">CI/CD</span><span class="skill-tag">Model Monitoring</span></div></div>
+            <div class="skill-col skill-col--domain"><div class="skill-col-title">Domain Expertise</div><div class="skill-tags"><span class="skill-tag">Medical Imaging</span><span class="skill-tag">Clinical Decision Support</span><span class="skill-tag">EHR Integration</span><span class="skill-tag">HL7/FHIR</span><span class="skill-tag">NATO Operations</span><span class="skill-tag">Threat Assessment</span><span class="skill-tag">C2/ISR Systems</span><span class="skill-tag">Real-Time AI</span><span class="skill-tag">Sensor Fusion</span></div></div>
+            <div class="skill-col skill-col--reg"><div class="skill-col-title">Regulatory & Compliance</div><div class="skill-tags"><span class="skill-tag">EU AI Act</span><span class="skill-tag">GDPR</span><span class="skill-tag">SHAP</span><span class="skill-tag">LIME</span><span class="skill-tag">Grad-CAM</span><span class="skill-tag">Fairlearn</span><span class="skill-tag">Bias Auditing</span><span class="skill-tag">Data Anonymization</span><span class="skill-tag">NATO STANAG</span></div></div>
         </div>
-    </footer>
+    </div>
+</section>
 
+<!-- ====== PROJECTS ====== -->
+<section id="projects" class="reveal">
+    <div class="container">
+        <p class="section-label">03 — Projects</p>
+        <h2 class="section-heading">Featured Work</h2>
+        <p class="section-desc lang-en">Explore my projects across healthcare, defence, and responsible AI — built for real-world regulated environments.</p>
+        <p class="section-desc lang-de">Entdecken Sie meine Projekte in Healthcare AI, Defence AI und Responsible AI — entwickelt für regulierte Umgebungen.</p>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-cat="all" onclick="filterProjects('all')">All Projects</button>
+            <button class="filter-btn" data-cat="healthcare" onclick="filterProjects('healthcare')">🏥 Healthcare AI</button>
+            <button class="filter-btn" data-cat="defence" onclick="filterProjects('defence')">🛡️ Defence AI</button>
+            <button class="filter-btn" data-cat="responsible" onclick="filterProjects('responsible')">🔍 Responsible AI</button>
+        </div>
+
+        <div class="streamlit-notice">💡 Live demos are hosted on Streamlit Community Cloud. If a demo is in sleep mode, it may take 30–60 seconds to wake up — please be patient.</div>
+
+        <div class="projects-grid stagger">
+            <!-- HEALTHCARE: SkinxAI -->
+            <div class="project-card" data-category="healthcare">
+                <img src="images/SkinXAI.png" alt="SkinxAI" class="project-img">
+                <div class="project-content">
+                    <span class="project-cat-tag cat--health">Healthcare AI</span>
+                    <h3 class="project-name">SkinxAI</h3>
+                    <p class="project-subtitle">AI Skin Lesion Classifier — Medical Imaging</p>
+                    <p class="project-desc">EfficientNet-B7 CNN achieving <strong>85.2% sensitivity</strong> for malignant lesion detection on HAM10000. Grad-CAM explainability, GDPR-compliant data handling, and tiered risk stratification.</p>
+                    <div class="project-techs"><span class="project-tech">PyTorch</span><span class="project-tech">EfficientNet-B7</span><span class="project-tech">Grad-CAM</span><span class="project-tech">GDPR</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/skin-lesion-classifier" target="_blank" class="project-link project-link--health">GitHub →</a><a href="https://skinxai.streamlit.app/" target="_blank" class="project-link project-link--health">Live Demo →</a></div>
+                </div>
+            </div>
+            <!-- HEALTHCARE: ClinicOps -->
+            <div class="project-card" data-category="healthcare">
+                <img src="images/ClinicOps.png" alt="ClinicOps" class="project-img">
+                <div class="project-content">
+                    <span class="project-cat-tag cat--health">Healthcare AI</span>
+                    <h3 class="project-name">ClinicOps</h3>
+                    <p class="project-subtitle">End-to-End MLOps Platform — Healthcare Operations</p>
+                    <p class="project-desc">Hospital stay prediction (<strong>R²=0.918</strong>) with full lifecycle MLOps. MLflow tracking, DVC versioning, Docker, CI/CD via Azure & GitHub Actions, and real-time drift detection.</p>
+                    <div class="project-techs"><span class="project-tech">MLflow</span><span class="project-tech">DVC</span><span class="project-tech">Azure</span><span class="project-tech">Docker</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/ClinicOps" target="_blank" class="project-link project-link--health">GitHub →</a></div>
+                </div>
+            </div>
+            <!-- HEALTHCARE: Azure NLP -->
+            <div class="project-card" data-category="healthcare">
+                <div class="project-img-placeholder project-img-placeholder--health">🔬</div>
+                <div class="project-content">
+                    <span class="project-cat-tag cat--health">Healthcare AI</span>
+                    <h3 class="project-name">Azure Healthcare NLP Analyzer</h3>
+                    <p class="project-subtitle">Clinical Text Analysis — Azure AI Language</p>
+                    <p class="project-desc">Medical entity recognition pipeline extracting diagnoses, medications, symptoms, and relations from unstructured clinical notes using Azure AI Language services.</p>
+                    <div class="project-techs"><span class="project-tech">Azure AI</span><span class="project-tech">NLP</span><span class="project-tech">Healthcare</span><span class="project-tech">Text Analytics</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/azure-healthcare-nlp-analyzer" target="_blank" class="project-link project-link--health">GitHub →</a></div>
+                </div>
+            </div>
+            <!-- HEALTHCARE: Health Anomaly -->
+            <div class="project-card" data-category="healthcare">
+                <div class="project-img-placeholder project-img-placeholder--health">📊</div>
+                <div class="project-content">
+                    <span class="project-cat-tag cat--health">Healthcare AI</span>
+                    <h3 class="project-name">Health Anomaly Detection</h3>
+                    <p class="project-subtitle">Clinical Metrics Monitoring — Early Warning</p>
+                    <p class="project-desc">Anomaly detection system for clinical health metrics and patient monitoring data. Designed for early warning signals in healthcare operations.</p>
+                    <div class="project-techs"><span class="project-tech">Anomaly Detection</span><span class="project-tech">Healthcare</span><span class="project-tech">Python</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/health-anomaly-detection" target="_blank" class="project-link project-link--health">GitHub →</a></div>
+                </div>
+            </div>
+            <!-- DEFENCE: VANGUARD -->
+            <div class="project-card" data-category="defence">
+                <img src="images/VANGUARD.png" alt="VANGUARD" class="project-img">
+                <div class="project-content">
+                    <span class="project-cat-tag cat--defence">Defence AI</span>
+                    <h3 class="project-name">VANGUARD</h3>
+                    <p class="project-subtitle">Air Track Classification — NATO C2 Threat Assessment</p>
+                    <p class="project-desc">Real-time aerial threat classification (Hostile/Friendly/Civilian) using XGBoost for NATO C2 systems. 3D flight path visualization, automated anomaly detection, NATO-compatible architecture.</p>
+                    <div class="project-techs"><span class="project-tech">Python</span><span class="project-tech">XGBoost</span><span class="project-tech">3D Viz</span><span class="project-tech">Defence AI</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/VANGUARD_Project" target="_blank" class="project-link project-link--defence">GitHub →</a><a href="https://vanguard-ai.streamlit.app/" target="_blank" class="project-link project-link--defence">Live Demo →</a></div>
+                </div>
+            </div>
+            <!-- DEFENCE: SENTINEL -->
+            <div class="project-card coming-soon" data-category="defence">
+                <div class="project-img-placeholder project-img-placeholder--defence">🛰️</div>
+                <div class="project-content">
+                    <span class="project-cat-tag cat--defence">Defence AI</span>
+                    <h3 class="project-name">SENTINEL <span class="coming-badge">Coming Soon</span></h3>
+                    <p class="project-subtitle">Multi-Domain Situational Awareness Dashboard</p>
+                    <p class="project-desc">Multi-domain fusion dashboard integrating land, sea, and air threat data. NATO STANAG-referenced data formats with human-in-the-loop decision support.</p>
+                    <div class="project-techs"><span class="project-tech">Sensor Fusion</span><span class="project-tech">Multi-Domain</span><span class="project-tech">Real-Time AI</span></div>
+                </div>
+            </div>
+            <!-- RESPONSIBLE: XAI -->
+            <div class="project-card" data-category="responsible">
+                <img src="images/XAI.png" alt="XAI Dashboard" class="project-img">
+                <div class="project-content">
+                    <span class="project-cat-tag cat--responsible">Responsible AI</span>
+                    <h3 class="project-name">XAI Dashboard</h3>
+                    <p class="project-subtitle">Explainable AI — Model Interpretability & Trust</p>
+                    <p class="project-desc">Interactive SHAP & LIME dashboard for transparent model decisions. Audit-ready with counterfactual explanations for healthcare and defence applications.</p>
+                    <div class="project-techs"><span class="project-tech">SHAP</span><span class="project-tech">LIME</span><span class="project-tech">Streamlit</span><span class="project-tech">XAI</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/explainable_ai_dashboard" target="_blank" class="project-link project-link--responsible">GitHub →</a><a href="https://xai-dashboard.streamlit.app/" target="_blank" class="project-link project-link--responsible">Live Demo →</a></div>
+                </div>
+            </div>
+            <!-- RESPONSIBLE: Content Safety -->
+            <div class="project-card" data-category="responsible">
+                <div class="project-img-placeholder project-img-placeholder--responsible">🛡️</div>
+                <div class="project-content">
+                    <span class="project-cat-tag cat--responsible">Responsible AI</span>
+                    <h3 class="project-name">Azure Content Safety Platform</h3>
+                    <p class="project-subtitle">Content Moderation — Azure AI Content Safety</p>
+                    <p class="project-desc">Content safety and moderation platform detecting harmful content across text and images for responsible AI deployment using Azure AI services.</p>
+                    <div class="project-techs"><span class="project-tech">Azure AI</span><span class="project-tech">Content Safety</span><span class="project-tech">Moderation</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/azure-content-safety-platform" target="_blank" class="project-link project-link--responsible">GitHub →</a></div>
+                </div>
+            </div>
+            <!-- RESPONSIBLE: EchoBreaker -->
+            <div class="project-card" data-category="responsible">
+                <div class="project-img-placeholder project-img-placeholder--responsible">🧠</div>
+                <div class="project-content">
+                    <span class="project-cat-tag cat--responsible">Responsible AI</span>
+                    <h3 class="project-name">EchoBreaker</h3>
+                    <p class="project-subtitle">Cognitive Bias Detection — Information Integrity</p>
+                    <p class="project-desc">AI system for detecting echo chambers and cognitive biases in information environments. Critical for clinical decision-making and operational intelligence analysis.</p>
+                    <div class="project-techs"><span class="project-tech">NLP</span><span class="project-tech">Bias Detection</span><span class="project-tech">Python</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/EchoBreaker" target="_blank" class="project-link project-link--responsible">GitHub →</a></div>
+                </div>
+            </div>
+            <!-- RESPONSIBLE: AI Act Toolkit -->
+            <div class="project-card coming-soon" data-category="responsible">
+                <div class="project-img-placeholder project-img-placeholder--responsible">⚖️</div>
+                <div class="project-content">
+                    <span class="project-cat-tag cat--responsible">Responsible AI</span>
+                    <h3 class="project-name">AI-Act-Compliance-Toolkit <span class="coming-badge">Coming Soon</span></h3>
+                    <p class="project-subtitle">EU AI Act (Aug 2026) Compliance Framework</p>
+                    <p class="project-desc">Open-source compliance toolkit for EU AI Act high-risk systems. Risk classification templates, technical documentation generators, and bias audit tools.</p>
+                    <div class="project-techs"><span class="project-tech">EU AI Act</span><span class="project-tech">Compliance</span><span class="project-tech">High-Risk AI</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upcoming-bar">
+            <div class="upcoming-item" style="border-color:var(--accent)"><div class="upcoming-title">☁️ Azure AI-102 Certification</div><div class="upcoming-desc">Scheduled April 2026</div></div>
+            <div class="upcoming-item" style="border-color:var(--defence)"><div class="upcoming-title">🛰️ SENTINEL Project</div><div class="upcoming-desc">Multi-domain situational awareness — In development</div></div>
+            <div class="upcoming-item" style="border-color:var(--responsible)"><div class="upcoming-title">⚖️ AI Act Compliance Toolkit</div><div class="upcoming-desc">Open-source EU AI Act framework — In development</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== INSIGHTS ====== -->
+<section id="insights" class="reveal">
+    <div class="container">
+        <p class="section-label">04 — Insights</p>
+        <h2 class="section-heading lang-en">Perspectives & Writing</h2>
+        <h2 class="section-heading lang-de">Perspektiven & Beiträge</h2>
+        <p class="section-desc lang-en">Thoughts on AI in regulated domains — where policy meets production.</p>
+        <p class="section-desc lang-de">Gedanken zu KI in regulierten Domänen — wo Politik auf Produktion trifft.</p>
+        <div class="insights-grid stagger">
+            <div class="insight-card insight-card--reg">
+                <span class="insight-tag" style="background:var(--responsible-bg);color:var(--responsible)">EU AI Act</span>
+                <h3 class="insight-title">What the EU AI Act Means for Healthcare & Defence AI Systems</h3>
+                <p class="insight-excerpt">With high-risk AI obligations taking effect August 2026, healthcare and defence organizations face a dual compliance challenge. Here's what practitioners need to know about risk classification and the path to conformity.</p>
+                <p class="insight-meta">Coming soon · 2026</p>
+            </div>
+            <div class="insight-card insight-card--health">
+                <span class="insight-tag" style="background:var(--healthcare-bg);color:var(--healthcare)">Healthcare AI</span>
+                <h3 class="insight-title">Building Trustworthy Medical AI: Explainability Beyond the Checkbox</h3>
+                <p class="insight-excerpt">SHAP values and Grad-CAM heatmaps are just the beginning. Real clinical trust requires bridging the gap between technical explainability metrics and what decision-makers actually need.</p>
+                <p class="insight-meta">Coming soon · 2026</p>
+            </div>
+            <div class="insight-card insight-card--defence">
+                <span class="insight-tag" style="background:var(--defence-bg);color:var(--defence)">Defence AI</span>
+                <h3 class="insight-title">From NATO Planning to AI Engineering: Lessons in Mission-Critical Systems</h3>
+                <p class="insight-excerpt">15 years of operational planning taught me that the hardest problems aren't algorithmic — they're about trust, reliability, and human oversight. How military decision frameworks translate into responsible AI design.</p>
+                <p class="insight-meta">Coming soon · 2026</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section id="contact" class="contact-section reveal">
+    <div class="container">
+        <p class="section-label">05 — Contact</p>
+        <h2 class="section-heading lang-en">Let's Connect</h2>
+        <h2 class="section-heading lang-de">Kontakt aufnehmen</h2>
+        <p class="contact-cta lang-en">Open to opportunities in <strong>Healthcare AI</strong> and <strong>Defence AI</strong> across Southern Germany.</p>
+        <p class="contact-cta lang-de">Offen für Möglichkeiten im Bereich <strong>Healthcare AI</strong> und <strong>Defence AI</strong> in Süddeutschland.</p>
+        <div class="contact-location">📍 Based in Bavaria, Germany</div>
+        <div class="contact-links">
+            <a href="mailto:atamererkal.eu@gmail.com" class="contact-pill"><span class="contact-pill-icon">📧</span> atamererkal.eu@gmail.com</a>
+            <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="contact-pill"><span class="contact-pill-icon">💼</span> LinkedIn</a>
+            <a href="https://github.com/AtamerErkal" target="_blank" class="contact-pill"><span class="contact-pill-icon">💻</span> GitHub</a>
+        </div>
+    </div>
+</section>
+
+<footer><div class="container"><p>Built by Atamer Erkal · © 2026</p></div></footer>
+
+<script>
+function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.lang-btn[onclick="setLang(\''+lang+'\')"]').classList.add('active');
+}
+function filterProjects(cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn[data-cat="'+cat+'"]').classList.add('active');
+    document.querySelectorAll('.project-card').forEach(c => {
+        c.classList.toggle('hidden', cat !== 'all' && c.dataset.category !== cat);
+    });
+}
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal,.stagger').forEach(el => obs.observe(el));
+document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+});
+</script>
 </body>
 </html>
