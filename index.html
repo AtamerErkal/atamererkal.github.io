@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atamer Erkal | Healthcare & Defence AI Engineer</title>
-    <meta name="description" content="Healthcare & Defence AI Engineer. Former NATO Planning Officer building production-grade AI systems for regulated domains. Based in Bavaria, Germany.">
+    <meta name="description" content="Healthcare & Defence AI Engineer. Former NATO Planning Officer building production-grade AI systems for regulated domains.">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,7 +44,12 @@
 
         /* ===== HERO ===== */
         .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; background: radial-gradient(ellipse 60% 50% at 70% 30%, rgba(94,234,212,0.04) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 20% 70%, rgba(96,165,250,0.03) 0%, transparent 60%); }
+        .hero > .container { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        .hero-row { display: grid; grid-template-columns: 3fr 2fr; gap: 3rem; align-items: center; }
         .hero-content { max-width: 720px; }
+        .hero-photo { display: flex; justify-content: center; align-items: center; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+        .hero-photo img { width: 100%; max-width: 320px; border-radius: var(--radius-lg); border: 2px solid rgba(94,234,212,0.15); filter: grayscale(10%); transition: 0.4s; }
+        .hero-photo img:hover { border-color: var(--accent); filter: grayscale(0%); transform: scale(1.02); }
         .hero-eyebrow { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem; opacity: 0; animation: fadeUp 0.6s 0.1s forwards; }
         .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 800; color: var(--text-primary); line-height: 1.1; margin-bottom: 0.6rem; letter-spacing: -1.5px; opacity: 0; animation: fadeUp 0.6s 0.2s forwards; }
         .hero-subtitle { font-family: 'Syne', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 500; color: var(--text-muted); margin-bottom: 1.8rem; opacity: 0; animation: fadeUp 0.6s 0.35s forwards; }
@@ -159,7 +164,6 @@
         .contact-section { text-align: center; padding: 120px 0; }
         .contact-cta { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 1rem; line-height: 1.8; }
         .contact-cta strong { color: var(--text-primary); }
-        .contact-location { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.2rem; border-radius: 8px; background: var(--accent-dim); border: 1px solid rgba(94,234,212,0.15); color: var(--accent); font-size: 0.85rem; font-weight: 500; margin-bottom: 2.5rem; }
         .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .contact-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.25s; }
         .contact-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
@@ -185,6 +189,9 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
+            .hero-row { grid-template-columns: 1fr; }
+            .hero-photo { order: -1; }
+            .hero-photo img { max-width: 220px; }
             .about-grid { grid-template-columns: 1fr; }
             .about-sidebar { position: static; display: flex; flex-direction: column; align-items: center; }
             .skills-columns { grid-template-columns: 1fr; }
@@ -231,32 +238,37 @@
 <!-- ====== HERO ====== -->
 <section class="hero">
     <div class="container">
-        <div class="hero-content">
-            <p class="hero-eyebrow">Former NATO Planning Officer · Based in Bavaria</p>
-            <h1 class="hero-title">Healthcare &<br>Defence AI Engineer</h1>
-            <h2 class="hero-subtitle">Building production-grade AI for regulated domains.</h2>
+        <div class="hero-row">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Former NATO Planning Officer</p>
+                <h1 class="hero-title">Healthcare &<br>Defence AI Engineer</h1>
+                <h2 class="hero-subtitle">Building production-grade AI for regulated domains.</h2>
 
-            <p class="hero-desc lang-en">
-                I design and deploy <span class="hl">end-to-end AI/ML systems</span> for safety-critical and regulated environments —
-                from <span class="hl">healthcare analytics</span> and <span class="hl">defence operations</span> to
-                <span class="hl">explainable & compliant AI</span>. Focused on turning complex domain challenges into
-                reliable, production-ready solutions.
-            </p>
-            <p class="hero-desc lang-de">
-                Ich entwickle und implementiere <span class="hl">End-to-End AI/ML-Systeme</span> für sicherheitskritische
-                und regulierte Umgebungen — von <span class="hl">Healthcare Analytics</span> und <span class="hl">Defence Operations</span>
-                bis hin zu <span class="hl">erklärbarer & konformer KI</span>. Mein Fokus liegt auf robusten, produktionsreifen Lösungen.
-            </p>
+                <p class="hero-desc lang-en">
+                    I design and deploy <span class="hl">end-to-end AI/ML systems</span> for safety-critical and regulated environments —
+                    from <span class="hl">healthcare analytics</span> and <span class="hl">defence operations</span> to
+                    <span class="hl">explainable & compliant AI</span>. Focused on turning complex domain challenges into
+                    reliable, production-ready solutions.
+                </p>
+                <p class="hero-desc lang-de">
+                    Ich entwickle und implementiere <span class="hl">End-to-End AI/ML-Systeme</span> für sicherheitskritische
+                    und regulierte Umgebungen — von <span class="hl">Healthcare Analytics</span> und <span class="hl">Defence Operations</span>
+                    bis hin zu <span class="hl">erklärbarer & konformer KI</span>. Mein Fokus liegt auf robusten, produktionsreifen Lösungen.
+                </p>
 
-            <div class="hero-tags">
-                <span class="hero-tag hero-tag--health">Healthcare AI</span>
-                <span class="hero-tag hero-tag--defence">Defence AI</span>
-                <span class="hero-tag hero-tag--responsible">Responsible AI</span>
-                <span class="hero-tag hero-tag--azure">Azure AI · AI-102 Apr 2026</span>
+                <div class="hero-tags">
+                    <span class="hero-tag hero-tag--health">Healthcare AI</span>
+                    <span class="hero-tag hero-tag--defence">Defence AI</span>
+                    <span class="hero-tag hero-tag--responsible">Responsible AI</span>
+                    <span class="hero-tag hero-tag--azure">Azure AI · AI-102 Apr 2026</span>
+                </div>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-accent">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
             </div>
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-accent">View Projects</a>
-                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            <div class="hero-photo">
+                <img src="images/bildjpg.jpg" alt="Atamer Erkal">
             </div>
         </div>
         <div class="hero-stats">
@@ -313,8 +325,8 @@
         <p class="section-label">02 — Skills</p>
         <h2 class="section-heading">Technologies & Expertise</h2>
         <div class="skills-columns stagger">
-            <div class="skill-col skill-col--aiml"><div class="skill-col-title">AI / ML & MLOps</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">XGBoost</span><span class="skill-tag">EfficientNet</span><span class="skill-tag">CNNs</span><span class="skill-tag">Azure ML</span><span class="skill-tag">MLflow</span><span class="skill-tag">DVC</span><span class="skill-tag">Docker</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">CI/CD</span><span class="skill-tag">Model Monitoring</span></div></div>
-            <div class="skill-col skill-col--domain"><div class="skill-col-title">Domain Expertise</div><div class="skill-tags"><span class="skill-tag">Medical Imaging</span><span class="skill-tag">Clinical Decision Support</span><span class="skill-tag">EHR Integration</span><span class="skill-tag">HL7/FHIR</span><span class="skill-tag">NATO Operations</span><span class="skill-tag">Threat Assessment</span><span class="skill-tag">C2/ISR Systems</span><span class="skill-tag">Real-Time AI</span><span class="skill-tag">Sensor Fusion</span></div></div>
+            <div class="skill-col skill-col--aiml"><div class="skill-col-title">AI / ML & MLOps</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">XGBoost</span><span class="skill-tag">EfficientNet</span><span class="skill-tag">YOLOv8</span><span class="skill-tag">TensorRT</span><span class="skill-tag">CNNs</span><span class="skill-tag">Azure ML</span><span class="skill-tag">MLflow</span><span class="skill-tag">DVC</span><span class="skill-tag">Docker</span><span class="skill-tag">GitHub Actions</span><span class="skill-tag">CI/CD</span><span class="skill-tag">Model Monitoring</span></div></div>
+            <div class="skill-col skill-col--domain"><div class="skill-col-title">Domain Expertise</div><div class="skill-tags"><span class="skill-tag">Medical Imaging</span><span class="skill-tag">Clinical Decision Support</span><span class="skill-tag">EHR Integration</span><span class="skill-tag">HL7/FHIR</span><span class="skill-tag">NATO Operations</span><span class="skill-tag">Threat Assessment</span><span class="skill-tag">C2/ISR Systems</span><span class="skill-tag">Counter-UAS</span><span class="skill-tag">Edge AI (SWaP-C)</span><span class="skill-tag">Sensor Fusion</span><span class="skill-tag">Real-Time AI</span><span class="skill-tag">VLM Reasoning</span></div></div>
             <div class="skill-col skill-col--reg"><div class="skill-col-title">Regulatory & Compliance</div><div class="skill-tags"><span class="skill-tag">EU AI Act</span><span class="skill-tag">GDPR</span><span class="skill-tag">SHAP</span><span class="skill-tag">LIME</span><span class="skill-tag">Grad-CAM</span><span class="skill-tag">Fairlearn</span><span class="skill-tag">Bias Auditing</span><span class="skill-tag">Data Anonymization</span><span class="skill-tag">NATO STANAG</span></div></div>
         </div>
     </div>
@@ -396,6 +408,18 @@
                     <p class="project-desc">Real-time aerial threat classification (Hostile/Friendly/Civilian) using XGBoost for NATO C2 systems. 3D flight path visualization, automated anomaly detection, NATO-compatible architecture.</p>
                     <div class="project-techs"><span class="project-tech">Python</span><span class="project-tech">XGBoost</span><span class="project-tech">3D Viz</span><span class="project-tech">Defence AI</span></div>
                     <div class="project-links"><a href="https://github.com/AtamerErkal/VANGUARD_Project" target="_blank" class="project-link project-link--defence">GitHub →</a><a href="https://vanguard-ai.streamlit.app/" target="_blank" class="project-link project-link--defence">Live Demo →</a></div>
+                </div>
+            </div>
+            <!-- DEFENCE: AEGIS-Cloud -->
+            <div class="project-card" data-category="defence">
+                <div class="project-img-placeholder project-img-placeholder--defence">🛡️</div>
+                <div class="project-content">
+                    <span class="project-cat-tag cat--defence">Defence AI</span>
+                    <h3 class="project-name">AEGIS-Cloud</h3>
+                    <p class="project-subtitle">Autonomous Edge Guardian Intelligence System — Counter-UAS</p>
+                    <p class="project-desc">Heterogeneous AIOps framework for autonomous Counter-UAS operations. TensorRT FP16 compiled YOLOv8 on NVIDIA Jetson with <strong>&lt;30ms latency</strong> (vs 300ms+ baseline). Moondream VLM tactical reasoning with circuit-breaker pattern, Azure IoT cloud sync, and EU AI Act compliant audit trail.</p>
+                    <div class="project-techs"><span class="project-tech">TensorRT</span><span class="project-tech">YOLOv8</span><span class="project-tech">Edge AI</span><span class="project-tech">VLM</span><span class="project-tech">Azure IoT</span><span class="project-tech">C++</span></div>
+                    <div class="project-links"><a href="https://github.com/AtamerErkal/AEGIS-Cloud" target="_blank" class="project-link project-link--defence">GitHub →</a></div>
                 </div>
             </div>
             <!-- DEFENCE: SENTINEL -->
@@ -503,9 +527,8 @@
         <p class="section-label">05 — Contact</p>
         <h2 class="section-heading lang-en">Let's Connect</h2>
         <h2 class="section-heading lang-de">Kontakt aufnehmen</h2>
-        <p class="contact-cta lang-en">Open to opportunities in <strong>Healthcare AI</strong> and <strong>Defence AI</strong> across Southern Germany.</p>
-        <p class="contact-cta lang-de">Offen für Möglichkeiten im Bereich <strong>Healthcare AI</strong> und <strong>Defence AI</strong> in Süddeutschland.</p>
-        <div class="contact-location">📍 Based in Bavaria, Germany</div>
+        <p class="contact-cta lang-en">Open to opportunities in <strong>Healthcare AI</strong> and <strong>Defence AI</strong>.</p>
+        <p class="contact-cta lang-de">Offen für Möglichkeiten im Bereich <strong>Healthcare AI</strong> und <strong>Defence AI</strong>.</p>
         <div class="contact-links">
             <a href="mailto:atamererkal.eu@gmail.com" class="contact-pill"><span class="contact-pill-icon">📧</span> atamererkal.eu@gmail.com</a>
             <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="contact-pill"><span class="contact-pill-icon">💼</span> LinkedIn</a>
@@ -532,10 +555,4 @@ function filterProjects(cat) {
 const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal,.stagger').forEach(el => obs.observe(el));
-document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
-});
-</script>
-</body>
-</html>
+document.query
