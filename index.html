@@ -302,7 +302,6 @@
                 </div>
             </div>
             <div class="about-sidebar">
-                <img src="images/bildjpg.jpg" alt="Atamer Erkal" class="profile-img">
                 <ul class="credentials-list">
                     <li><span class="cred-icon">🎓</span><div><div class="cred-label">Electronics Engineering BSc</div><div class="cred-detail">Naval Officer Training</div></div></li>
                     <li><span class="cred-icon">🎓</span><div><div class="cred-label">Dual Master's Degrees</div><div class="cred-detail">Leadership & Public Relations — National Defence University</div></div></li>
@@ -555,4 +554,10 @@ function filterProjects(cat) {
 const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.query
+document.querySelectorAll('.reveal,.stagger').forEach(el => obs.observe(el));
+document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+});
+</script>
+</body>
+</html>
