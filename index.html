@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Lucide Icons - professional SVG icon library -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* ===== CSS VARIABLES ===== */
@@ -41,19 +40,8 @@
         }
 
         /* ===== RESET & BASE ===== */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: calc(var(--nh) + 16px);
-        }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nh) + 16px); }
         body {
             font-family: 'DM Sans', -apple-system, sans-serif;
             background: var(--bg-primary);
@@ -62,1115 +50,291 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .ctr {
-            max-width: var(--mw);
-            margin: 0 auto;
-            padding: 0 28px;
-        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+        .ctr { max-width: var(--mw); margin: 0 auto; padding: 0 28px; }
 
         /* ===== NAVIGATION ===== */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--nh);
+            position: fixed; top: 0; left: 0; right: 0; height: var(--nh);
             background: rgba(8, 12, 20, 0.82);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--bdr);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--bdr); z-index: 1000;
+            display: flex; align-items: center;
         }
-
-        nav .ctr {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .nav-logo {
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
+        nav .ctr { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        .nav-logo { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; }
+        .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+        .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
         .lang-toggle {
-            display: flex;
-            gap: 2px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--bdr);
-            border-radius: 8px;
-            padding: 3px;
+            display: flex; gap: 2px; background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--bdr); border-radius: 8px; padding: 3px;
         }
-
         .lang-btn {
-            padding: 5px 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-            background: transparent;
-            color: var(--text-muted);
-            transition: all 0.2s;
-            font-family: inherit;
-            letter-spacing: 0.03em;
+            padding: 5px 12px; border: none; border-radius: 6px; font-size: 0.75rem;
+            font-weight: 700; cursor: pointer; background: transparent;
+            color: var(--text-muted); transition: all 0.2s; font-family: inherit; letter-spacing: 0.03em;
         }
-
-        .lang-btn.active {
-            background: var(--accent-df);
-            color: #fff;
-        }
-
-        .mob-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.4rem;
-            cursor: pointer;
-            padding: 4px;
-        }
+        .lang-btn.active { background: var(--accent-df); color: #fff; }
+        .mob-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.4rem; cursor: pointer; padding: 4px; }
 
         /* ===== HERO SECTION ===== */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: var(--nh);
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center;
+            padding-top: var(--nh); position: relative; overflow: hidden;
         }
-
         .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 15% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 55%),
-                radial-gradient(ellipse at 85% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 55%);
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 15% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 55%),
+                        radial-gradient(ellipse at 85% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 55%);
             pointer-events: none;
         }
-
         .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(148, 163, 184, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(148, 163, 184, 0.025) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
+            content: ''; position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(148, 163, 184, 0.025) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(148, 163, 184, 0.025) 1px, transparent 1px);
+            background-size: 60px 60px; pointer-events: none;
         }
-
         .hero .ctr {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 48px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+            display: grid; grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px; align-items: center; position: relative; z-index: 1;
         }
-
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 18px;
-            margin-bottom: 28px;
-            background: rgba(59, 130, 246, 0.06);
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 100px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--accent-df);
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 8px 18px; margin-bottom: 28px;
+            background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 100px; font-size: 0.82rem; font-weight: 600; color: var(--accent-df);
         }
-
-        .hero-badge svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--accent-df);
-        }
+        .hero-badge svg { width: 16px; height: 16px; stroke: var(--accent-df); }
 
         h1.hero-title {
-            font-size: clamp(2.4rem, 4.5vw, 3.4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.035em;
-            margin-bottom: 22px;
+            font-size: clamp(2.4rem, 4.5vw, 3.4rem); font-weight: 800;
+            line-height: 1.1; letter-spacing: -0.035em; margin-bottom: 22px;
+        }
+        .txt-hc { color: var(--accent-hc); }
+        .txt-df { color: var(--accent-df); }
+        .hero-amp {
+            background: linear-gradient(135deg, var(--accent-hc), var(--accent-df));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .grad {
-            background: linear-gradient(135deg, #10b981, #3b82f6 50%, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-sub {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.75;
-            margin-bottom: 32px;
-            max-width: 520px;
-        }
-
-        .hero-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 36px;
-        }
-
+        .hero-sub { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 32px; max-width: 520px; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
         .htag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 7px 14px;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            font-weight: 600;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 7px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
         }
+        .htag svg { width: 14px; height: 14px; }
+        .htag.hc { background: var(--accent-hc-dim); color: var(--accent-hc); border: 1px solid var(--accent-hc-bdr); }
+        .htag.hc svg { stroke: var(--accent-hc); }
+        .htag.df { background: var(--accent-df-dim); color: var(--accent-df); border: 1px solid var(--accent-df-bdr); }
+        .htag.df svg { stroke: var(--accent-df); }
+        .htag.ra { background: var(--accent-ra-dim); color: var(--accent-ra); border: 1px solid var(--accent-ra-bdr); }
+        .htag.ra svg { stroke: var(--accent-ra); }
+        .htag.az { background: rgba(0, 120, 212, 0.1); color: var(--accent-az); border: 1px solid rgba(0, 120, 212, 0.2); }
+        .htag.az svg { stroke: var(--accent-az); }
 
-        .htag svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .htag.hc {
-            background: var(--accent-hc-dim);
-            color: var(--accent-hc);
-            border: 1px solid var(--accent-hc-bdr);
-        }
-
-        .htag.hc svg {
-            stroke: var(--accent-hc);
-        }
-
-        .htag.df {
-            background: var(--accent-df-dim);
-            color: var(--accent-df);
-            border: 1px solid var(--accent-df-bdr);
-        }
-
-        .htag.df svg {
-            stroke: var(--accent-df);
-        }
-
-        .htag.ra {
-            background: var(--accent-ra-dim);
-            color: var(--accent-ra);
-            border: 1px solid var(--accent-ra-bdr);
-        }
-
-        .htag.ra svg {
-            stroke: var(--accent-ra);
-        }
-
-        .htag.az {
-            background: rgba(0, 120, 212, 0.1);
-            color: var(--accent-az);
-            border: 1px solid rgba(0, 120, 212, 0.2);
-        }
-
-        .htag.az svg {
-            stroke: var(--accent-az);
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
+        .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 13px 26px;
-            border-radius: var(--r-sm);
-            font-size: 0.88rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s;
-            border: none;
-            font-family: inherit;
+            display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px;
+            border-radius: var(--r-sm); font-size: 0.88rem; font-weight: 600;
+            cursor: pointer; transition: all 0.25s; border: none; font-family: inherit;
         }
+        .btn-p { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; box-shadow: 0 2px 12px rgba(59, 130, 246, 0.25); }
+        .btn-p:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(59, 130, 246, 0.35); }
+        .btn-o { background: transparent; color: var(--text-secondary); border: 1px solid var(--bdr-h); }
+        .btn-o:hover { color: var(--text-primary); border-color: var(--text-muted); }
 
-        .btn-p {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: #fff;
-            box-shadow: 0 2px 12px rgba(59, 130, 246, 0.25);
-        }
-
-        .btn-p:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(59, 130, 246, 0.35);
-        }
-
-        .btn-o {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--bdr-h);
-        }
-
-        .btn-o:hover {
-            color: var(--text-primary);
-            border-color: var(--text-muted);
-        }
-
-        .hero-photo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .photo-frame {
-            position: relative;
-            width: 320px;
-            height: 400px;
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top center;
-            border-radius: 20px;
-            border: 1px solid var(--bdr-h);
-        }
-
+        .hero-photo { display: flex; justify-content: center; align-items: center; }
+        .photo-frame { position: relative; width: 320px; height: 400px; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 20px; border: 1px solid var(--bdr-h); }
         .photo-frame::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            bottom: -8px;
-            left: -8px;
+            content: ''; position: absolute; top: -8px; right: -8px; bottom: -8px; left: -8px;
             border-radius: 24px;
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(59, 130, 246, 0.12), rgba(167, 139, 250, 0.08));
             z-index: -1;
         }
-
         .photo-frame::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            background: linear-gradient(to bottom, transparent 65%, rgba(8, 12, 20, 0.35));
-            pointer-events: none;
+            content: ''; position: absolute; inset: 0; border-radius: 20px;
+            background: linear-gradient(to bottom, transparent 65%, rgba(8, 12, 20, 0.35)); pointer-events: none;
         }
 
         /* ===== STATS BAR ===== */
-        .stats {
-            padding: 36px 0;
-            border-top: 1px solid var(--bdr);
-            border-bottom: 1px solid var(--bdr);
-            background: var(--bg-secondary);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            text-align: center;
-        }
-
+        .stats { padding: 36px 0; border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); background: var(--bg-secondary); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
         .stat-n {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.04em;
+            font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;
             background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .stat-l {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
+        .stat-l { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
 
         /* ===== GLOBAL SECTION STYLES ===== */
-        section {
-            padding: 100px 0;
-        }
-
-        .s-label {
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .s-title {
-            font-size: clamp(1.7rem, 2.8vw, 2.2rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 14px;
-        }
-
-        .s-sub {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            line-height: 1.7;
-        }
-
-        /* Language toggle classes */
+        section { padding: 100px 0; }
+        .s-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+        .s-title { font-size: clamp(1.7rem, 2.8vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 14px; }
+        .s-sub { font-size: 1rem; color: var(--text-secondary); max-width: 600px; line-height: 1.7; }
         .lang-en { }
         .lang-de { display: none; }
 
         /* ===== ABOUT SECTION ===== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 48px;
-            margin-top: 44px;
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            line-height: 1.8;
-            font-size: 0.92rem;
-        }
-
-        .about-text strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .about-side {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .a-card {
-            padding: 18px;
-            background: var(--bg-card);
-            border-radius: var(--r-md);
-            border: 1px solid var(--bdr);
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            transition: border-color 0.2s;
-        }
-
-        .a-card:hover {
-            border-color: var(--bdr-h);
-        }
-
-        .a-icon {
-            width: 40px;
-            height: 40px;
-            flex-shrink: 0;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .a-icon svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .a-icon.edu {
-            background: rgba(139, 92, 246, 0.1);
-        }
-
-        .a-icon.edu svg {
-            stroke: #8b5cf6;
-        }
-
-        .a-icon.crt {
-            background: rgba(0, 120, 212, 0.1);
-        }
-
-        .a-icon.crt svg {
-            stroke: var(--accent-az);
-        }
-
-        .a-icon.lng {
-            background: var(--accent-hc-dim);
-        }
-
-        .a-icon.lng svg {
-            stroke: var(--accent-hc);
-        }
-
-        .a-card-t {
-            font-size: 0.88rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .a-card-d {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .awards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .award {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            background: var(--bg-card);
-            border-radius: var(--r-sm);
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            border: 1px solid var(--bdr);
-        }
-
-        .award svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
+        .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; margin-top: 44px; }
+        .about-text p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; font-size: 0.92rem; }
+        .about-text strong { color: var(--text-primary); font-weight: 600; }
+        .about-side { display: flex; flex-direction: column; gap: 14px; }
+        .a-card { padding: 18px; background: var(--bg-card); border-radius: var(--r-md); border: 1px solid var(--bdr); display: flex; align-items: flex-start; gap: 14px; transition: border-color 0.2s; }
+        .a-card:hover { border-color: var(--bdr-h); }
+        .a-icon { width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .a-icon svg { width: 20px; height: 20px; }
+        .a-icon.edu { background: rgba(139, 92, 246, 0.1); }
+        .a-icon.edu svg { stroke: #8b5cf6; }
+        .a-icon.crt { background: rgba(0, 120, 212, 0.1); }
+        .a-icon.crt svg { stroke: var(--accent-az); }
+        .a-icon.lng { background: var(--accent-hc-dim); }
+        .a-icon.lng svg { stroke: var(--accent-hc); }
+        .a-card-t { font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+        .a-card-d { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+        .awards { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .award { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--bg-card); border-radius: var(--r-sm); font-size: 0.78rem; color: var(--text-secondary); border: 1px solid var(--bdr); }
+        .award svg { width: 14px; height: 14px; flex-shrink: 0; }
 
         /* ===== SKILLS SECTION ===== */
-        .sk-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 44px;
-        }
+        .sk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+        .sk-g { padding: 28px; background: var(--bg-card); border-radius: var(--r-md); border: 1px solid var(--bdr); position: relative; overflow: hidden; }
+        .sk-g::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+        .sk-g.ml::before { background: linear-gradient(90deg, #3b82f6, #8b5cf6); }
+        .sk-g.dm::before { background: linear-gradient(90deg, #10b981, #06b6d4); }
+        .sk-g.cp::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+        .sk-ico { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+        .sk-ico svg { width: 18px; height: 18px; }
+        .sk-g.ml .sk-ico { background: var(--accent-df-dim); }
+        .sk-g.ml .sk-ico svg { stroke: var(--accent-df); }
+        .sk-g.dm .sk-ico { background: var(--accent-hc-dim); }
+        .sk-g.dm .sk-ico svg { stroke: var(--accent-hc); }
+        .sk-g.cp .sk-ico { background: var(--accent-ra-dim); }
+        .sk-g.cp .sk-ico svg { stroke: var(--accent-ra); }
+        .sk-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 14px; }
+        .sk-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .sk-tag { padding: 4px 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--bdr); border-radius: 6px; font-size: 0.72rem; font-weight: 500; font-family: 'JetBrains Mono', monospace; color: var(--text-secondary); }
 
-        .sk-g {
-            padding: 28px;
-            background: var(--bg-card);
-            border-radius: var(--r-md);
-            border: 1px solid var(--bdr);
-            position: relative;
-            overflow: hidden;
-        }
+        /* ===== PROJECTS ===== */
+        .proj-intro { padding: 100px 0 40px; }
+        .demo-note { margin-top: 18px; padding: 12px 18px; background: var(--accent-df-dim); border: 1px solid var(--accent-df-bdr); border-radius: var(--r-sm); font-size: 0.82rem; color: var(--text-secondary); display: inline-flex; align-items: center; gap: 8px; }
+        .demo-note svg { width: 16px; height: 16px; stroke: var(--accent-df); flex-shrink: 0; }
 
-        .sk-g::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-        }
-
-        .sk-g.ml::before {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-        }
-
-        .sk-g.dm::before {
-            background: linear-gradient(90deg, #10b981, #06b6d4);
-        }
-
-        .sk-g.cp::before {
-            background: linear-gradient(90deg, #f59e0b, #ef4444);
-        }
-
-        .sk-ico {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 14px;
-        }
-
-        .sk-ico svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .sk-g.ml .sk-ico {
-            background: var(--accent-df-dim);
-        }
-
-        .sk-g.ml .sk-ico svg {
-            stroke: var(--accent-df);
-        }
-
-        .sk-g.dm .sk-ico {
-            background: var(--accent-hc-dim);
-        }
-
-        .sk-g.dm .sk-ico svg {
-            stroke: var(--accent-hc);
-        }
-
-        .sk-g.cp .sk-ico {
-            background: var(--accent-ra-dim);
-        }
-
-        .sk-g.cp .sk-ico svg {
-            stroke: var(--accent-ra);
-        }
-
-        .sk-title {
-            font-size: 0.88rem;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-
-        .sk-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .sk-tag {
-            padding: 4px 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--bdr);
-            border-radius: 6px;
-            font-size: 0.72rem;
-            font-weight: 500;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-secondary);
-        }
-
-        /* ===== PROJECTS INTRO ===== */
-        .proj-intro {
-            padding: 100px 0 40px;
-        }
-
-        .demo-note {
-            margin-top: 18px;
-            padding: 12px 18px;
-            background: var(--accent-df-dim);
-            border: 1px solid var(--accent-df-bdr);
-            border-radius: var(--r-sm);
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .demo-note svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--accent-df);
-            flex-shrink: 0;
-        }
-
-        /* ===== CATEGORY SECTIONS ===== */
-        .cat-sec {
-            padding: 64px 0 32px;
-        }
-
-        .cat-hdr {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid var(--bdr);
-            margin-bottom: 10px;
-        }
-
-        .cat-ico {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--r-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .cat-ico svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        .cat-ico.hc {
-            background: var(--accent-hc-dim);
-            border: 1px solid var(--accent-hc-bdr);
-        }
-
-        .cat-ico.hc svg {
-            stroke: var(--accent-hc);
-        }
-
-        .cat-ico.df {
-            background: var(--accent-df-dim);
-            border: 1px solid var(--accent-df-bdr);
-        }
-
-        .cat-ico.df svg {
-            stroke: var(--accent-df);
-        }
-
-        .cat-ico.ra {
-            background: var(--accent-ra-dim);
-            border: 1px solid var(--accent-ra-bdr);
-        }
-
-        .cat-ico.ra svg {
-            stroke: var(--accent-ra);
-        }
-
-        .cat-t {
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
+        .cat-sec { padding: 64px 0 32px; }
+        .cat-hdr { display: flex; align-items: center; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--bdr); margin-bottom: 10px; }
+        .cat-ico { width: 44px; height: 44px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .cat-ico svg { width: 22px; height: 22px; }
+        .cat-ico.hc { background: var(--accent-hc-dim); border: 1px solid var(--accent-hc-bdr); }
+        .cat-ico.hc svg { stroke: var(--accent-hc); }
+        .cat-ico.df { background: var(--accent-df-dim); border: 1px solid var(--accent-df-bdr); }
+        .cat-ico.df svg { stroke: var(--accent-df); }
+        .cat-ico.ra { background: var(--accent-ra-dim); border: 1px solid var(--accent-ra-bdr); }
+        .cat-ico.ra svg { stroke: var(--accent-ra); }
+        .cat-t { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
         .cat-t.hc { color: var(--accent-hc); }
         .cat-t.df { color: var(--accent-df); }
         .cat-t.ra { color: var(--accent-ra); }
-
-        .cat-d {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 28px;
-            max-width: 680px;
-            line-height: 1.65;
-        }
+        .cat-d { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 28px; max-width: 680px; line-height: 1.65; }
 
         /* ===== PROJECT CARDS ===== */
-        .p-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 32px;
-        }
-
-        .p-card {
-            background: var(--bg-card);
-            border-radius: var(--r-lg);
-            border: 1px solid var(--bdr);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .p-card:hover {
-            border-color: var(--bdr-h);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
+        .p-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 32px; }
+        .p-card { background: var(--bg-card); border-radius: var(--r-lg); border: 1px solid var(--bdr); overflow: hidden; transition: all 0.3s ease; }
+        .p-card:hover { border-color: var(--bdr-h); transform: translateY(-3px); box-shadow: var(--shadow); }
         .p-card.hc:hover { border-color: var(--accent-hc-bdr); }
         .p-card.df:hover { border-color: var(--accent-df-bdr); }
         .p-card.ra:hover { border-color: var(--accent-ra-bdr); }
-
-        .p-img {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            position: relative;
-            background: var(--bg-secondary);
-        }
-
-        .p-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.4s ease;
-        }
-
-        .p-card:hover .p-img img {
-            transform: scale(1.03);
-        }
-
-        .p-img-ph {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .p-img-ph svg {
-            width: 56px;
-            height: 56px;
-            opacity: 0.35;
-        }
-
-        .p-img-ph.hc {
-            background: var(--accent-hc-dim);
-        }
-
-        .p-img-ph.hc svg {
-            stroke: var(--accent-hc);
-        }
-
-        .p-body {
-            padding: 22px 24px 24px;
-        }
-
-        .p-dom {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
+        .p-img { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; position: relative; background: var(--bg-secondary); }
+        .p-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
+        .p-card:hover .p-img img { transform: scale(1.03); }
+        .p-img-ph { width: 100%; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; }
+        .p-img-ph svg { width: 56px; height: 56px; opacity: 0.35; }
+        .p-img-ph.hc { background: var(--accent-hc-dim); }
+        .p-img-ph.hc svg { stroke: var(--accent-hc); }
+        .p-body { padding: 22px 24px 24px; }
+        .p-dom { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
         .p-dom.hc { color: var(--accent-hc); }
         .p-dom.df { color: var(--accent-df); }
         .p-dom.ra { color: var(--accent-ra); }
-
-        .p-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 3px;
-            letter-spacing: -0.01em;
-        }
-
-        .p-tag {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .p-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.65;
-            margin-bottom: 14px;
-        }
-
-        .p-desc strong {
-            color: var(--text-primary);
-        }
-
-        .p-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 14px;
-        }
-
-        .tt {
-            padding: 3px 9px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--bdr);
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-muted);
-        }
-
-        .p-links {
-            display: flex;
-            gap: 14px;
-        }
-
-        .p-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: color 0.2s;
-        }
-
-        .p-link svg {
-            width: 14px;
-            height: 14px;
-        }
-
+        /* Secondary domain label highlight */
+        .p-dom .sub-label { color: var(--accent-az); }
+        .p-dom .sub-label.mlops { color: #8b5cf6; }
+        .p-dom .sub-label.edge { color: #06b6d4; }
+        .p-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 3px; letter-spacing: -0.01em; }
+        .p-tag { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; }
+        .p-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
+        .p-desc strong { color: var(--text-primary); }
+        .p-tech { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+        .tt { padding: 3px 9px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--bdr); border-radius: 4px; font-size: 0.7rem; font-weight: 500; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); }
+        .p-links { display: flex; gap: 14px; }
+        .p-link { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); transition: color 0.2s; }
+        .p-link svg { width: 14px; height: 14px; }
         .p-link.hc:hover { color: var(--accent-hc); }
         .p-link.hc:hover svg { stroke: var(--accent-hc); }
         .p-link.df:hover { color: var(--accent-df); }
         .p-link.df:hover svg { stroke: var(--accent-df); }
         .p-link.ra:hover { color: var(--accent-ra); }
         .p-link.ra:hover svg { stroke: var(--accent-ra); }
-
-        .badge-cs {
-            display: inline-block;
-            padding: 2px 8px;
-            background: var(--accent-ra-dim);
-            border: 1px solid var(--accent-ra-bdr);
-            border-radius: 4px;
-            font-size: 0.62rem;
-            font-weight: 700;
-            color: var(--accent-ra);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-left: 8px;
-            vertical-align: middle;
-        }
+        .badge-cs { display: inline-block; padding: 2px 8px; background: var(--accent-ra-dim); border: 1px solid var(--accent-ra-bdr); border-radius: 4px; font-size: 0.62rem; font-weight: 700; color: var(--accent-ra); text-transform: uppercase; letter-spacing: 0.06em; margin-left: 8px; vertical-align: middle; }
 
         /* ===== ROADMAP ===== */
-        .rm-grid {
-            display: flex;
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .rm-card {
-            flex: 1;
-            padding: 22px;
-            background: var(--bg-card);
-            border-radius: var(--r-md);
-            border: 1px solid var(--bdr);
-            transition: border-color 0.2s;
-        }
-
-        .rm-card:hover {
-            border-color: var(--bdr-h);
-        }
-
-        .rm-ico {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .rm-ico svg {
-            width: 18px;
-            height: 18px;
-        }
-
+        .rm-grid { display: flex; gap: 20px; margin-top: 40px; }
+        .rm-card { flex: 1; padding: 22px; background: var(--bg-card); border-radius: var(--r-md); border: 1px solid var(--bdr); transition: border-color 0.2s; }
+        .rm-card:hover { border-color: var(--bdr-h); }
+        .rm-ico { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .rm-ico svg { width: 18px; height: 18px; }
         .rm-ico.az { background: rgba(0, 120, 212, 0.1); }
         .rm-ico.az svg { stroke: var(--accent-az); }
         .rm-ico.df { background: var(--accent-df-dim); }
         .rm-ico.df svg { stroke: var(--accent-df); }
         .rm-ico.ra { background: var(--accent-ra-dim); }
         .rm-ico.ra svg { stroke: var(--accent-ra); }
-
-        .rm-t {
-            font-size: 0.92rem;
-            font-weight: 700;
-            margin-bottom: 3px;
-        }
-
-        .rm-d {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        .rm-ico.hc { background: var(--accent-hc-dim); }
+        .rm-ico.hc svg { stroke: var(--accent-hc); }
+        .rm-t { font-size: 0.92rem; font-weight: 700; margin-bottom: 3px; }
+        .rm-d { font-size: 0.8rem; color: var(--text-muted); }
 
         /* ===== INSIGHTS ===== */
-        .ins-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .ins-card {
-            padding: 26px;
-            background: var(--bg-card);
-            border-radius: var(--r-md);
-            border: 1px solid var(--bdr);
-            transition: all 0.3s;
-        }
-
-        .ins-card:hover {
-            border-color: var(--bdr-h);
-            transform: translateY(-2px);
-        }
-
-        .ins-dom {
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .ins-t {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .ins-desc {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 14px;
-        }
-
-        .ins-date {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
+        .ins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+        .ins-card { padding: 26px; background: var(--bg-card); border-radius: var(--r-md); border: 1px solid var(--bdr); transition: all 0.3s; }
+        .ins-card:hover { border-color: var(--bdr-h); transform: translateY(-2px); }
+        .ins-dom { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+        .ins-t { font-size: 1rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+        .ins-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; }
+        .ins-date { font-size: 0.75rem; color: var(--text-muted); }
 
         /* ===== CONTACT ===== */
-        .con-box {
-            max-width: 560px;
-            margin: 40px auto 0;
-            text-align: center;
-        }
+        .con-box { max-width: 560px; margin: 40px auto 0; text-align: center; }
+        .con-links { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+        .con-link { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; background: var(--bg-card); border: 1px solid var(--bdr); border-radius: var(--r-sm); font-size: 0.88rem; font-weight: 500; transition: all 0.2s; }
+        .con-link svg { width: 18px; height: 18px; }
+        .con-link:hover { border-color: var(--bdr-h); background: var(--bg-card-hover); }
 
-        .con-links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 24px;
-        }
+        footer { padding: 36px 0; text-align: center; border-top: 1px solid var(--bdr); font-size: 0.78rem; color: var(--text-muted); }
 
-        .con-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--bdr);
-            border-radius: var(--r-sm);
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
+        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        .con-link svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .con-link:hover {
-            border-color: var(--bdr-h);
-            background: var(--bg-card-hover);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 36px 0;
-            text-align: center;
-            border-top: 1px solid var(--bdr);
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        /* ===== SCROLL ANIMATIONS ===== */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .hero .ctr {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-sub {
-                margin: 0 auto 32px;
-            }
-            .hero-tags,
-            .hero-cta {
-                justify-content: center;
-            }
-            .hero-photo {
-                margin-top: 32px;
-            }
-            .about-grid,
-            .p-grid,
-            .sk-grid,
-            .ins-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .rm-grid {
-                flex-direction: column;
-            }
+            .hero .ctr { grid-template-columns: 1fr; text-align: center; }
+            .hero-sub { margin: 0 auto 32px; }
+            .hero-tags, .hero-cta { justify-content: center; }
+            .hero-photo { margin-top: 32px; }
+            .about-grid, .p-grid, .sk-grid, .ins-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .rm-grid { flex-direction: column; }
         }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .mob-btn {
-                display: block;
-            }
-            section {
-                padding: 64px 0;
-            }
+            .nav-links { display: none; }
+            .mob-btn { display: block; }
+            section { padding: 64px 0; }
         }
-
-        /* Mobile menu */
-        .mob-nav {
-            display: none;
-            position: fixed;
-            top: var(--nh);
-            left: 0;
-            right: 0;
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--bdr);
-            z-index: 999;
-            padding: 16px 24px;
-        }
-
-        .mob-nav.open {
-            display: block;
-        }
-
-        .mob-nav a {
-            display: block;
-            padding: 12px 0;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--bdr);
-        }
-
-        .mob-nav a:last-child {
-            border-bottom: none;
-        }
+        .mob-nav { display: none; position: fixed; top: var(--nh); left: 0; right: 0; background: var(--bg-primary); border-bottom: 1px solid var(--bdr); z-index: 999; padding: 16px 24px; }
+        .mob-nav.open { display: block; }
+        .mob-nav a { display: block; padding: 12px 0; font-size: 0.95rem; color: var(--text-secondary); border-bottom: 1px solid var(--bdr); }
+        .mob-nav a:last-child { border-bottom: none; }
     </style>
 </head>
 <body>
@@ -1195,7 +359,6 @@
             <button class="mob-btn" onclick="toggleMob()">&#9776;</button>
         </div>
     </nav>
-
     <div class="mob-nav" id="mobNav">
         <a href="#about" onclick="closeMob()">About</a>
         <a href="#skills" onclick="closeMob()">Skills</a>
@@ -1215,16 +378,12 @@
                 </div>
 
                 <h1 class="hero-title">
-                    Healthcare &amp;<br>
-                    <span class="grad">Defence AI Engineer</span>
+                    <span class="txt-hc">Healthcare</span> <span class="hero-amp">&amp;</span><br>
+                    <span class="txt-df">Defence AI</span> Engineer
                 </h1>
 
-                <p class="hero-sub lang-en">
-                    I design and deploy end-to-end AI/ML systems for safety-critical and regulated environments — from healthcare analytics and defence operations to explainable &amp; compliant AI.
-                </p>
-                <p class="hero-sub lang-de">
-                    Ich entwickle und implementiere End-to-End-KI/ML-Systeme f&uuml;r sicherheitskritische und regulierte Umgebungen — von Healthcare Analytics und Defence Operations bis hin zu erkl&auml;rbarer &amp; konformer KI.
-                </p>
+                <p class="hero-sub lang-en">I design and deploy end-to-end AI/ML systems for safety-critical and regulated environments — from healthcare analytics and defence operations to explainable &amp; compliant AI.</p>
+                <p class="hero-sub lang-de">Ich entwickle und implementiere End-to-End-KI/ML-Systeme f&uuml;r sicherheitskritische und regulierte Umgebungen — von Healthcare Analytics und Defence Operations bis hin zu erkl&auml;rbarer &amp; konformer KI.</p>
 
                 <div class="hero-tags">
                     <span class="htag hc"><i data-lucide="heart-pulse"></i> Healthcare AI</span>
@@ -1240,7 +399,6 @@
                     <a href="#contact" class="btn btn-o lang-de">Kontakt</a>
                 </div>
             </div>
-
             <div class="hero-photo">
                 <div class="photo-frame">
                     <img src="images/bildjpg.jpg" alt="Atamer Erkal">
@@ -1253,26 +411,10 @@
     <div class="stats">
         <div class="ctr">
             <div class="stats-grid">
-                <div>
-                    <div class="stat-n">15+</div>
-                    <div class="stat-l lang-en">Years in Safety-Critical Environments</div>
-                    <div class="stat-l lang-de">Jahre in sicherheitskritischen Umgebungen</div>
-                </div>
-                <div>
-                    <div class="stat-n">200+</div>
-                    <div class="stat-l lang-en">Data Scientists Trained</div>
-                    <div class="stat-l lang-de">Data Scientists ausgebildet</div>
-                </div>
-                <div>
-                    <div class="stat-n">90%</div>
-                    <div class="stat-l lang-en">Placement Rate</div>
-                    <div class="stat-l lang-de">Vermittlungsquote</div>
-                </div>
-                <div>
-                    <div class="stat-n">10+</div>
-                    <div class="stat-l lang-en">AI/ML Systems Built</div>
-                    <div class="stat-l lang-de">KI/ML-Systeme entwickelt</div>
-                </div>
+                <div><div class="stat-n">15+</div><div class="stat-l lang-en">Years in Safety-Critical Environments</div><div class="stat-l lang-de">Jahre in sicherheitskritischen Umgebungen</div></div>
+                <div><div class="stat-n">200+</div><div class="stat-l lang-en">Data Scientists Trained</div><div class="stat-l lang-de">Data Scientists ausgebildet</div></div>
+                <div><div class="stat-n">90%</div><div class="stat-l lang-en">Placement Rate</div><div class="stat-l lang-de">Vermittlungsquote</div></div>
+                <div><div class="stat-n">10+</div><div class="stat-l lang-en">AI/ML Systems Built</div><div class="stat-l lang-de">KI/ML-Systeme entwickelt</div></div>
             </div>
         </div>
     </div>
@@ -1298,44 +440,17 @@
                         <p><strong>Defence AI:</strong> Ehemaliger <strong>Joint Planner bei der NATO</strong>, erfahren in multinationalen Operationen, quantitativer Ressourcenplanung und sicherheitskritischen Entscheidungssystemen.</p>
                         <p><strong>Technische F&uuml;hrung:</strong> Als <strong>Program Director</strong> bei der Clarusway IT School 200+ Data Scientists ausgebildet mit 90% Vermittlungsquote.</p>
                     </div>
-
                     <div class="awards">
                         <span class="award"><i data-lucide="trophy" style="width:14px;height:14px;stroke:#f59e0b"></i> Best DS Bootcamp 2021 &amp; 2022</span>
                         <span class="award"><i data-lucide="medal" style="width:14px;height:14px;stroke:#3b82f6"></i> Honor — Naval Forces Commander</span>
                         <span class="award"><i data-lucide="pen-line" style="width:14px;height:14px;stroke:#10b981"></i> Essay Winner — Defence University</span>
                     </div>
                 </div>
-
                 <div class="about-side">
-                    <div class="a-card">
-                        <div class="a-icon edu"><i data-lucide="graduation-cap"></i></div>
-                        <div>
-                            <div class="a-card-t">Electronics Engineering BSc</div>
-                            <div class="a-card-d">Naval Officer Training</div>
-                        </div>
-                    </div>
-                    <div class="a-card">
-                        <div class="a-icon edu"><i data-lucide="book-open"></i></div>
-                        <div>
-                            <div class="a-card-t">Dual Master's Degrees</div>
-                            <div class="a-card-d">Leadership &amp; Public Relations — National Defence University</div>
-                        </div>
-                    </div>
-                    <div class="a-card">
-                        <div class="a-icon crt"><i data-lucide="cloud"></i></div>
-                        <div>
-                            <div class="a-card-t">Azure AI Engineer — AI-102</div>
-                            <div class="a-card-d">Scheduled April 2026</div>
-                        </div>
-                    </div>
-                    <div class="a-card">
-                        <div class="a-icon lng"><i data-lucide="languages"></i></div>
-                        <div>
-                            <div class="a-card-t lang-en">Languages</div>
-                            <div class="a-card-t lang-de">Sprachen</div>
-                            <div class="a-card-d">Turkish (Native) · English (Fluent) · German (B2 TELC Beruf)</div>
-                        </div>
-                    </div>
+                    <div class="a-card"><div class="a-icon edu"><i data-lucide="graduation-cap"></i></div><div><div class="a-card-t">Electronics Engineering BSc</div><div class="a-card-d">Naval Officer Training</div></div></div>
+                    <div class="a-card"><div class="a-icon edu"><i data-lucide="book-open"></i></div><div><div class="a-card-t">Dual Master's Degrees</div><div class="a-card-d">Leadership &amp; Public Relations — National Defence University</div></div></div>
+                    <div class="a-card"><div class="a-icon crt"><i data-lucide="cloud"></i></div><div><div class="a-card-t">Azure AI Engineer — AI-102</div><div class="a-card-d">Scheduled April 2026</div></div></div>
+                    <div class="a-card"><div class="a-icon lng"><i data-lucide="languages"></i></div><div><div class="a-card-t lang-en">Languages</div><div class="a-card-t lang-de">Sprachen</div><div class="a-card-d">Turkish (Native) · English (Fluent) · German (B2 TELC Beruf)</div></div></div>
                 </div>
             </div>
         </div>
@@ -1347,65 +462,10 @@
             <div class="s-label">02 — Skills</div>
             <h2 class="s-title lang-en">Technologies &amp; Expertise</h2>
             <h2 class="s-title lang-de">Technologien &amp; Expertise</h2>
-
             <div class="sk-grid">
-                <div class="sk-g ml fade-up">
-                    <div class="sk-ico"><i data-lucide="brain"></i></div>
-                    <div class="sk-title">AI / ML &amp; MLOps</div>
-                    <div class="sk-tags">
-                        <span class="sk-tag">Python</span>
-                        <span class="sk-tag">PyTorch</span>
-                        <span class="sk-tag">TensorFlow</span>
-                        <span class="sk-tag">Scikit-learn</span>
-                        <span class="sk-tag">XGBoost</span>
-                        <span class="sk-tag">EfficientNet</span>
-                        <span class="sk-tag">YOLOv8</span>
-                        <span class="sk-tag">TensorRT</span>
-                        <span class="sk-tag">CNNs</span>
-                        <span class="sk-tag">Azure ML</span>
-                        <span class="sk-tag">MLflow</span>
-                        <span class="sk-tag">DVC</span>
-                        <span class="sk-tag">Docker</span>
-                        <span class="sk-tag">GitHub Actions</span>
-                        <span class="sk-tag">CI/CD</span>
-                        <span class="sk-tag">Model Monitoring</span>
-                    </div>
-                </div>
-
-                <div class="sk-g dm fade-up">
-                    <div class="sk-ico"><i data-lucide="target"></i></div>
-                    <div class="sk-title">Domain Expertise</div>
-                    <div class="sk-tags">
-                        <span class="sk-tag">Medical Imaging</span>
-                        <span class="sk-tag">Clinical Decision Support</span>
-                        <span class="sk-tag">EHR Integration</span>
-                        <span class="sk-tag">HL7/FHIR</span>
-                        <span class="sk-tag">NATO Operations</span>
-                        <span class="sk-tag">Threat Assessment</span>
-                        <span class="sk-tag">C2/ISR Systems</span>
-                        <span class="sk-tag">Counter-UAS</span>
-                        <span class="sk-tag">Edge AI (SWaP-C)</span>
-                        <span class="sk-tag">Sensor Fusion</span>
-                        <span class="sk-tag">Real-Time AI</span>
-                        <span class="sk-tag">VLM Reasoning</span>
-                    </div>
-                </div>
-
-                <div class="sk-g cp fade-up">
-                    <div class="sk-ico"><i data-lucide="scale"></i></div>
-                    <div class="sk-title">Regulatory &amp; Compliance</div>
-                    <div class="sk-tags">
-                        <span class="sk-tag">EU AI Act</span>
-                        <span class="sk-tag">GDPR</span>
-                        <span class="sk-tag">SHAP</span>
-                        <span class="sk-tag">LIME</span>
-                        <span class="sk-tag">Grad-CAM</span>
-                        <span class="sk-tag">Fairlearn</span>
-                        <span class="sk-tag">Bias Auditing</span>
-                        <span class="sk-tag">Data Anonymization</span>
-                        <span class="sk-tag">NATO STANAG</span>
-                    </div>
-                </div>
+                <div class="sk-g ml fade-up"><div class="sk-ico"><i data-lucide="brain"></i></div><div class="sk-title">AI / ML &amp; MLOps</div><div class="sk-tags"><span class="sk-tag">Python</span><span class="sk-tag">PyTorch</span><span class="sk-tag">TensorFlow</span><span class="sk-tag">Scikit-learn</span><span class="sk-tag">XGBoost</span><span class="sk-tag">EfficientNet</span><span class="sk-tag">YOLOv8</span><span class="sk-tag">TensorRT</span><span class="sk-tag">CNNs</span><span class="sk-tag">Azure ML</span><span class="sk-tag">MLflow</span><span class="sk-tag">DVC</span><span class="sk-tag">Docker</span><span class="sk-tag">GitHub Actions</span><span class="sk-tag">CI/CD</span><span class="sk-tag">Model Monitoring</span></div></div>
+                <div class="sk-g dm fade-up"><div class="sk-ico"><i data-lucide="target"></i></div><div class="sk-title">Domain Expertise</div><div class="sk-tags"><span class="sk-tag">Medical Imaging</span><span class="sk-tag">Clinical Decision Support</span><span class="sk-tag">EHR Integration</span><span class="sk-tag">HL7/FHIR</span><span class="sk-tag">NATO Operations</span><span class="sk-tag">Threat Assessment</span><span class="sk-tag">C2/ISR Systems</span><span class="sk-tag">Counter-UAS</span><span class="sk-tag">Edge AI (SWaP-C)</span><span class="sk-tag">Sensor Fusion</span><span class="sk-tag">Real-Time AI</span><span class="sk-tag">VLM Reasoning</span></div></div>
+                <div class="sk-g cp fade-up"><div class="sk-ico"><i data-lucide="scale"></i></div><div class="sk-title">Regulatory &amp; Compliance</div><div class="sk-tags"><span class="sk-tag">EU AI Act</span><span class="sk-tag">GDPR</span><span class="sk-tag">SHAP</span><span class="sk-tag">LIME</span><span class="sk-tag">Grad-CAM</span><span class="sk-tag">Fairlearn</span><span class="sk-tag">Bias Auditing</span><span class="sk-tag">Data Anonymization</span><span class="sk-tag">NATO STANAG</span></div></div>
             </div>
         </div>
     </section>
@@ -1420,8 +480,8 @@
             <p class="s-sub lang-de">Eine Auswahl meiner pers&ouml;nlichen Projekte aus den Bereichen Healthcare AI, Defence AI und Responsible AI — konzipiert und entwickelt f&uuml;r reale regulierte Umgebungen.</p>
             <div class="demo-note">
                 <i data-lucide="info"></i>
-                <span class="lang-en">Live demos are hosted on Streamlit Community Cloud. If a demo is in sleep mode, it may take 30–60s to wake up.</span>
-                <span class="lang-de">Live-Demos werden auf Streamlit Community Cloud gehostet. Falls eine Demo im Ruhemodus ist, kann der Start 30–60 Sekunden dauern.</span>
+                <span class="lang-en">Some live demos are hosted on Streamlit Community Cloud. If a demo is in sleep mode, it may take 30–60s to wake up.</span>
+                <span class="lang-de">Einige Live-Demos werden auf Streamlit Community Cloud gehostet. Falls eine Demo im Ruhemodus ist, kann der Start 30–60 Sekunden dauern.</span>
             </div>
         </div>
     </section>
@@ -1441,17 +501,21 @@
                 <div class="p-card hc fade-up">
                     <div class="p-img"><img src="images/VitalNav.png" alt="VitalNav.ai"></div>
                     <div class="p-body">
-                        <div class="p-dom hc">Healthcare AI · Flagship</div>
+                        <div class="p-dom hc">Healthcare AI · <span class="sub-label">Flagship</span></div>
                         <div class="p-name">VitalNav.ai</div>
                         <div class="p-tag">Pre-Hospital Emergency Triage — Azure AI Multi-Service</div>
-                        <p class="p-desc lang-en">AI-powered pre-hospital triage system using <strong>Azure Speech, Language, and Vision</strong> services. Voice-based symptom collection, real-time clinical NLP, and intelligent triage classification.</p>
-                        <p class="p-desc lang-de">KI-gest&uuml;tztes pr&auml;klinisches Triage-System mit <strong>Azure Speech, Language und Vision</strong>. Sprachbasierte Symptomerfassung, klinisches Echtzeit-NLP und intelligente Triage-Klassifikation.</p>
+                        <p class="p-desc lang-en">AI-powered pre-hospital triage system integrating <strong>7 Azure AI services</strong>. Voice-first multilingual symptom collection (auto-detects 10+ languages), RAG-grounded clinical reasoning with GPT-4, real-time ETA routing via Azure Maps, and a live ER preparation dashboard for hospital staff.</p>
+                        <p class="p-desc lang-de">KI-gest&uuml;tztes pr&auml;klinisches Triage-System mit <strong>7 Azure-AI-Services</strong>. Sprachbasierte mehrsprachige Symptomerfassung (automatische Erkennung von 10+ Sprachen), RAG-basiertes klinisches Reasoning mit GPT-4, Echtzeit-ETA-Routing &uuml;ber Azure Maps und ein Live-ER-Vorbereitungs-Dashboard f&uuml;r Klinikpersonal.</p>
                         <div class="p-tech">
+                            <span class="tt">Azure OpenAI (GPT-4)</span>
+                            <span class="tt">Azure AI Search</span>
+                            <span class="tt">Azure Doc Intelligence</span>
                             <span class="tt">Azure Speech</span>
-                            <span class="tt">Azure Language</span>
-                            <span class="tt">Azure Vision</span>
-                            <span class="tt">NLP</span>
-                            <span class="tt">Triage AI</span>
+                            <span class="tt">Azure Translator</span>
+                            <span class="tt">Azure Maps</span>
+                            <span class="tt">Azure Content Safety</span>
+                            <span class="tt">RAG</span>
+                            <span class="tt">Streamlit</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/CodeZero" class="p-link hc" target="_blank"><i data-lucide="github"></i> GitHub</a>
@@ -1466,13 +530,14 @@
                         <div class="p-dom hc">Healthcare AI</div>
                         <div class="p-name">SkinxAI</div>
                         <div class="p-tag">AI Skin Lesion Classifier — Medical Imaging</div>
-                        <p class="p-desc lang-en">EfficientNet-B7 CNN achieving <strong>85.2% sensitivity</strong> for malignant lesion detection on HAM10000. Grad-CAM explainability, GDPR-compliant data handling.</p>
-                        <p class="p-desc lang-de">EfficientNet-B7 CNN mit <strong>85,2 % Sensitivit&auml;t</strong> f&uuml;r maligne L&auml;sionserkennung auf HAM10000. Grad-CAM-Erkl&auml;rbarkeit und DSGVO-konforme Datenverarbeitung.</p>
+                        <p class="p-desc lang-en">EfficientNet-B7 CNN achieving <strong>85.2% sensitivity</strong> for malignant lesion detection on HAM10000 (7 dermatoscopic classes). Grad-CAM explainability heatmaps, GDPR-compliant data handling, and tiered risk stratification with confidence scoring.</p>
+                        <p class="p-desc lang-de">EfficientNet-B7 CNN mit <strong>85,2 % Sensitivit&auml;t</strong> f&uuml;r maligne L&auml;sionserkennung auf HAM10000 (7 dermatoskopische Klassen). Grad-CAM-Erkl&auml;rbarkeits-Heatmaps, DSGVO-konforme Datenverarbeitung und gestufte Risikostratifizierung mit Konfidenz-Scoring.</p>
                         <div class="p-tech">
                             <span class="tt">PyTorch</span>
                             <span class="tt">EfficientNet-B7</span>
                             <span class="tt">Grad-CAM</span>
                             <span class="tt">GDPR</span>
+                            <span class="tt">Streamlit</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/skin-lesion-classifier" class="p-link hc" target="_blank"><i data-lucide="github"></i> GitHub</a>
@@ -1485,16 +550,18 @@
                 <div class="p-card hc fade-up">
                     <div class="p-img"><img src="images/ClinicOps.png" alt="ClinicOps"></div>
                     <div class="p-body">
-                        <div class="p-dom hc">Healthcare AI · MLOps</div>
+                        <div class="p-dom hc">Healthcare AI · <span class="sub-label mlops">MLOps</span></div>
                         <div class="p-name">ClinicOps</div>
                         <div class="p-tag">End-to-End MLOps Platform — Healthcare Operations</div>
-                        <p class="p-desc lang-en">Hospital stay prediction (<strong>R&sup2;=0.918</strong>) with full lifecycle MLOps. MLflow tracking, DVC versioning, Docker, CI/CD, and real-time drift detection.</p>
-                        <p class="p-desc lang-de">Krankenhaus-Aufenthaltsprognose (<strong>R&sup2;=0,918</strong>) mit vollst&auml;ndigem MLOps-Lifecycle. MLflow-Tracking, DVC-Versionierung, Docker, CI/CD und Echtzeit-Drifterkennung.</p>
+                        <p class="p-desc lang-en">Hospital stay prediction (<strong>R&sup2;=0.918</strong>) with full production MLOps lifecycle. MLflow experiment tracking with model registry, DVC data versioning, Docker containerization, CI/CD via Azure Pipelines &amp; GitHub Actions, and real-time data drift detection with automated alerts.</p>
+                        <p class="p-desc lang-de">Krankenhaus-Aufenthaltsprognose (<strong>R&sup2;=0,918</strong>) mit vollst&auml;ndigem Produktions-MLOps-Lifecycle. MLflow-Experiment-Tracking mit Model Registry, DVC-Datenversionierung, Docker-Containerisierung, CI/CD &uuml;ber Azure Pipelines &amp; GitHub Actions und Echtzeit-Drifterkennung mit automatisierten Alerts.</p>
                         <div class="p-tech">
                             <span class="tt">MLflow</span>
                             <span class="tt">DVC</span>
-                            <span class="tt">Azure</span>
+                            <span class="tt">Azure ML</span>
                             <span class="tt">Docker</span>
+                            <span class="tt">GitHub Actions</span>
+                            <span class="tt">Drift Detection</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/ClinicOps" class="p-link hc" target="_blank"><i data-lucide="github"></i> GitHub</a>
@@ -1504,41 +571,22 @@
 
                 <!-- Azure Healthcare NLP -->
                 <div class="p-card hc fade-up">
-                    <div class="p-img"><img src="images/NLP_Analyzer.png" alt="ClinicOps"></div>
+                    <div class="p-img"><img src="images/NLP_Analyzer.png" alt="Azure Healthcare NLP Analyzer"></div>
                     <div class="p-body">
-                        <div class="p-dom hc">Healthcare AI · Azure</div>
+                        <div class="p-dom hc">Healthcare AI · <span class="sub-label">Azure</span></div>
                         <div class="p-name">Azure Healthcare NLP Analyzer</div>
                         <div class="p-tag">Clinical Text Analysis — Azure AI Language</div>
-                        <p class="p-desc lang-en">Medical entity recognition pipeline extracting diagnoses, medications, symptoms, and relations from unstructured clinical notes using Azure AI Language services.</p>
-                        <p class="p-desc lang-de">Pipeline zur medizinischen Entit&auml;tserkennung, die Diagnosen, Medikamente, Symptome und Relationen aus unstrukturierten klinischen Notizen extrahiert.</p>
+                        <p class="p-desc lang-en">Medical entity recognition pipeline extracting diagnoses, medications, symptoms, dosages, and clinical relations from unstructured clinical notes. Powered by Azure Text Analytics for Health with FHIR-compatible output and entity linking to medical ontologies.</p>
+                        <p class="p-desc lang-de">Pipeline zur medizinischen Entit&auml;tserkennung, die Diagnosen, Medikamente, Symptome, Dosierungen und klinische Relationen aus unstrukturierten klinischen Notizen extrahiert. Basierend auf Azure Text Analytics for Health mit FHIR-kompatiblem Output.</p>
                         <div class="p-tech">
-                            <span class="tt">Azure AI</span>
+                            <span class="tt">Azure AI Language</span>
+                            <span class="tt">Text Analytics for Health</span>
                             <span class="tt">NLP</span>
-                            <span class="tt">Healthcare</span>
-                            <span class="tt">Text Analytics</span>
+                            <span class="tt">FHIR</span>
+                            <span class="tt">Entity Linking</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/azure-healthcare-nlp-analyzer" class="p-link hc" target="_blank"><i data-lucide="github"></i> GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Health Anomaly Detection -->
-                <div class="p-card hc fade-up">
-                    <div class="p-img"><img src="images/HealthAnomaly.png" alt="Health Anomaly Detection"></div>
-                    <div class="p-body">
-                        <div class="p-dom hc">Healthcare AI</div>
-                        <div class="p-name">Health Anomaly Detection</div>
-                        <div class="p-tag">Clinical Metrics Monitoring — Early Warning</div>
-                        <p class="p-desc lang-en">Anomaly detection system for clinical health metrics and patient monitoring data. Designed for early warning signals in healthcare operations.</p>
-                        <p class="p-desc lang-de">Anomalieerkennungssystem f&uuml;r klinische Gesundheitsmetriken und Patienten&uuml;berwachungsdaten. Entwickelt f&uuml;r Fr&uuml;hwarnungen im Klinikbetrieb.</p>
-                        <div class="p-tech">
-                            <span class="tt">Anomaly Detection</span>
-                            <span class="tt">Healthcare</span>
-                            <span class="tt">Python</span>
-                        </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/health-anomaly-detection" class="p-link hc" target="_blank"><i data-lucide="github"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -1564,13 +612,15 @@
                         <div class="p-dom df">Defence AI</div>
                         <div class="p-name">VANGUARD</div>
                         <div class="p-tag">Air Track Classification — NATO C2 Threat Assessment</div>
-                        <p class="p-desc lang-en">Real-time aerial threat classification (Hostile/Friendly/Civilian) using XGBoost for NATO C2 systems. 3D flight path visualization, automated anomaly detection.</p>
-                        <p class="p-desc lang-de">Echtzeit-Luftzielklassifikation (feindlich/freundlich/zivil) mit XGBoost f&uuml;r NATO-C2-Systeme. 3D-Flugbahnvisualisierung und automatische Anomalieerkennung.</p>
+                        <p class="p-desc lang-en">Real-time aerial threat classification system (Hostile/Friendly/Civilian) using XGBoost with <strong>96.3% accuracy</strong> for NATO C2 environments. Features interactive 3D flight path visualization, automated anomaly detection, MLflow experiment tracking, and NATO-compatible JSON data architecture.</p>
+                        <p class="p-desc lang-de">Echtzeit-Luftzielklassifikationssystem (feindlich/freundlich/zivil) mit XGBoost und <strong>96,3 % Genauigkeit</strong> f&uuml;r NATO-C2-Umgebungen. Interaktive 3D-Flugbahnvisualisierung, automatische Anomalieerkennung, MLflow-Experiment-Tracking und NATO-kompatible JSON-Datenarchitektur.</p>
                         <div class="p-tech">
                             <span class="tt">Python</span>
                             <span class="tt">XGBoost</span>
-                            <span class="tt">3D Viz</span>
-                            <span class="tt">Defence AI</span>
+                            <span class="tt">MLflow</span>
+                            <span class="tt">Plotly 3D</span>
+                            <span class="tt">Streamlit</span>
+                            <span class="tt">NATO C2</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/VANGUARD_Project" class="p-link df" target="_blank"><i data-lucide="github"></i> GitHub</a>
@@ -1583,18 +633,19 @@
                 <div class="p-card df fade-up">
                     <div class="p-img"><img src="images/AEGIS.png" alt="AEGIS-Cloud"></div>
                     <div class="p-body">
-                        <div class="p-dom df">Defence AI · Edge</div>
+                        <div class="p-dom df">Defence AI · <span class="sub-label edge">Edge</span></div>
                         <div class="p-name">AEGIS-Cloud</div>
                         <div class="p-tag">Autonomous Edge Guardian Intelligence System — Counter-UAS</div>
-                        <p class="p-desc lang-en">TensorRT FP16 compiled YOLOv8 on NVIDIA Jetson with <strong>&lt;30ms latency</strong>. Moondream VLM tactical reasoning with circuit-breaker pattern, Azure IoT cloud sync.</p>
-                        <p class="p-desc lang-de">TensorRT-FP16-kompiliertes YOLOv8 auf NVIDIA Jetson mit <strong>&lt;30ms Latenz</strong>. Moondream-VLM taktisches Reasoning, Azure-IoT-Cloud-Synchronisation.</p>
+                        <p class="p-desc lang-en">Heterogeneous AIOps framework for autonomous Counter-UAS operations. TensorRT FP16 compiled YOLOv8 on NVIDIA Jetson achieving <strong>&lt;30ms latency</strong> (vs 300ms+ baseline). Moondream VLM tactical reasoning with circuit-breaker pattern, Azure IoT Hub cloud sync, and EU AI Act compliant audit trail with full decision logging.</p>
+                        <p class="p-desc lang-de">Heterogenes AIOps-Framework f&uuml;r autonome Counter-UAS-Operationen. TensorRT-FP16-kompiliertes YOLOv8 auf NVIDIA Jetson mit <strong>&lt;30ms Latenz</strong> (vs. 300ms+ Baseline). Moondream-VLM taktisches Reasoning mit Circuit-Breaker-Pattern, Azure-IoT-Hub-Cloud-Sync und EU-AI-Act-konformer Audit-Trail.</p>
                         <div class="p-tech">
                             <span class="tt">TensorRT</span>
                             <span class="tt">YOLOv8</span>
-                            <span class="tt">Edge AI</span>
-                            <span class="tt">VLM</span>
-                            <span class="tt">Azure IoT</span>
+                            <span class="tt">NVIDIA Jetson</span>
+                            <span class="tt">Moondream VLM</span>
+                            <span class="tt">Azure IoT Hub</span>
                             <span class="tt">C++</span>
+                            <span class="tt">EU AI Act</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/AEGIS-Cloud" class="p-link df" target="_blank"><i data-lucide="github"></i> GitHub</a>
@@ -1609,12 +660,13 @@
                         <div class="p-dom df">Defence AI <span class="badge-cs">Coming Soon</span></div>
                         <div class="p-name">SENTINEL</div>
                         <div class="p-tag">Multi-Domain Situational Awareness Dashboard</div>
-                        <p class="p-desc lang-en">Multi-domain fusion dashboard integrating land, sea, and air threat data. NATO STANAG-referenced data formats with human-in-the-loop decision support.</p>
-                        <p class="p-desc lang-de">Multi-Domain-Fusionsdashboard f&uuml;r Land-, See- und Luftbedrohungsdaten. NATO-STANAG-referenzierte Datenformate mit Human-in-the-Loop-Entscheidungsunterst&uuml;tzung.</p>
+                        <p class="p-desc lang-en">Multi-domain fusion dashboard integrating land, sea, and air threat data with real-time correlation analysis. NATO STANAG-referenced data formats, threat prioritization engine, and human-in-the-loop decision support with configurable alert thresholds.</p>
+                        <p class="p-desc lang-de">Multi-Domain-Fusionsdashboard f&uuml;r Land-, See- und Luftbedrohungsdaten mit Echtzeit-Korrelationsanalyse. NATO-STANAG-referenzierte Datenformate, Bedrohungspriorisierungs-Engine und Human-in-the-Loop-Entscheidungsunterst&uuml;tzung.</p>
                         <div class="p-tech">
                             <span class="tt">Sensor Fusion</span>
                             <span class="tt">Multi-Domain</span>
                             <span class="tt">Real-Time AI</span>
+                            <span class="tt">NATO STANAG</span>
                         </div>
                     </div>
                 </div>
@@ -1640,11 +692,12 @@
                         <div class="p-dom ra">Responsible AI</div>
                         <div class="p-name">XAI Dashboard</div>
                         <div class="p-tag">Explainable AI — Model Interpretability &amp; Trust</div>
-                        <p class="p-desc lang-en">Interactive SHAP &amp; LIME dashboard for transparent model decisions. Audit-ready with counterfactual explanations for healthcare and defence applications.</p>
-                        <p class="p-desc lang-de">Interaktives SHAP- &amp; LIME-Dashboard f&uuml;r transparente Modellentscheidungen. Audit-bereit mit kontrafaktischen Erkl&auml;rungen f&uuml;r Healthcare- und Defence-Anwendungen.</p>
+                        <p class="p-desc lang-en">Interactive explainability dashboard combining SHAP summary/force/dependence plots, LIME local explanations, and counterfactual analysis. Designed as an audit-ready tool for healthcare and defence AI model governance with exportable reports.</p>
+                        <p class="p-desc lang-de">Interaktives Erkl&auml;rbarkeits-Dashboard mit SHAP-Summary-/Force-/Dependence-Plots, LIME-Lokalerkl&auml;rungen und kontrafaktischer Analyse. Audit-bereit f&uuml;r Healthcare- und Defence-KI-Modell-Governance mit exportierbaren Berichten.</p>
                         <div class="p-tech">
                             <span class="tt">SHAP</span>
                             <span class="tt">LIME</span>
+                            <span class="tt">Counterfactual</span>
                             <span class="tt">Streamlit</span>
                             <span class="tt">XAI</span>
                         </div>
@@ -1659,18 +712,20 @@
                 <div class="p-card ra fade-up">
                     <div class="p-img"><img src="images/ContentSafety.png" alt="Azure Content Safety"></div>
                     <div class="p-body">
-                        <div class="p-dom ra">Responsible AI · Azure</div>
+                        <div class="p-dom ra">Responsible AI · <span class="sub-label">Azure</span></div>
                         <div class="p-name">Azure Content Safety Platform</div>
                         <div class="p-tag">Content Moderation — Azure AI Content Safety</div>
-                        <p class="p-desc lang-en">Content safety and moderation platform detecting harmful content across text and images for responsible AI deployment using Azure AI services.</p>
-                        <p class="p-desc lang-de">Content-Safety- und Moderationsplattform zur Erkennung sch&auml;dlicher Inhalte in Text und Bild f&uuml;r verantwortungsvolle KI-Bereitstellung.</p>
+                        <p class="p-desc lang-en">Multi-modal content safety and moderation platform detecting harmful content across text and images. Severity-graded detection for violence, hate speech, self-harm, and sexual content categories with animated gauge visualizations, keyword highlighting, and XAI explanations.</p>
+                        <p class="p-desc lang-de">Multi-modale Content-Safety- und Moderationsplattform zur Erkennung sch&auml;dlicher Inhalte in Text und Bild. Schweregrad-basierte Erkennung f&uuml;r Gewalt, Hassrede, Selbstverletzung und sexuelle Inhalte mit animierten Gauge-Visualisierungen und XAI-Erkl&auml;rungen.</p>
                         <div class="p-tech">
-                            <span class="tt">Azure AI</span>
-                            <span class="tt">Content Safety</span>
+                            <span class="tt">Azure AI Content Safety</span>
+                            <span class="tt">Multi-Modal</span>
+                            <span class="tt">XAI</span>
                             <span class="tt">Moderation</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/azure-content-safety-platform" class="p-link ra" target="_blank"><i data-lucide="github"></i> GitHub</a>
+                            <a href="https://atamererkal.github.io/content-safety-demo/" class="p-link ra" target="_blank"><i data-lucide="external-link"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
@@ -1682,11 +737,12 @@
                         <div class="p-dom ra">Responsible AI</div>
                         <div class="p-name">EchoBreaker</div>
                         <div class="p-tag">Cognitive Bias Detection — Information Integrity</div>
-                        <p class="p-desc lang-en">AI system for detecting echo chambers and cognitive biases in information environments. Critical for clinical decision-making and operational intelligence analysis.</p>
-                        <p class="p-desc lang-de">KI-System zur Erkennung von Echokammern und kognitiven Verzerrungen. Kritisch f&uuml;r klinische Entscheidungsfindung und operative Nachrichtenanalyse.</p>
+                        <p class="p-desc lang-en">AI system for detecting echo chambers and cognitive biases in information environments. Analyzes content homogeneity, polarization indices, and viewpoint diversity metrics. Critical for clinical decision-making and operational intelligence analysis.</p>
+                        <p class="p-desc lang-de">KI-System zur Erkennung von Echokammern und kognitiven Verzerrungen in Informationsumgebungen. Analysiert Inhaltshomogenit&auml;t, Polarisierungsindizes und Standpunkt-Diversit&auml;tsmetriken. Kritisch f&uuml;r klinische Entscheidungsfindung und operative Nachrichtenanalyse.</p>
                         <div class="p-tech">
                             <span class="tt">NLP</span>
                             <span class="tt">Bias Detection</span>
+                            <span class="tt">Polarization Analysis</span>
                             <span class="tt">Python</span>
                         </div>
                         <div class="p-links">
@@ -1702,12 +758,31 @@
                         <div class="p-dom ra">Responsible AI <span class="badge-cs">Coming Soon</span></div>
                         <div class="p-name">AI-Act-Compliance-Toolkit</div>
                         <div class="p-tag">EU AI Act (Aug 2026) Compliance Framework</div>
-                        <p class="p-desc lang-en">Open-source compliance toolkit for EU AI Act high-risk systems. Risk classification templates, technical documentation generators, and bias audit tools.</p>
-                        <p class="p-desc lang-de">Open-Source-Compliance-Toolkit f&uuml;r EU-AI-Act-Hochrisikosysteme. Risikoklassifizierungsvorlagen, Dokumentationsgeneratoren und Bias-Audit-Tools.</p>
+                        <p class="p-desc lang-en">Open-source compliance toolkit for EU AI Act high-risk systems. Automated risk classification, technical documentation generators, conformity assessment templates, and bias audit tools aligned with Article 6 and Annex III requirements.</p>
+                        <p class="p-desc lang-de">Open-Source-Compliance-Toolkit f&uuml;r EU-AI-Act-Hochrisikosysteme. Automatisierte Risikoklassifizierung, technische Dokumentationsgeneratoren, Konformit&auml;tsbewertungsvorlagen und Bias-Audit-Tools gem&auml;&szlig; Artikel 6 und Anhang III.</p>
                         <div class="p-tech">
                             <span class="tt">EU AI Act</span>
                             <span class="tt">Compliance</span>
                             <span class="tt">High-Risk AI</span>
+                            <span class="tt">Risk Classification</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Anomaly Detection - NOW COMING SOON -->
+                <div class="p-card ra fade-up">
+                    <div class="p-img"><img src="images/HealthAnomaly.png" alt="Health Anomaly Detection"></div>
+                    <div class="p-body">
+                        <div class="p-dom hc">Healthcare AI <span class="badge-cs">Coming Soon</span></div>
+                        <div class="p-name">Health Anomaly Detection</div>
+                        <div class="p-tag">Clinical Metrics Monitoring — Early Warning System</div>
+                        <p class="p-desc lang-en">Anomaly detection system for clinical health metrics and patient monitoring data. Designed for early warning signals in healthcare operations with configurable alert thresholds and trend analysis.</p>
+                        <p class="p-desc lang-de">Anomalieerkennungssystem f&uuml;r klinische Gesundheitsmetriken und Patienten&uuml;berwachungsdaten. Entwickelt f&uuml;r Fr&uuml;hwarnungen im Klinikbetrieb mit konfigurierbaren Alarmschwellen und Trendanalyse.</p>
+                        <div class="p-tech">
+                            <span class="tt">Anomaly Detection</span>
+                            <span class="tt">Healthcare</span>
+                            <span class="tt">Time Series</span>
+                            <span class="tt">Python</span>
                         </div>
                     </div>
                 </div>
@@ -1721,25 +796,11 @@
             <div class="s-label lang-en">What's Next</div>
             <div class="s-label lang-de">Ausblick</div>
             <h2 class="s-title">Roadmap</h2>
-
             <div class="rm-grid">
-                <div class="rm-card fade-up">
-                    <div class="rm-ico az"><i data-lucide="cloud"></i></div>
-                    <div class="rm-t">Azure AI-102 Certification</div>
-                    <div class="rm-d">Scheduled April 2026</div>
-                </div>
-                <div class="rm-card fade-up">
-                    <div class="rm-ico df"><i data-lucide="satellite"></i></div>
-                    <div class="rm-t">SENTINEL Project</div>
-                    <div class="rm-d lang-en">Multi-domain situational awareness — In development</div>
-                    <div class="rm-d lang-de">Multi-Domain-Lagebild — In Entwicklung</div>
-                </div>
-                <div class="rm-card fade-up">
-                    <div class="rm-ico ra"><i data-lucide="scale"></i></div>
-                    <div class="rm-t">AI Act Compliance Toolkit</div>
-                    <div class="rm-d lang-en">Open-source EU AI Act framework — In development</div>
-                    <div class="rm-d lang-de">Open-Source EU AI Act Framework — In Entwicklung</div>
-                </div>
+                <div class="rm-card fade-up"><div class="rm-ico az"><i data-lucide="cloud"></i></div><div class="rm-t">Azure AI-102 Certification</div><div class="rm-d">Scheduled April 2026</div></div>
+                <div class="rm-card fade-up"><div class="rm-ico df"><i data-lucide="satellite"></i></div><div class="rm-t">SENTINEL Project</div><div class="rm-d lang-en">Multi-domain situational awareness — In development</div><div class="rm-d lang-de">Multi-Domain-Lagebild — In Entwicklung</div></div>
+                <div class="rm-card fade-up"><div class="rm-ico ra"><i data-lucide="scale"></i></div><div class="rm-t">AI Act Compliance Toolkit</div><div class="rm-d lang-en">Open-source EU AI Act framework — In development</div><div class="rm-d lang-de">Open-Source EU AI Act Framework — In Entwicklung</div></div>
+                <div class="rm-card fade-up"><div class="rm-ico hc"><i data-lucide="activity"></i></div><div class="rm-t">Health Anomaly Detection</div><div class="rm-d lang-en">Clinical early warning system — In development</div><div class="rm-d lang-de">Klinisches Fr&uuml;hwarnsystem — In Entwicklung</div></div>
             </div>
         </div>
     </section>
@@ -1752,34 +813,10 @@
             <h2 class="s-title lang-de">Perspektiven &amp; Beitr&auml;ge</h2>
             <p class="s-sub lang-en">Thoughts on AI in regulated domains — where policy meets production.</p>
             <p class="s-sub lang-de">Gedanken zu KI in regulierten Dom&auml;nen — wo Politik auf Produktion trifft.</p>
-
             <div class="ins-grid">
-                <div class="ins-card fade-up">
-                    <div class="ins-dom" style="color: var(--accent-ra);">EU AI Act</div>
-                    <div class="ins-t lang-en">What the EU AI Act Means for Healthcare &amp; Defence AI Systems</div>
-                    <div class="ins-t lang-de">Was der EU AI Act f&uuml;r Healthcare- und Defence-KI-Systeme bedeutet</div>
-                    <p class="ins-desc lang-en">With high-risk AI obligations taking effect August 2026, healthcare and defence organizations face a dual compliance challenge.</p>
-                    <p class="ins-desc lang-de">Mit den Hochrisiko-KI-Pflichten ab August 2026 stehen Gesundheits- und Verteidigungsorganisationen vor einer doppelten Compliance-Herausforderung.</p>
-                    <div class="ins-date">Coming soon · 2026</div>
-                </div>
-
-                <div class="ins-card fade-up">
-                    <div class="ins-dom" style="color: var(--accent-hc);">Healthcare AI</div>
-                    <div class="ins-t lang-en">Building Trustworthy Medical AI: Explainability Beyond the Checkbox</div>
-                    <div class="ins-t lang-de">Vertrauensw&uuml;rdige medizinische KI: Erkl&auml;rbarkeit &uuml;ber die Checkliste hinaus</div>
-                    <p class="ins-desc lang-en">SHAP values and Grad-CAM heatmaps are just the beginning. Real clinical trust requires bridging the gap between technical explainability and clinical needs.</p>
-                    <p class="ins-desc lang-de">SHAP-Werte und Grad-CAM-Heatmaps sind nur der Anfang. Echtes klinisches Vertrauen erfordert die &Uuml;berbr&uuml;ckung der L&uuml;cke zwischen technischer Erkl&auml;rbarkeit und klinischen Anforderungen.</p>
-                    <div class="ins-date">Coming soon · 2026</div>
-                </div>
-
-                <div class="ins-card fade-up">
-                    <div class="ins-dom" style="color: var(--accent-df);">Defence AI</div>
-                    <div class="ins-t lang-en">From NATO Planning to AI Engineering: Lessons in Mission-Critical Systems</div>
-                    <div class="ins-t lang-de">Von NATO-Planung zu KI-Engineering: Lektionen aus missionskritischen Systemen</div>
-                    <p class="ins-desc lang-en">15 years of operational planning taught me that the hardest problems aren't algorithmic — they're about trust, reliability, and human oversight.</p>
-                    <p class="ins-desc lang-de">15 Jahre operative Planung haben mich gelehrt, dass die schwierigsten Probleme nicht algorithmischer Natur sind — es geht um Vertrauen, Zuverl&auml;ssigkeit und menschliche Aufsicht.</p>
-                    <div class="ins-date">Coming soon · 2026</div>
-                </div>
+                <div class="ins-card fade-up"><div class="ins-dom" style="color:var(--accent-ra);">EU AI Act</div><div class="ins-t lang-en">What the EU AI Act Means for Healthcare &amp; Defence AI Systems</div><div class="ins-t lang-de">Was der EU AI Act f&uuml;r Healthcare- und Defence-KI-Systeme bedeutet</div><p class="ins-desc lang-en">With high-risk AI obligations taking effect August 2026, healthcare and defence organizations face a dual compliance challenge.</p><p class="ins-desc lang-de">Mit den Hochrisiko-KI-Pflichten ab August 2026 stehen Gesundheits- und Verteidigungsorganisationen vor einer doppelten Compliance-Herausforderung.</p><div class="ins-date">Coming soon · 2026</div></div>
+                <div class="ins-card fade-up"><div class="ins-dom" style="color:var(--accent-hc);">Healthcare AI</div><div class="ins-t lang-en">Building Trustworthy Medical AI: Explainability Beyond the Checkbox</div><div class="ins-t lang-de">Vertrauensw&uuml;rdige medizinische KI: Erkl&auml;rbarkeit &uuml;ber die Checkliste hinaus</div><p class="ins-desc lang-en">SHAP values and Grad-CAM heatmaps are just the beginning. Real clinical trust requires bridging the gap between technical explainability and clinical needs.</p><p class="ins-desc lang-de">SHAP-Werte und Grad-CAM-Heatmaps sind nur der Anfang. Echtes klinisches Vertrauen erfordert die &Uuml;berbr&uuml;ckung der L&uuml;cke zwischen technischer Erkl&auml;rbarkeit und klinischen Anforderungen.</p><div class="ins-date">Coming soon · 2026</div></div>
+                <div class="ins-card fade-up"><div class="ins-dom" style="color:var(--accent-df);">Defence AI</div><div class="ins-t lang-en">From NATO Planning to AI Engineering: Lessons in Mission-Critical Systems</div><div class="ins-t lang-de">Von NATO-Planung zu KI-Engineering: Lektionen aus missionskritischen Systemen</div><p class="ins-desc lang-en">15 years of operational planning taught me that the hardest problems aren't algorithmic — they're about trust, reliability, and human oversight.</p><p class="ins-desc lang-de">15 Jahre operative Planung haben mich gelehrt, dass die schwierigsten Probleme nicht algorithmischer Natur sind — es geht um Vertrauen, Zuverl&auml;ssigkeit und menschliche Aufsicht.</p><div class="ins-date">Coming soon · 2026</div></div>
             </div>
         </div>
     </section>
@@ -1787,73 +824,46 @@
     <!-- ===== CONTACT ===== -->
     <section id="contact" style="background: var(--bg-secondary);">
         <div class="ctr">
-            <div class="s-label" style="text-align: center;">05 — Contact</div>
-            <h2 class="s-title lang-en" style="text-align: center;">Let's Connect</h2>
-            <h2 class="s-title lang-de" style="text-align: center;">Kontakt aufnehmen</h2>
-            <p class="s-sub lang-en" style="text-align: center; margin: 0 auto;">Open to opportunities in <strong>Healthcare AI</strong> and <strong>Defence AI</strong>.</p>
-            <p class="s-sub lang-de" style="text-align: center; margin: 0 auto;">Offen f&uuml;r M&ouml;glichkeiten im Bereich <strong>Healthcare AI</strong> und <strong>Defence AI</strong>.</p>
-
-            <div class="con-box">
-                <div class="con-links">
-                    <a href="mailto:atamererkal.eu@gmail.com" class="con-link"><i data-lucide="mail"></i> atamererkal.eu@gmail.com</a>
-                    <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="con-link"><i data-lucide="linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/AtamerErkal" target="_blank" class="con-link"><i data-lucide="github"></i> GitHub</a>
-                </div>
-            </div>
+            <div class="s-label" style="text-align:center;">05 — Contact</div>
+            <h2 class="s-title lang-en" style="text-align:center;">Let's Connect</h2>
+            <h2 class="s-title lang-de" style="text-align:center;">Kontakt aufnehmen</h2>
+            <p class="s-sub lang-en" style="text-align:center;margin:0 auto;">Open to opportunities in <strong>Healthcare AI</strong> and <strong>Defence AI</strong>.</p>
+            <p class="s-sub lang-de" style="text-align:center;margin:0 auto;">Offen f&uuml;r M&ouml;glichkeiten im Bereich <strong>Healthcare AI</strong> und <strong>Defence AI</strong>.</p>
+            <div class="con-box"><div class="con-links">
+                <a href="mailto:atamererkal.eu@gmail.com" class="con-link"><i data-lucide="mail"></i> atamererkal.eu@gmail.com</a>
+                <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="con-link"><i data-lucide="linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/AtamerErkal" target="_blank" class="con-link"><i data-lucide="github"></i> GitHub</a>
+            </div></div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer>
-        <div class="ctr">Built by Atamer Erkal &middot; &copy; 2026</div>
-    </footer>
+    <footer><div class="ctr">Built by Atamer Erkal &middot; &copy; 2026</div></footer>
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
 
-        // Language toggle
         function setLang(l) {
-            document.querySelectorAll('.lang-en').forEach(function(e) {
-                e.style.display = l === 'en' ? '' : 'none';
-            });
-            document.querySelectorAll('.lang-de').forEach(function(e) {
-                e.style.display = l === 'de' ? '' : 'none';
-            });
+            document.querySelectorAll('.lang-en').forEach(function(e) { e.style.display = l === 'en' ? '' : 'none'; });
+            document.querySelectorAll('.lang-de').forEach(function(e) { e.style.display = l === 'de' ? '' : 'none'; });
             document.getElementById('btnEN').classList.toggle('active', l === 'en');
             document.getElementById('btnDE').classList.toggle('active', l === 'de');
             document.documentElement.lang = l;
         }
-
-        // Initialize language
         setLang('en');
 
-        // Mobile menu
-        function toggleMob() {
-            document.getElementById('mobNav').classList.toggle('open');
-        }
+        function toggleMob() { document.getElementById('mobNav').classList.toggle('open'); }
+        function closeMob() { document.getElementById('mobNav').classList.remove('open'); }
 
-        function closeMob() {
-            document.getElementById('mobNav').classList.remove('open');
-        }
-
-        // Scroll animations
         var obs = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry, i) {
                 if (entry.isIntersecting) {
-                    setTimeout(function() {
-                        entry.target.classList.add('visible');
-                    }, i * 60);
+                    setTimeout(function() { entry.target.classList.add('visible'); }, i * 60);
                     obs.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-
-        document.querySelectorAll('.fade-up').forEach(function(el) {
-            obs.observe(el);
-        });
+        document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
     </script>
-
 </body>
 </html>
