@@ -175,8 +175,8 @@
         .s-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
         .s-title { font-size: clamp(1.7rem, 2.8vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 14px; }
         .s-sub { font-size: 1rem; color: var(--text-secondary); max-width: 600px; line-height: 1.7; }
-        .lang-en { }
-        .lang-de { display: none; }
+        /* Language toggle - controlled entirely by JS via .lang-hidden class */
+        .lang-hidden { display: none !important; }
 
         /* ===== ABOUT SECTION ===== */
         .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; margin-top: 44px; }
@@ -504,10 +504,10 @@
                         <div class="p-dom hc">Healthcare AI · <span class="sub-label">Flagship</span></div>
                         <div class="p-name">VitalNav.ai</div>
                         <div class="p-tag">Pre-Hospital Emergency Triage — Azure AI Multi-Service</div>
-                        <p class="p-desc lang-en">AI-powered pre-hospital triage system integrating <strong>7 Azure AI services</strong>. Voice-first multilingual symptom collection (auto-detects 10+ languages), RAG-grounded clinical reasoning with GPT-4, real-time ETA routing via Azure Maps, and a live ER preparation dashboard for hospital staff.</p>
-                        <p class="p-desc lang-de">KI-gest&uuml;tztes pr&auml;klinisches Triage-System mit <strong>7 Azure-AI-Services</strong>. Sprachbasierte mehrsprachige Symptomerfassung (automatische Erkennung von 10+ Sprachen), RAG-basiertes klinisches Reasoning mit GPT-4, Echtzeit-ETA-Routing &uuml;ber Azure Maps und ein Live-ER-Vorbereitungs-Dashboard f&uuml;r Klinikpersonal.</p>
+                        <p class="p-desc lang-en">AI-powered pre-hospital triage system integrating <strong>7 Azure AI services</strong>. Voice-first multilingual symptom collection (supports 3 languages), RAG-grounded clinical reasoning with GPT-4o, real-time ETA routing via Azure Maps, and a live ER preparation dashboard for hospital staff.</p>
+                        <p class="p-desc lang-de">KI-gest&uuml;tztes pr&auml;klinisches Triage-System mit <strong>7 Azure-AI-Services</strong>. Sprachbasierte mehrsprachige Symptomerfassung (3 Sprachen), RAG-basiertes klinisches Reasoning mit GPT-4o, Echtzeit-ETA-Routing &uuml;ber Azure Maps und ein Live-ER-Vorbereitungs-Dashboard f&uuml;r Klinikpersonal.</p>
                         <div class="p-tech">
-                            <span class="tt">Azure OpenAI (GPT-4)</span>
+                            <span class="tt">Azure OpenAI (GPT-4o)</span>
                             <span class="tt">Azure AI Search</span>
                             <span class="tt">Azure Doc Intelligence</span>
                             <span class="tt">Azure Speech</span>
@@ -587,6 +587,24 @@
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/azure-healthcare-nlp-analyzer" class="p-link hc" target="_blank"><i data-lucide="github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Anomaly Detection - Coming Soon -->
+                <div class="p-card hc fade-up">
+                    <div class="p-img"><img src="images/HealthAnomaly.png" alt="Health Anomaly Detection"></div>
+                    <div class="p-body">
+                        <div class="p-dom hc">Healthcare AI <span class="badge-cs">Coming Soon</span></div>
+                        <div class="p-name">Health Anomaly Detection</div>
+                        <div class="p-tag">Clinical Metrics Monitoring — Early Warning System</div>
+                        <p class="p-desc lang-en">Anomaly detection system for clinical health metrics and patient monitoring data. Designed for early warning signals in healthcare operations with configurable alert thresholds and trend analysis.</p>
+                        <p class="p-desc lang-de">Anomalieerkennungssystem f&uuml;r klinische Gesundheitsmetriken und Patienten&uuml;berwachungsdaten. Entwickelt f&uuml;r Fr&uuml;hwarnungen im Klinikbetrieb mit konfigurierbaren Alarmschwellen und Trendanalyse.</p>
+                        <div class="p-tech">
+                            <span class="tt">Anomaly Detection</span>
+                            <span class="tt">Healthcare</span>
+                            <span class="tt">Time Series</span>
+                            <span class="tt">Python</span>
                         </div>
                     </div>
                 </div>
@@ -769,23 +787,7 @@
                     </div>
                 </div>
 
-                <!-- Health Anomaly Detection - NOW COMING SOON -->
-                <div class="p-card ra fade-up">
-                    <div class="p-img"><img src="images/HealthAnomaly.png" alt="Health Anomaly Detection"></div>
-                    <div class="p-body">
-                        <div class="p-dom hc">Healthcare AI <span class="badge-cs">Coming Soon</span></div>
-                        <div class="p-name">Health Anomaly Detection</div>
-                        <div class="p-tag">Clinical Metrics Monitoring — Early Warning System</div>
-                        <p class="p-desc lang-en">Anomaly detection system for clinical health metrics and patient monitoring data. Designed for early warning signals in healthcare operations with configurable alert thresholds and trend analysis.</p>
-                        <p class="p-desc lang-de">Anomalieerkennungssystem f&uuml;r klinische Gesundheitsmetriken und Patienten&uuml;berwachungsdaten. Entwickelt f&uuml;r Fr&uuml;hwarnungen im Klinikbetrieb mit konfigurierbaren Alarmschwellen und Trendanalyse.</p>
-                        <div class="p-tech">
-                            <span class="tt">Anomaly Detection</span>
-                            <span class="tt">Healthcare</span>
-                            <span class="tt">Time Series</span>
-                            <span class="tt">Python</span>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -844,8 +846,12 @@
         lucide.createIcons();
 
         function setLang(l) {
-            document.querySelectorAll('.lang-en').forEach(function(e) { e.style.display = l === 'en' ? '' : 'none'; });
-            document.querySelectorAll('.lang-de').forEach(function(e) { e.style.display = l === 'de' ? '' : 'none'; });
+            document.querySelectorAll('.lang-en').forEach(function(e) {
+                if (l === 'en') { e.classList.remove('lang-hidden'); } else { e.classList.add('lang-hidden'); }
+            });
+            document.querySelectorAll('.lang-de').forEach(function(e) {
+                if (l === 'de') { e.classList.remove('lang-hidden'); } else { e.classList.add('lang-hidden'); }
+            });
             document.getElementById('btnEN').classList.toggle('active', l === 'en');
             document.getElementById('btnDE').classList.toggle('active', l === 'de');
             document.documentElement.lang = l;
