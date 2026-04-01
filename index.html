@@ -325,6 +325,7 @@
             .about-grid, .p-grid, .sk-grid, .ins-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .rm-grid { flex-direction: column; }
+            .hero-availability { justify-content: center; }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -335,6 +336,57 @@
         .mob-nav.open { display: block; }
         .mob-nav a { display: block; padding: 12px 0; font-size: 0.95rem; color: var(--text-secondary); border-bottom: 1px solid var(--bdr); }
         .mob-nav a:last-child { border-bottom: none; }
+        
+        /* === AVAILABILITY BAR === */
+        .hero-availability {
+            display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+            padding: 10px 18px; margin-bottom: 24px;
+            background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.18);
+            border-radius: 10px; font-size: 0.82rem; color: var(--text-secondary);
+        }
+        .hero-availability .avail-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: var(--accent-hc);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+        }
+        .hero-availability .avail-sep { color: var(--text-muted); }
+
+        /* === CV DOWNLOAD BUTTON === */
+        .btn-cv {
+            background: rgba(16, 185, 129, 0.08); color: var(--accent-hc);
+            border: 1px solid var(--accent-hc-bdr);
+        }
+        .btn-cv:hover { background: rgba(16, 185, 129, 0.15); transform: translateY(-2px); }
+
+        /* === CERTIFICATIONS & RECOGNITION === */
+        .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px; }
+        .cert-card {
+            padding: 20px; background: var(--bg-card); border-radius: var(--r-md);
+            border: 1px solid var(--bdr); display: flex; align-items: center; gap: 14px;
+            transition: border-color 0.2s;
+        }
+        .cert-card:hover { border-color: var(--bdr-h); }
+        .cert-ico {
+            width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cert-ico svg { width: 20px; height: 20px; }
+        .cert-ico.gold { background: var(--accent-ra-dim); }
+        .cert-ico.gold svg { stroke: var(--accent-ra); }
+        .cert-ico.blue { background: var(--accent-df-dim); }
+        .cert-ico.blue svg { stroke: var(--accent-df); }
+        .cert-ico.green { background: var(--accent-hc-dim); }
+        .cert-ico.green svg { stroke: var(--accent-hc); }
+        .cert-ico.azure { background: rgba(0, 120, 212, 0.1); }
+        .cert-ico.azure svg { stroke: var(--accent-az); }
+        .cert-t { font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+        .cert-d { font-size: 0.78rem; color: var(--text-muted); }
+        @media (max-width: 768px) {
+            .cert-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -373,18 +425,30 @@
             <div>
                 <div class="hero-badge">
                     <i data-lucide="shield-check"></i>
-                    <span class="lang-en">Former NATO Planning Officer</span>
-                    <span class="lang-de">Ehemaliger NATO-Planungsoffizier</span>
+                    <span class="lang-en">Former NATO Planning Officer → AI Engineer · 15+ Years in Mission-Critical Systems</span>
+                    <span class="lang-de">Ehemaliger NATO-Planungsoffizier → KI-Ingenieur · 15+ Jahre in missionskritischen Systemen</span>
                 </div>
 
                 <h1 class="hero-title">
                     <span class="txt-hc">Healthcare</span> <span class="hero-amp">&amp;</span><br>
-                    <span class="txt-df">Defence AI</span> Engineer
+                    <span class="txt-df">Defence</span> AI Engineer
                 </h1>
 
                 <p class="hero-sub lang-en">I design and deploy end-to-end AI/ML systems for safety-critical and regulated environments — from healthcare analytics and defence operations to explainable &amp; compliant AI.</p>
                 <p class="hero-sub lang-de">Ich entwickle und implementiere End-to-End-KI/ML-Systeme f&uuml;r sicherheitskritische und regulierte Umgebungen — von Healthcare Analytics und Defence Operations bis hin zu erkl&auml;rbarer &amp; konformer KI.</p>
 
+                <div class="hero-availability">
+                    <span class="avail-dot"></span>
+                    <span class="lang-en">Available for roles in Southern Germany</span>
+                    <span class="lang-de">Verf&uuml;gbar f&uuml;r Positionen in S&uuml;ddeutschland</span>
+                    <span class="avail-sep">&middot;</span>
+                    <span>German B2 (TELC Beruf)</span>
+                    <span class="avail-sep">&middot;</span>
+                    <span class="lang-en">EU Work Authorization</span>
+                    <span class="lang-de">EU-Arbeitserlaubnis</span>
+                </div>
+
+                <div class="hero-tags">
                 <div class="hero-tags">
                     <span class="htag hc"><i data-lucide="heart-pulse"></i> Healthcare AI</span>
                     <span class="htag df"><i data-lucide="shield"></i> Defence AI</span>
@@ -395,8 +459,10 @@
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-p lang-en">View Projects <i data-lucide="arrow-down" style="width:16px;height:16px"></i></a>
                     <a href="#projects" class="btn btn-p lang-de">Projekte ansehen <i data-lucide="arrow-down" style="width:16px;height:16px"></i></a>
-                    <a href="#contact" class="btn btn-o lang-en">Get In Touch</a>
-                    <a href="#contact" class="btn btn-o lang-de">Kontakt</a>
+                    <a href="#contact" class="btn btn-o lang-en">Let's Talk</a>
+                    <a href="#contact" class="btn btn-o lang-de">Kontakt aufnehmen</a>
+                    <a href="docs/Atamer_Erkal_CV_EN.pdf" class="btn btn-cv lang-en" download><i data-lucide="download" style="width:16px;height:16px"></i> Download CV</a>
+                    <a href="docs/Atamer_Erkal_CV_DE.pdf" class="btn btn-cv lang-de" download><i data-lucide="download" style="width:16px;height:16px"></i> Lebenslauf herunterladen</a>
                 </div>
             </div>
             <div class="hero-photo">
@@ -455,11 +521,36 @@
             </div>
         </div>
     </section>
-
+    <!-- ===== CERTIFICATIONS & RECOGNITION ===== -->
+    <section style="background: var(--bg-secondary); padding: 80px 0;">
+        <div class="ctr">
+            <div class="s-label">02 — Recognition</div>
+            <h2 class="s-title lang-en">Certifications &amp; Awards</h2>
+            <h2 class="s-title lang-de">Zertifizierungen &amp; Auszeichnungen</h2>
+            <div class="cert-grid">
+                <div class="cert-card fade-up">
+                    <div class="cert-ico azure"><i data-lucide="cloud"></i></div>
+                    <div><div class="cert-t">Azure AI Engineer — AI-102</div><div class="cert-d">Scheduled April 2026</div></div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico gold"><i data-lucide="trophy"></i></div>
+                    <div><div class="cert-t">Best DS Bootcamp 2021 &amp; 2022</div><div class="cert-d">Clarusway IT School — Program Director</div></div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico blue"><i data-lucide="medal"></i></div>
+                    <div><div class="cert-t">Honor — Naval Forces Commander</div><div class="cert-d lang-en">Distinguished service recognition</div><div class="cert-d lang-de">&Uuml;berragende Dienstleistungsauszeichnung</div></div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico green"><i data-lucide="pen-line"></i></div>
+                    <div><div class="cert-t">Essay Winner — Defence University</div><div class="cert-d lang-en">National Defence University academic award</div><div class="cert-d lang-de">Akademischer Preis der Landesverteidigungsakademie</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- ===== SKILLS ===== -->
     <section id="skills" style="background: var(--bg-secondary);">
         <div class="ctr">
-            <div class="s-label">02 — Skills</div>
+            <div class="s-label">03 — Skills</div>
             <h2 class="s-title lang-en">Technologies &amp; Expertise</h2>
             <h2 class="s-title lang-de">Technologien &amp; Expertise</h2>
             <div class="sk-grid">
@@ -473,7 +564,7 @@
     <!-- ===== PROJECTS INTRO ===== -->
     <section id="projects" class="proj-intro">
         <div class="ctr">
-            <div class="s-label">03 — Projects</div>
+            <div class="s-label">04 — Projects</div>
             <h2 class="s-title lang-en">Featured Work</h2>
             <h2 class="s-title lang-de">Ausgew&auml;hlte Projekte</h2>
             <p class="s-sub lang-en">A selection of my personal projects across healthcare, defence, and responsible AI — designed and built for real-world regulated environments.</p>
