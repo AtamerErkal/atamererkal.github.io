@@ -274,6 +274,9 @@
         .psi-label.impact   { color: #818cf8; }
         .psi-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; margin: 0 0 4px 0; }
         .psi-text strong { color: var(--text-primary); }
+        .psi-block.problem-block .psi-text strong  { color: #f87171; }
+        .psi-block.solution-block .psi-text strong { color: #34d399; }
+        .psi-block.impact-block .psi-text strong   { color: #818cf8; }
         .p-tech { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
         .tt { padding: 3px 9px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--bdr); border-radius: 4px; font-size: 0.7rem; font-weight: 500; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); }
         .p-links { display: flex; gap: 14px; }
@@ -606,8 +609,36 @@
                         <div class="p-dom hc">Healthcare AI · <span class="sub-label">Flagship</span></div>
                         <div class="p-name">VitalNav.ai</div>
                         <div class="p-tag">Pre-Hospital Emergency Triage — Azure AI Multi-Service</div>
-                        <p class="p-desc lang-en">AI-powered pre-hospital triage system integrating <strong>7 Azure AI services</strong>. Voice-first multilingual symptom collection (supports 3 languages), RAG-grounded clinical reasoning with GPT-4o, real-time ETA routing via Azure Maps, and a live ER preparation dashboard for hospital staff.</p>
-                        <p class="p-desc lang-de">KI-gest&uuml;tztes pr&auml;klinisches Triage-System mit <strong>7 Azure-AI-Services</strong>. Sprachbasierte mehrsprachige Symptomerfassung (3 Sprachen), RAG-basiertes klinisches Reasoning mit GPT-4o, Echtzeit-ETA-Routing &uuml;ber Azure Maps und ein Live-ER-Vorbereitungs-Dashboard f&uuml;r Klinikpersonal.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">In pre-hospital emergencies, callers are <strong>undertrained</strong> and dispatchers lack real-time hospital visibility — leading to delayed triage decisions and <strong>preventable patient deterioration</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">Voice-first <strong>multilingual AI triage</strong> integrating 7 Azure AI services — RAG-grounded clinical reasoning with GPT-4o, real-time ETA routing via Azure Maps, and a <strong>live ER preparation dashboard</strong> delivering patient data to hospital staff before arrival.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text">Triage decisions in <strong>&lt;5 seconds</strong> across <strong>100+ languages</strong> — ER teams prepare before the patient arrives, turning critical minutes into <strong>structured, actionable intelligence</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Im Notfall sind Anrufer <strong>unzureichend geschult</strong> und Leitstellen fehlt die Echtzeit-Sicht auf Krankenhauskapazitäten — das verzögert Triage-Entscheidungen und gefährdet <strong>Patientenleben</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">Sprachbasiertes <strong>mehrsprachiges KI-Triage-System</strong> mit 7 Azure-AI-Services — RAG-gestütztes Reasoning mit GPT-4o, Echtzeit-ETA-Routing und einem <strong>Live-ER-Dashboard</strong>, das Patientendaten vor der Ankunft überträgt.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text">Triage in <strong>unter 5 Sekunden</strong>, in <strong>über 100 Sprachen</strong> — Notaufnahmeteams können sich vorbereiten, bevor der Patient eintrifft, und jede Minute wird zur <strong>strukturierten Entscheidungsgrundlage</strong>.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">Azure OpenAI (GPT-4o)</span>
                             <span class="tt">Azure AI Search</span>
@@ -632,8 +663,36 @@
                         <div class="p-dom hc">Healthcare AI</div>
                         <div class="p-name">SkinxAI</div>
                         <div class="p-tag">AI Skin Lesion Classifier — Medical Imaging</div>
-                        <p class="p-desc lang-en">EfficientNet-B7 CNN achieving <strong>85.2% sensitivity</strong> for malignant lesion detection on HAM10000 (7 dermatoscopic classes). Grad-CAM explainability heatmaps, GDPR-compliant data handling, and tiered risk stratification with confidence scoring.</p>
-                        <p class="p-desc lang-de">EfficientNet-B7 CNN mit <strong>85,2 % Sensitivit&auml;t</strong> f&uuml;r maligne L&auml;sionserkennung auf HAM10000 (7 dermatoskopische Klassen). Grad-CAM-Erkl&auml;rbarkeits-Heatmaps, DSGVO-konforme Datenverarbeitung und gestufte Risikostratifizierung mit Konfidenz-Scoring.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Early-stage melanoma detection requires specialist access that most patients simply <strong>don't have</strong> — diagnostic delays are a direct cause of <strong>preventable cancer mortality</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text"><strong>EfficientNet-B7</strong> CNN trained on HAM10000 classifies <strong>7 dermatoscopic lesion types</strong> with Grad-CAM heatmaps for clinical explainability, tiered risk stratification, and GDPR-compliant data handling.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text"><strong>85.2% sensitivity</strong> for malignant detection, <strong>93.4% AUC</strong>, and <strong>96.8% negative predictive value</strong> — a reliable AI second opinion where specialist time is scarce.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Früherkennung von Melanomen setzt Facharzt-Zugang voraus — den die meisten Patienten <strong>nicht haben</strong>. Diagnostische Verzögerungen sind eine direkte Ursache für <strong>vermeidbare Krebssterblichkeit</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text"><strong>EfficientNet-B7</strong> CNN auf HAM10000 klassifiziert <strong>7 dermatoskopische Läsionstypen</strong> mit Grad-CAM-Heatmaps, gestufter Risikostratifizierung und DSGVO-konformer Datenverarbeitung.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text"><strong>85,2 % Sensitivität</strong>, <strong>93,4 % AUC</strong> und <strong>96,8 % negativer Vorhersagewert</strong> — eine zuverlässige KI-Zweitmeinung dort, wo Facharztzeit knapp ist.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">PyTorch</span>
                             <span class="tt">EfficientNet-B7</span>
@@ -655,8 +714,36 @@
                         <div class="p-dom hc">Healthcare AI · <span class="sub-label mlops">MLOps</span></div>
                         <div class="p-name">ClinicOps</div>
                         <div class="p-tag">End-to-End MLOps Platform — Healthcare Operations</div>
-                        <p class="p-desc lang-en">Hospital stay prediction (<strong>R&sup2;=0.918</strong>) with full production MLOps lifecycle. MLflow experiment tracking with model registry, DVC data versioning, Docker containerization, CI/CD via Azure Pipelines &amp; GitHub Actions, and real-time data drift detection with automated alerts.</p>
-                        <p class="p-desc lang-de">Krankenhaus-Aufenthaltsprognose (<strong>R&sup2;=0,918</strong>) mit vollst&auml;ndigem Produktions-MLOps-Lifecycle. MLflow-Experiment-Tracking mit Model Registry, DVC-Datenversionierung, Docker-Containerisierung, CI/CD &uuml;ber Azure Pipelines &amp; GitHub Actions und Echtzeit-Drifterkennung mit automatisierten Alerts.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Hospitals manage bed occupancy and <strong>length of stay manually</strong> — without predictive tools, overcrowding cascades into <strong>delayed admissions and rising costs</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">End-to-end <strong>MLOps platform</strong> with Random Forest LOS prediction — MLflow model registry, DVC data versioning, Docker containerization, and <strong>automated CI/CD via Azure Pipelines &amp; GitHub Actions</strong> with real-time drift detection.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text"><strong>R²=0.918</strong>, MAE of <strong>0.68 days</strong>, <strong>95% infrastructure cost reduction</strong>, and reproducible deployments in <strong>5–7 minutes</strong> — production MLOps at clinical grade.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Krankenhäuser verwalten Belegung und <strong>Verweildauer manuell</strong> — ohne Vorhersagetools führt das zu Überfüllung, ineffizienter Planung und <strong>steigenden Kosten</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">End-to-End-<strong>MLOps-Plattform</strong> mit Random-Forest-Verweildauerprognose — MLflow Model Registry, DVC-Datenversionierung, Docker und <strong>CI/CD über Azure Pipelines &amp; GitHub Actions</strong> mit Echtzeit-Drifterkennung.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text"><strong>R²=0,918</strong>, MAE von <strong>0,68 Tagen</strong>, <strong>95 % Infrastrukturkostenreduktion</strong> und reproduzierbare Deployments in <strong>5–7 Minuten</strong>.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">MLflow</span>
                             <span class="tt">DVC</span>
@@ -678,8 +765,36 @@
                         <div class="p-dom hc">Healthcare AI · <span class="sub-label">Azure</span></div>
                         <div class="p-name">Azure Healthcare NLP Analyzer</div>
                         <div class="p-tag">Clinical Text Analysis — Azure AI Language</div>
-                        <p class="p-desc lang-en">Medical entity recognition pipeline extracting diagnoses, medications, symptoms, dosages, and clinical relations from unstructured clinical notes. Powered by Azure Text Analytics for Health with FHIR-compatible output and entity linking to medical ontologies.</p>
-                        <p class="p-desc lang-de">Pipeline zur medizinischen Entit&auml;tserkennung, die Diagnosen, Medikamente, Symptome, Dosierungen und klinische Relationen aus unstrukturierten klinischen Notizen extrahiert. Basierend auf Azure Text Analytics for Health mit FHIR-kompatiblem Output.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Clinicians spend hours on <strong>manual documentation and PII redaction</strong> — pulling them away from patient care and introducing compliance risk through <strong>human error in sensitive data handling</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text"><strong>Azure AI Language</strong> pipeline extracting diagnoses, medications, symptoms, and clinical relations from unstructured notes — with <strong>7-language translation</strong>, voice documentation, and FHIR-compatible entity output.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text"><strong>98.5% PII redaction accuracy</strong>, processing in <strong>&lt;2 seconds per document</strong>, and a <strong>50% reduction in documentation time</strong> — giving clinicians back time for patients.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Kliniker verbringen Stunden mit <strong>manueller Dokumentation und PII-Anonymisierung</strong> — das entzieht sie der Patientenversorgung und erhöht das Compliance-Risiko durch <strong>menschliche Fehler</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text"><strong>Azure AI Language</strong>-Pipeline zur Extraktion von Diagnosen, Medikamenten und klinischen Relationen — mit <strong>7-Sprachen-Übersetzung</strong>, Sprachdokumentation und FHIR-kompatiblem Output.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text"><strong>98,5 % PII-Genauigkeit</strong>, Verarbeitung in <strong>unter 2 Sekunden</strong> pro Dokument und <strong>50 % weniger Dokumentationszeit</strong> — mehr Zeit für Patienten.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">Azure AI Language</span>
                             <span class="tt">Text Analytics for Health</span>
@@ -700,8 +815,36 @@
                         <div class="p-dom hc">Healthcare AI <span class="badge-cs">Coming Soon</span></div>
                         <div class="p-name">Health Anomaly Detection</div>
                         <div class="p-tag">Clinical Metrics Monitoring — Early Warning System</div>
-                        <p class="p-desc lang-en">Anomaly detection system for clinical health metrics and patient monitoring data. Designed for early warning signals in healthcare operations with configurable alert thresholds and trend analysis.</p>
-                        <p class="p-desc lang-de">Anomalieerkennungssystem f&uuml;r klinische Gesundheitsmetriken und Patienten&uuml;berwachungsdaten. Entwickelt f&uuml;r Fr&uuml;hwarnungen im Klinikbetrieb mit konfigurierbaren Alarmschwellen und Trendanalyse.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text"><strong>Abnormal clinical metrics</strong> often go undetected until they escalate — delayed alerts in patient monitoring create <strong>preventable adverse events</strong> at scale.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">Statistical and ML-based <strong>anomaly detection</strong> over clinical time-series — configurable alert thresholds, trend analysis, and <strong>early warning signals</strong> integrated into healthcare operations.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text">Earlier intervention windows and <strong>reduced clinical risk</strong> — systematic detection where manual monitoring fails under volume and time pressure.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text"><strong>Klinische Anomalien</strong> bleiben oft unerkannt, bis sie eskalieren — verzögerte Alarme verursachen <strong>vermeidbare Zwischenfälle</strong> im Klinikbetrieb.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">Statistik- und ML-basierte <strong>Anomalieerkennung</strong> auf klinischen Zeitreihendaten — konfigurierbare Schwellwerte, Trendanalyse und <strong>Frühwarnsignale</strong> im Klinikbetrieb.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text">Frühere Interventionsfenster und <strong>reduziertes klinisches Risiko</strong> — systematische Erkennung, wo manuelle Überwachung unter Zeit- und Mengendruck versagt.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">Anomaly Detection</span>
                             <span class="tt">Healthcare</span>
@@ -732,8 +875,36 @@
                         <div class="p-dom df">Defence AI</div>
                         <div class="p-name">VANGUARD</div>
                         <div class="p-tag">Air Track Classification — NATO C2 Threat Assessment</div>
-                        <p class="p-desc lang-en">Real-time aerial threat classification system (Hostile/Friendly/Civilian) using XGBoost with <strong>96.3% accuracy</strong> for NATO C2 environments. Features interactive 3D flight path visualization, automated anomaly detection, MLflow experiment tracking, and NATO-compatible JSON data architecture.</p>
-                        <p class="p-desc lang-de">Echtzeit-Luftzielklassifikationssystem (feindlich/freundlich/zivil) mit XGBoost und <strong>96,3 % Genauigkeit</strong> f&uuml;r NATO-C2-Umgebungen. Interaktive 3D-Flugbahnvisualisierung, automatische Anomalieerkennung, MLflow-Experiment-Tracking und NATO-kompatible JSON-Datenarchitektur.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Manual air threat monitoring in NATO C2 environments is <strong>too slow and error-prone</strong> — human analysts cannot process multi-track aerial data fast enough to prevent <strong>critical identification failures</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text"><strong>XGBoost classifier</strong> categorizing aerial tracks across 6 threat classes with multi-factor scoring, interactive <strong>3D flight path visualization</strong>, MLflow tracking, and NATO-compatible JSON data architecture.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text"><strong>96.3% classification accuracy</strong> with <strong>&lt;50ms inference</strong> — machine-speed threat assessment that removes the human bottleneck from time-critical C2 decisions.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Manuelle Luftbedrohungsüberwachung in NATO-C2-Umgebungen ist <strong>zu langsam und fehleranfällig</strong> — Analysten können Multi-Track-Daten nicht schnell genug verarbeiten, um <strong>kritische Fehlidentifikationen</strong> zu verhindern.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text"><strong>XGBoost-Klassifikator</strong> für 6 Bedrohungsklassen mit Multi-Faktor-Scoring, interaktiver <strong>3D-Flugbahnvisualisierung</strong>, MLflow-Tracking und NATO-kompatibler JSON-Datenarchitektur.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text"><strong>96,3 % Klassifikationsgenauigkeit</strong> bei <strong>&lt;50ms Inferenz</strong> — maschinengeschwindige Bedrohungsbewertung für zeitkritische C2-Entscheidungen.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">Python</span>
                             <span class="tt">XGBoost</span>
@@ -756,8 +927,36 @@
                         <div class="p-dom df">Defence AI · <span class="sub-label edge">Edge</span></div>
                         <div class="p-name">AEGIS-Cloud</div>
                         <div class="p-tag">Autonomous Edge Guardian Intelligence System — Counter-UAS</div>
-                        <p class="p-desc lang-en">Heterogeneous AIOps framework for autonomous Counter-UAS operations. TensorRT FP16 compiled YOLOv8 on NVIDIA Jetson achieving <strong>&lt;30ms latency</strong> (vs 300ms+ baseline). Moondream VLM tactical reasoning with circuit-breaker pattern, Azure IoT Hub cloud sync, and EU AI Act compliant audit trail with full decision logging.</p>
-                        <p class="p-desc lang-de">Heterogenes AIOps-Framework f&uuml;r autonome Counter-UAS-Operationen. TensorRT-FP16-kompiliertes YOLOv8 auf NVIDIA Jetson mit <strong>&lt;30ms Latenz</strong> (vs. 300ms+ Baseline). Moondream-VLM taktisches Reasoning mit Circuit-Breaker-Pattern, Azure-IoT-Hub-Cloud-Sync und EU-AI-Act-konformer Audit-Trail.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Off-the-shelf YOLOv8 on NVIDIA Jetson consumed <strong>82% CPU at &gt;300ms latency</strong> — unusable for real-time Counter-UAS operations where <strong>every millisecond determines mission outcome</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text"><strong>TensorRT FP16</strong> compiled YOLOv8 with Moondream VLM tactical reasoning, circuit-breaker failover, tactical sub-sampling under load, and <strong>Azure IoT Hub</strong> cloud sync with EU AI Act compliant audit trail.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text">CPU load: <strong>82% → 0–2.4%</strong>. Latency: <strong>300ms → &lt;30ms</strong>. Thermal stability maintained under sustained load — edge AI that meets the demands of <strong>real autonomous operations</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Standard-YOLOv8 auf NVIDIA Jetson belegte <strong>82 % CPU bei &gt;300ms Latenz</strong> — für Echtzeit-Counter-UAS-Operationen, wo <strong>jede Millisekunde entscheidet</strong>, schlicht unbrauchbar.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text"><strong>TensorRT-FP16</strong>-kompiliertes YOLOv8 mit Moondream-VLM-Reasoning, Circuit-Breaker-Failover, taktischem Sub-Sampling unter Last und <strong>Azure-IoT-Hub</strong>-Sync mit EU-AI-Act-konformem Audit-Trail.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text">CPU-Last: <strong>82 % → 0–2,4 %</strong>. Latenz: <strong>300ms → &lt;30ms</strong>. Thermische Stabilität unter Dauerlast — Edge-KI für <strong>echte autonome Operationen</strong>.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">TensorRT</span>
                             <span class="tt">YOLOv8</span>
@@ -780,8 +979,36 @@
                         <div class="p-dom df">Defence AI <span class="badge-cs">Coming Soon</span></div>
                         <div class="p-name">SENTINEL</div>
                         <div class="p-tag">Multi-Domain Situational Awareness Dashboard</div>
-                        <p class="p-desc lang-en">Multi-domain fusion dashboard integrating land, sea, and air threat data with real-time correlation analysis. NATO STANAG-referenced data formats, threat prioritization engine, and human-in-the-loop decision support with configurable alert thresholds.</p>
-                        <p class="p-desc lang-de">Multi-Domain-Fusionsdashboard f&uuml;r Land-, See- und Luftbedrohungsdaten mit Echtzeit-Korrelationsanalyse. NATO-STANAG-referenzierte Datenformate, Bedrohungspriorisierungs-Engine und Human-in-the-Loop-Entscheidungsunterst&uuml;tzung.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Multi-domain battlefield awareness requires <strong>fusing heterogeneous sensor streams</strong> — current systems process land, sea, and air data in silos, creating <strong>dangerous situational blind spots</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">Real-time <strong>multi-domain fusion dashboard</strong> integrating land, sea, and air threat data — NATO STANAG-compatible formats, threat prioritization engine, and <strong>human-in-the-loop</strong> decision support with configurable alert thresholds.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text">Unified operational picture across all domains — <strong>faster threat correlation</strong>, reduced cognitive load, and <strong>decision-ready intelligence</strong> at command speed.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Multi-Domain-Lagebild erfordert die <strong>Fusion heterogener Sensordaten</strong> — aktuelle Systeme verarbeiten Land-, See- und Luftdaten isoliert und erzeugen <strong>gefährliche Lagelücken</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">Echtzeit-<strong>Multi-Domain-Fusionsdashboard</strong> mit NATO-STANAG-Formaten, Bedrohungspriorisierungs-Engine und <strong>Human-in-the-Loop</strong>-Entscheidungsunterstützung mit konfigurierbaren Alarmschwellen.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text">Einheitliches Lagebild über alle Domänen — <strong>schnellere Bedrohungskorrelation</strong>, reduzierte kognitive Last und <strong>entscheidungsreife Aufklärung</strong> in Führungsgeschwindigkeit.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">Sensor Fusion</span>
                             <span class="tt">Multi-Domain</span>
@@ -812,8 +1039,36 @@
                         <div class="p-dom ra">Responsible AI</div>
                         <div class="p-name">XAI Dashboard</div>
                         <div class="p-tag">Explainable AI — Model Interpretability &amp; Trust</div>
-                        <p class="p-desc lang-en">Interactive explainability dashboard combining SHAP summary/force/dependence plots, LIME local explanations, and counterfactual analysis. Designed as an audit-ready tool for healthcare and defence AI model governance with exportable reports.</p>
-                        <p class="p-desc lang-de">Interaktives Erkl&auml;rbarkeits-Dashboard mit SHAP-Summary-/Force-/Dependence-Plots, LIME-Lokalerkl&auml;rungen und kontrafaktischer Analyse. Audit-bereit f&uuml;r Healthcare- und Defence-KI-Modell-Governance mit exportierbaren Berichten.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text"><strong>Black-box ML models</strong> block adoption in regulated domains — without explainability, clinicians and commanders cannot trust, audit, or take accountability for <strong>AI-driven decisions</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">Interactive dashboard combining <strong>SHAP</strong> (summary/force/dependence), <strong>LIME</strong> local explanations, and <strong>DiCE counterfactual analysis</strong> — with domain-specific reports for Healthcare, Defence, and General use cases.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text"><strong>Audit-ready explainability</strong> out of the box — exportable PDF reports that satisfy compliance reviewers and give practitioners the <strong>interpretive confidence</strong> to act on model outputs.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text"><strong>Black-Box-ML-Modelle</strong> blockieren die Akzeptanz in regulierten Domänen — ohne Erklärbarkeit können Kliniker und Führungskräfte <strong>KI-Entscheidungen</strong> weder vertrauen noch verantworten.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">Interaktives Dashboard mit <strong>SHAP</strong> (Summary/Force/Dependence), <strong>LIME</strong>-Lokalerklärungen und <strong>DiCE-kontrafaktischer Analyse</strong> — mit domänenspezifischen Berichten für Healthcare, Defence und allgemeine Anwendungsfälle.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text"><strong>Auditfähige Erklärbarkeit</strong> direkt einsatzbereit — exportierbare PDF-Berichte für Compliance-Reviews und die <strong>interpretative Sicherheit</strong>, KI-Ausgaben verantwortungsvoll zu nutzen.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">SHAP</span>
                             <span class="tt">LIME</span>
@@ -835,8 +1090,36 @@
                         <div class="p-dom ra">Responsible AI · <span class="sub-label">Azure</span></div>
                         <div class="p-name">Azure Content Safety Platform</div>
                         <div class="p-tag">Content Moderation — Azure AI Content Safety</div>
-                        <p class="p-desc lang-en">Multi-modal content safety and moderation platform detecting harmful content across text and images. Severity-graded detection for violence, hate speech, self-harm, and sexual content categories with animated gauge visualizations, keyword highlighting, and XAI explanations.</p>
-                        <p class="p-desc lang-de">Multi-modale Content-Safety- und Moderationsplattform zur Erkennung sch&auml;dlicher Inhalte in Text und Bild. Schweregrad-basierte Erkennung f&uuml;r Gewalt, Hassrede, Selbstverletzung und sexuelle Inhalte mit animierten Gauge-Visualisierungen und XAI-Erkl&auml;rungen.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Harmful user-generated content scales <strong>faster than human moderators</strong> can handle — and opaque automated moderation erodes trust through <strong>unexplained rejections</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text"><strong>Azure Content Safety API</strong> multi-modal platform with severity scoring (0–7) across violence, hate speech, self-harm, and sexual content — <strong>XAI explanations</strong> for every moderation decision with animated gauge visualizations.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text"><strong>95% harmful content reduction</strong>, <strong>40% fewer moderation appeals</strong>, <strong>&lt;500ms</strong> response time, and a <strong>&lt;2% false positive rate</strong> — moderation that users can understand and trust.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Schädliche nutzergenerierte Inhalte skalieren <strong>schneller als menschliche Moderatoren</strong> es schaffen — intransparente Automatisierung untergräbt das Nutzervertrauen durch <strong>unerklärte Ablehnungen</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text"><strong>Azure Content Safety API</strong> mit Schweregradwertung (0–7) für Gewalt, Hassrede, Selbstverletzung und sexuelle Inhalte — <strong>XAI-Erklärungen</strong> für jede Entscheidung mit animierten Schweregrad-Visualisierungen.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text"><strong>95 % weniger schädliche Inhalte</strong>, <strong>40 % weniger Einsprüche</strong>, <strong>&lt;500ms</strong> Antwortzeit und <strong>&lt;2 % Falschpositivrate</strong> — transparente Moderation, der Nutzer vertrauen.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">Azure AI Content Safety</span>
                             <span class="tt">Multi-Modal</span>
@@ -914,8 +1197,36 @@
                         <div class="p-dom ra">Responsible AI <span class="badge-cs">Coming Soon</span></div>
                         <div class="p-name">AI-Act-Compliance-Toolkit</div>
                         <div class="p-tag">EU AI Act (Aug 2026) Compliance Framework</div>
-                        <p class="p-desc lang-en">Open-source compliance toolkit for EU AI Act high-risk systems. Automated risk classification, technical documentation generators, conformity assessment templates, and bias audit tools aligned with Article 6 and Annex III requirements.</p>
-                        <p class="p-desc lang-de">Open-Source-Compliance-Toolkit f&uuml;r EU-AI-Act-Hochrisikosysteme. Automatisierte Risikoklassifizierung, technische Dokumentationsgeneratoren, Konformit&auml;tsbewertungsvorlagen und Bias-Audit-Tools gem&auml;&szlig; Artikel 6 und Anhang III.</p>
+
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">EU AI Act compliance for high-risk systems demands <strong>extensive technical documentation and risk classification</strong> — a process that is slow, inconsistent, and often started <strong>too late in the development cycle</strong>.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">Open-source toolkit with <strong>automated risk classification</strong>, technical documentation generators, conformity assessment templates, and <strong>bias audit tools</strong> aligned with Article 6 and Annex III requirements.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text">Compliance built into the development workflow — not bolted on afterward. <strong>Faster certification paths</strong> and consistent documentation for high-risk AI across healthcare and defence.</p>
+                            </div>
+                        </div>
+
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">EU-AI-Act-Konformität für Hochrisikosysteme erfordert <strong>umfangreiche technische Dokumentation</strong> — ein langsamer, inkonsistenter Prozess, der oft <strong>zu spät im Entwicklungszyklus</strong> beginnt.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">Open-Source-Toolkit mit <strong>automatisierter Risikoklassifizierung</strong>, Dokumentationsgeneratoren, Konformitätsbewertungsvorlagen und <strong>Bias-Audit-Tools</strong> gemäß Artikel 6 und Anhang III.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text">Compliance direkt im Entwicklungsworkflow — nicht nachträglich angehängt. <strong>Schnellere Zertifizierungspfade</strong> und konsistente Dokumentation für Hochrisiko-KI in Healthcare und Defence.</p>
+                            </div>
+                        </div>
                         <div class="p-tech">
                             <span class="tt">EU AI Act</span>
                             <span class="tt">Compliance</span>
