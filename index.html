@@ -266,6 +266,14 @@
         .p-tag { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; }
         .p-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
         .p-desc strong { color: var(--text-primary); }
+        /* ── Problem / Solution / Impact structure ── */
+        .psi-block { margin-bottom: 10px; }
+        .psi-label { display: inline-block; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; }
+        .psi-label.problem  { color: #f87171; }
+        .psi-label.solution { color: #34d399; }
+        .psi-label.impact   { color: #818cf8; }
+        .psi-text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; margin: 0 0 4px 0; }
+        .psi-text strong { color: var(--text-primary); }
         .p-tech { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
         .tt { padding: 3px 9px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--bdr); border-radius: 4px; font-size: 0.7rem; font-weight: 500; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); }
         .p-links { display: flex; gap: 14px; }
@@ -848,17 +856,53 @@
                     <div class="p-body">
                         <div class="p-dom ra">Responsible AI</div>
                         <div class="p-name">EchoBreaker</div>
-                        <div class="p-tag">Responsible AI Counter-Perspective Engine</div>
-                        <p class="p-desc lang-en">AI system for detecting echo chambers and cognitive biases in information environments. Analyzes content homogeneity, polarization indices, and viewpoint diversity metrics. Critical for clinical decision-making and operational intelligence analysis.</p>
-                        <p class="p-desc lang-de">KI-System zur Erkennung von Echokammern und kognitiven Verzerrungen in Informationsumgebungen. Analysiert Inhaltshomogenit&auml;t, Polarisierungsindizes und Standpunkt-Diversit&auml;tsmetriken. Kritisch f&uuml;r klinische Entscheidungsfindung und operative Nachrichtenanalyse.</p>
+                        <div class="p-tag">Counter-Perspective Engine — Filter Bubble Detection</div>
+
+                        <!-- English -->
+                        <div class="lang-en">
+                            <div class="psi-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Recommendation algorithms silently trap users in <strong>ideological filter bubbles</strong> — reinforcing existing beliefs, suppressing opposing viewpoints, and deepening <strong>societal polarization</strong> at scale.</p>
+                            </div>
+                            <div class="psi-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">EchoBreaker extracts YouTube captions via a <strong>~5-second pipeline</strong> (no audio download) and generates three structured counter-perspectives across <strong>Ethical, Empirical, and Logical</strong> dimensions — with a side-by-side <strong>"Algorithm vs. EchoBreaker"</strong> view showing exactly what the algorithm would have kept feeding the user.</p>
+                            </div>
+                            <div class="psi-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text">Dual-provider architecture (<strong>Azure OpenAI / Groq</strong>) via a single env flag enables <strong>zero-cost deployment</strong>. Designed with <strong>EU AI Act</strong> transparency principles: no data stored, no user tracking, full decision explainability.</p>
+                            </div>
+                        </div>
+
+                        <!-- Deutsch -->
+                        <div class="lang-de">
+                            <div class="psi-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Empfehlungsalgorithmen erzeugen <strong>ideologische Filterblasen</strong> — sie verstärken bestehende Überzeugungen, unterdrücken Gegenmeinungen und vertiefen die <strong>gesellschaftliche Polarisierung</strong> in großem Maßstab.</p>
+                            </div>
+                            <div class="psi-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">EchoBreaker extrahiert YouTube-Untertitel in einer <strong>~5-Sekunden-Pipeline</strong> und generiert drei strukturierte Gegenperspektiven in <strong>ethischen, empirischen und logischen</strong> Dimensionen — mit einem direkten Vergleich zwischen Algorithmus und EchoBreaker.</p>
+                            </div>
+                            <div class="psi-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text">Dual-Provider-Architektur (<strong>Azure OpenAI / Groq</strong>) ermöglicht <strong>kostenlosen Betrieb</strong>. Entwickelt nach <strong>EU AI Act</strong> Transparenzprinzipien: keine Datenspeicherung, kein Tracking, vollständige Erklärbarkeit.</p>
+                            </div>
+                        </div>
+
                         <div class="p-tech">
-                            <span class="tt">NLP</span>
-                            <span class="tt">Bias Detection</span>
-                            <span class="tt">Polarization Analysis</span>
+                            <span class="tt">FastAPI</span>
+                            <span class="tt">Azure OpenAI</span>
+                            <span class="tt">Groq</span>
+                            <span class="tt">yt-dlp</span>
+                            <span class="tt">Tailwind CSS</span>
+                            <span class="tt">Responsible AI</span>
+                            <span class="tt">EU AI Act</span>
                             <span class="tt">Python</span>
                         </div>
                         <div class="p-links">
                             <a href="https://github.com/AtamerErkal/EchoBreaker" class="p-link ra" target="_blank"><i data-lucide="github"></i> GitHub</a>
+                            <a href="https://github.com/AtamerErkal/EchoBreaker" class="p-link ra" target="_blank"><i data-lucide="external-link"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
