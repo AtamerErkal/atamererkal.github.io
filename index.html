@@ -1467,6 +1467,343 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ===== VISUAL TIMELINE V2 ===== */
+        .timeline-v2 {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(15, 21, 32, 0.8) 50%, var(--bg-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-visual {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        /* Central Timeline Line */
+        .timeline-line-v2 {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: rgba(148, 163, 184, 0.1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-progress-v2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(180deg, var(--accent-df), var(--accent-hc));
+            border-radius: 2px;
+            transition: height 0.3s ease;
+        }
+
+        /* Timeline Nodes Container */
+        .timeline-nodes {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Individual Node */
+        .t-node {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .t-node.left {
+            flex-direction: row;
+            justify-content: flex-end;
+            padding-right: calc(50% + 40px);
+        }
+
+        .t-node.right {
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            padding-left: calc(50% + 40px);
+        }
+
+        /* Node Dot */
+        .node-dot {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .node-dot svg {
+            width: 28px;
+            height: 28px;
+            stroke-width: 1.5;
+        }
+
+        .node-dot.nato {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .node-dot.edu {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .node-dot.lead {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+        }
+
+        .node-dot.current {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3);
+        }
+
+        .current-pulse {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-hc);
+            animation: pulse-node 2s ease-out infinite;
+        }
+
+        @keyframes pulse-node {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        /* Connector Line */
+        .node-connector {
+            position: absolute;
+            height: 2px;
+            width: 40px;
+            background: rgba(148, 163, 184, 0.2);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .t-node.left .node-connector {
+            right: 50%;
+            margin-right: 30px;
+        }
+
+        .t-node.right .node-connector {
+            left: 50%;
+            margin-left: 30px;
+        }
+
+        /* Node Card */
+        .node-card {
+            background: rgba(21, 29, 46, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 20px;
+            padding: 28px 32px;
+            max-width: 420px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .node-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .node-card.nato::before {
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+        }
+
+        .node-card.edu::before {
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        }
+
+        .node-card.lead::before {
+            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+        }
+
+        .node-card.current::before {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        .node-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(148, 163, 184, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Card Content */
+        .node-year {
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+
+        .node-year.current-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-hc);
+        }
+
+        .node-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .node-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .node-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .node-tags span {
+            font-size: 0.7rem;
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: var(--text-muted);
+        }
+
+        .node-tags.highlight span {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.2);
+            color: var(--accent-hc);
+        }
+
+        .node-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .n-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .n-num {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent-ra);
+            line-height: 1;
+        }
+
+        .n-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Node Animation States */
+        .t-node {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .t-node.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .t-node.left.visible .node-card {
+            animation: slideInLeft 0.6s ease forwards;
+        }
+
+        .t-node.right.visible .node-card {
+            animation: slideInRight 0.6s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .timeline-line-v2 {
+                left: 30px;
+            }
+
+            .t-node.left,
+            .t-node.right {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 0 0 80px;
+                margin-bottom: 40px;
+            }
+
+            .node-dot {
+                left: 30px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .node-dot svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .node-connector {
+                display: none;
+            }
+
+            .node-card {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .t-node.left.visible .node-card,
+            .t-node.right.visible .node-card {
+                animation: slideInUp 0.6s ease forwards;
+            }
+
+            @keyframes slideInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
     </style>
 </head>
 
@@ -1676,127 +2013,98 @@
         </div>
     </section>
 
-    <!-- ===== CAREER TIMELINE - ELEGANT DESIGN ===== -->
-    <section class="timeline" id="timeline">
+    <!-- ===== CAREER TIMELINE - VISUAL TIMELINE ===== -->
+    <section class="timeline-v2" id="timeline">
         <div class="ctr">
             <div class="s-label lang-en">My Journey</div>
             <div class="s-label lang-de">Mein Weg</div>
             <h2 class="s-title lang-en">From NATO to AI Engineering</h2>
             <h2 class="s-title lang-de">Von der NATO zum KI-Engineering</h2>
 
-            <div class="timeline-elegant">
-                <!-- NATO Card -->
-                <div class="timeline-card completed fade-up">
-                    <div class="card-glow nato"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon nato">
-                                <i data-lucide="shield"></i>
+            <div class="timeline-visual">
+                <!-- Central Line -->
+                <div class="timeline-line-v2">
+                    <div class="timeline-progress-v2" id="timelineProgressV2"></div>
+                </div>
+
+                <!-- Nodes Container -->
+                <div class="timeline-nodes">
+                    <!-- Node 1: NATO -->
+                    <div class="t-node left fade-up" data-index="0">
+                        <div class="node-dot nato"><i data-lucide="shield"></i></div>
+                        <div class="node-connector"></div>
+                        <div class="node-card nato">
+                            <div class="node-year">2009 — 2021</div>
+                            <h3 class="node-title lang-en">NATO Joint Planning Officer</h3>
+                            <h3 class="node-title lang-de">NATO Joint Planungsoffizier</h3>
+                            <p class="node-desc lang-en">12 years in multinational operations, strategic resource allocation, and safety-critical command systems.</p>
+                            <p class="node-desc lang-de">12 Jahre in multinationalen Operationen, strategischer Ressourcenplanung und sicherheitskritischen Systemen.</p>
+                            <div class="node-tags">
+                                <span>Operations</span>
+                                <span>C2 Systems</span>
+                                <span>NATO</span>
                             </div>
-                            <div class="card-period">2009 — 2021</div>
-                        </div>
-                        <h3 class="card-title lang-en">NATO Joint Planning Officer</h3>
-                        <h3 class="card-title lang-de">NATO Joint Planungsoffizier</h3>
-                        <p class="card-desc lang-en">12 years in multinational operations, strategic resource allocation, and safety-critical command systems at NATO.</p>
-                        <p class="card-desc lang-de">12 Jahre in multinationalen Operationen, strategischer Ressourcenplanung und sicherheitskritischen Kommandosystemen bei der NATO.</p>
-                        <div class="card-tags">
-                            <span class="c-tag">Operations Planning</span>
-                            <span class="c-tag">Resource Allocation</span>
-                            <span class="c-tag">C2 Systems</span>
                         </div>
                     </div>
-                    <div class="card-status completed">
-                        <i data-lucide="check-circle"></i>
-                    </div>
-                </div>
 
-                <!-- Arrow -->
-                <div class="timeline-arrow">
-                    <i data-lucide="arrow-right"></i>
-                </div>
-
-                <!-- Master's Card -->
-                <div class="timeline-card completed fade-up">
-                    <div class="card-glow edu"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon edu">
-                                <i data-lucide="graduation-cap"></i>
+                    <!-- Node 2: Master's -->
+                    <div class="t-node right fade-up" data-index="1">
+                        <div class="node-dot edu"><i data-lucide="graduation-cap"></i></div>
+                        <div class="node-connector"></div>
+                        <div class="node-card edu">
+                            <div class="node-year">2014 — 2016</div>
+                            <h3 class="node-title lang-en">Dual Master's Degrees</h3>
+                            <h3 class="node-title lang-de">Doppelter Master</h3>
+                            <p class="node-desc lang-en">Leadership & Public Relations — National Defence University. Distinguished academic performance.</p>
+                            <p class="node-desc lang-de">Führung & Öffentlichkeitsarbeit — Nationale Verteidigungsuniversität. Hervorragende Leistung.</p>
+                            <div class="node-tags">
+                                <span>Leadership</span>
+                                <span>Strategy</span>
+                                <span>Communications</span>
                             </div>
-                            <div class="card-period">2014 — 2016</div>
-                        </div>
-                        <h3 class="card-title lang-en">Dual Master's Degrees</h3>
-                        <h3 class="card-title lang-de">Doppelter Master-Abschluss</h3>
-                        <p class="card-desc lang-en">Leadership & Public Relations — National Defence University. Distinguished academic performance.</p>
-                        <p class="card-desc lang-de">Führung & Öffentlichkeitsarbeit — Nationale Verteidigungsuniversität. Hervorragende akademische Leistung.</p>
-                        <div class="card-tags">
-                            <span class="c-tag">Leadership</span>
-                            <span class="c-tag">Communications</span>
-                            <span class="c-tag">Strategy</span>
                         </div>
                     </div>
-                    <div class="card-status completed">
-                        <i data-lucide="check-circle"></i>
-                    </div>
-                </div>
 
-                <!-- Arrow -->
-                <div class="timeline-arrow">
-                    <i data-lucide="arrow-right"></i>
-                </div>
-
-                <!-- Program Director Card -->
-                <div class="timeline-card completed fade-up">
-                    <div class="card-glow lead"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon lead">
-                                <i data-lucide="users"></i>
+                    <!-- Node 3: Program Director -->
+                    <div class="t-node left fade-up" data-index="2">
+                        <div class="node-dot lead"><i data-lucide="users"></i></div>
+                        <div class="node-connector"></div>
+                        <div class="node-card lead">
+                            <div class="node-year">2021 — 2024</div>
+                            <h3 class="node-title">Program Director</h3>
+                            <p class="node-desc lang-en">Led Clarusway Data Science program. Trained 200+ data scientists with 90% placement rate.</p>
+                            <p class="node-desc lang-de">Leitung Data Science-Programm. 200+ Data Scientists ausgebildet, 90% Vermittlungsquote.</p>
+                            <div class="node-stats">
+                                <div class="n-stat">
+                                    <span class="n-num">200+</span>
+                                    <span class="n-label">Trained</span>
+                                </div>
+                                <div class="n-stat">
+                                    <span class="n-num">90%</span>
+                                    <span class="n-label">Placement</span>
+                                </div>
                             </div>
-                            <div class="card-period">2021 — 2024</div>
-                        </div>
-                        <h3 class="card-title">Program Director</h3>
-                        <p class="card-desc lang-en">Led Clarusway IT School's Data Science program. Trained 200+ data scientists with 90% placement rate.</p>
-                        <p class="card-desc lang-de">Leitung des Data Science-Programms bei Clarusway IT School. 200+ Data Scientists ausgebildet, 90% Vermittlungsquote.</p>
-                        <div class="card-tags">
-                            <span class="c-tag">Team Leadership</span>
-                            <span class="c-tag">Curriculum Design</span>
-                            <span class="c-tag">Mentoring</span>
                         </div>
                     </div>
-                    <div class="card-status completed">
-                        <i data-lucide="check-circle"></i>
-                    </div>
-                </div>
 
-                <!-- Arrow -->
-                <div class="timeline-arrow">
-                    <i data-lucide="arrow-right"></i>
-                </div>
-
-                <!-- AI Engineer Card -->
-                <div class="timeline-card current fade-up">
-                    <div class="card-glow current"></div>
-                    <div class="card-content">
-                        <div class="card-header">
-                            <div class="card-icon current">
-                                <i data-lucide="brain"></i>
-                                <div class="pulse-ring"></div>
+                    <!-- Node 4: AI Engineer (Current) -->
+                    <div class="t-node right current fade-up" data-index="3">
+                        <div class="node-dot current">
+                            <i data-lucide="brain"></i>
+                            <div class="current-pulse"></div>
+                        </div>
+                        <div class="node-connector"></div>
+                        <div class="node-card current">
+                            <div class="node-year current-badge">2024 — Present</div>
+                            <h3 class="node-title">AI / MLOps Engineer</h3>
+                            <p class="node-desc lang-en">Building production-grade AI systems for healthcare and defence. Azure AI-102 in progress.</p>
+                            <p class="node-desc lang-de">Entwicklung produktionsreifer KI-Systeme für Healthcare und Defence. Azure AI-102 in Arbeit.</p>
+                            <div class="node-tags highlight">
+                                <span>Healthcare AI</span>
+                                <span>Defence AI</span>
+                                <span>MLOps</span>
                             </div>
-                            <div class="card-period current">2024 — Present</div>
                         </div>
-                        <h3 class="card-title">AI / MLOps Engineer</h3>
-                        <p class="card-desc lang-en">Building production-grade AI systems for healthcare and defence. Azure AI-102 certification in progress.</p>
-                        <p class="card-desc lang-de">Entwicklung produktionsreifer KI-Systeme für Healthcare und Defence. Azure AI-102 Zertifizierung in Arbeit.</p>
-                        <div class="card-tags">
-                            <span class="c-tag highlight">Healthcare AI</span>
-                            <span class="c-tag highlight">Defence AI</span>
-                            <span class="c-tag">MLOps</span>
-                        </div>
-                    </div>
-                    <div class="card-status current">
-                        <i data-lucide="radio"></i>
-                        <span>Current</span>
                     </div>
                 </div>
             </div>
@@ -2979,6 +3287,42 @@
                 });
             });
         });
+
+        // ===== VISUAL TIMELINE V2 ANIMATION =====
+        (function() {
+            var timelineSection = document.querySelector('.timeline-v2');
+            var progressBar = document.getElementById('timelineProgressV2');
+            var nodes = document.querySelectorAll('.t-node');
+            
+            if (!timelineSection || !progressBar) return;
+            
+            function updateTimeline() {
+                var rect = timelineSection.getBoundingClientRect();
+                var windowHeight = window.innerHeight;
+                var sectionTop = rect.top;
+                var sectionHeight = rect.height;
+                
+                // Calculate progress based on scroll position
+                var progress = 0;
+                if (sectionTop < windowHeight * 0.7) {
+                    var visibleHeight = windowHeight * 0.7 - sectionTop;
+                    progress = Math.min(100, Math.max(0, (visibleHeight / sectionHeight) * 100));
+                }
+                
+                progressBar.style.height = progress + '%';
+                
+                // Animate nodes as they come into view
+                nodes.forEach(function(node, index) {
+                    var nodeRect = node.getBoundingClientRect();
+                    if (nodeRect.top < windowHeight * 0.8) {
+                        node.classList.add('visible');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateTimeline, { passive: true });
+            updateTimeline(); // Initial check
+        })();
 
     </script>
 </body>
