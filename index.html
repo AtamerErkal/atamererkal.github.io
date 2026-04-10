@@ -559,31 +559,6 @@
             line-height: 1.5;
         }
 
-        .awards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .award {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            background: var(--bg-card);
-            border-radius: var(--r-sm);
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            border: 1px solid var(--bdr);
-        }
-
-        .award svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
-
         /* ===== SKILLS SECTION ===== */
         .sk-grid {
             display: grid;
@@ -1769,6 +1744,52 @@
             color: var(--accent-hc);
         }
 
+        .node-awards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 14px 0;
+        }
+
+        .n-award {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: #60a5fa;
+        }
+
+        .n-award.edu {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+
+        .n-award.edu svg {
+            stroke: #fbbf24;
+        }
+
+        .n-award.gold {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+
+        .n-award.gold svg {
+            stroke: #fbbf24;
+        }
+
+        .n-award svg {
+            width: 12px;
+            height: 12px;
+            stroke: #60a5fa;
+        }
+
         .node-stats {
             display: flex;
             gap: 24px;
@@ -2034,14 +2055,6 @@
                         <p><strong>Technische F&uuml;hrung:</strong> Als <strong>Program Director</strong> bei der
                             Clarusway IT School 100+ Data Scientists ausgebildet mit 90% Vermittlungsquote.</p>
                     </div>
-                    <div class="awards">
-                        <span class="award"><i data-lucide="trophy" style="width:14px;height:14px;stroke:#f59e0b"></i>
-                            Best DS Bootcamp 2021 &amp; 2022</span>
-                        <span class="award"><i data-lucide="medal" style="width:14px;height:14px;stroke:#3b82f6"></i>
-                            Honor — Naval Forces Commander</span>
-                        <span class="award"><i data-lucide="pen-line" style="width:14px;height:14px;stroke:#10b981"></i>
-                            Essay Winner — Defence University</span>
-                    </div>
                 </div>
                 <div class="about-side">
                     <div class="a-card">
@@ -2103,6 +2116,12 @@
                             <h3 class="node-title">Planning Officer & Electrical Engineer</h3>
                             <p class="node-desc lang-en">NATO & Naval Headquarters — UK & Turkey. Mission-critical environments, data-driven operational planning, quantitative analysis under security constraints.</p>
                             <p class="node-desc lang-de">NATO & Marinehauptquartier — UK & Türkei. Missionskritische Umgebungen, datengesteuerte operative Planung, quantitative Analyse unter Sicherheitsauflagen.</p>
+                            <div class="node-awards">
+                                <div class="n-award">
+                                    <i data-lucide="medal"></i>
+                                    <span>Honor — Naval Forces Commander</span>
+                                </div>
+                            </div>
                             <div class="node-tags">
                                 <span>NATO</span>
                                 <span>Operations Planning</span>
@@ -2121,6 +2140,12 @@
                             <h3 class="node-title">M.A. Management & Leadership</h3>
                             <p class="node-desc lang-en">National Defence University, Istanbul. Award: Winner of university-wide article competition (Thesis/Management Essay).</p>
                             <p class="node-desc lang-de">Nationale Verteidigungsuniversität, Istanbul. Auszeichnung: Gewinner des universitären Artikelwettbewerbs (Thesis/Management Essay).</p>
+                            <div class="node-awards">
+                                <div class="n-award edu">
+                                    <i data-lucide="pen-tool"></i>
+                                    <span>Essay Competition Winner</span>
+                                </div>
+                            </div>
                             <div class="node-tags">
                                 <span>Leadership</span>
                                 <span>Strategy</span>
@@ -2153,6 +2178,12 @@
                                 <div class="n-stat">
                                     <span class="n-num">&lt;30ms</span>
                                     <span class="n-label">Inference</span>
+                                </div>
+                            </div>
+                            <div class="node-awards">
+                                <div class="n-award gold">
+                                    <i data-lucide="trophy"></i>
+                                    <span>Best DS Bootcamp 2021 & 2022</span>
                                 </div>
                             </div>
                             <div class="node-tags highlight" style="margin-top: 12px;">
