@@ -1402,11 +1402,29 @@
             cursor: pointer;
         }
 
-        .p-action-btn:hover {
+        /* Only linked buttons have hover effects */
+        a.p-action-btn:hover {
             background: var(--bg-card-hover);
             border-color: var(--bdr-h);
             color: var(--text-primary);
             transform: translateY(-2px);
+        }
+
+        /* Button (non-link) - no hover transform, only color change */
+        button.p-action-btn:hover {
+            color: var(--text-secondary);
+        }
+
+        button.p-action-btn {
+            cursor: default;
+        }
+
+        button.p-action-btn.arch-btn:hover {
+            border-color: var(--accent-df);
+            color: var(--accent-df);
+            background: rgba(21, 29, 46, 0.5);
+            transform: none;
+            cursor: pointer;
         }
 
         .p-action-btn i,
@@ -1417,12 +1435,20 @@
             transition: stroke 0.25s ease;
         }
 
-        .p-action-btn.arch-btn:hover {
-            border-color: var(--accent-df);
-            color: var(--accent-df);
+        button.p-action-btn.arch-btn:hover i,
+        button.p-action-btn.arch-btn:hover svg {
+            stroke: var(--accent-df);
         }
 
-        .p-action-btn.arch-btn:hover i {
+        a.p-action-btn.arch-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-df);
+            color: var(--accent-df);
+            transform: translateY(-2px);
+        }
+
+        a.p-action-btn.arch-btn:hover i,
+        a.p-action-btn.arch-btn:hover svg {
             stroke: var(--accent-df);
         }
 
@@ -1460,14 +1486,17 @@
             background: var(--bg-card);
             border: 1px solid var(--bdr-h);
             border-radius: var(--r-lg);
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.25s ease-out, opacity 0.25s ease-out;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+            will-change: transform, opacity;
         }
 
         .arch-modal.active .arch-modal-content {
             transform: scale(1);
+            opacity: 1;
         }
 
         .arch-modal-header {
@@ -1518,8 +1547,8 @@
 
         .arch-modal-body {
             padding: 24px;
-            overflow-y: auto;
-            max-height: calc(90vh - 80px);
+            max-height: none;
+            overflow-y: visible;
         }
 
         .arch-section-title {
@@ -1538,11 +1567,19 @@
             padding: 20px;
             margin-bottom: 20px;
             overflow-x: auto;
+            min-height: 200px;
         }
 
         .arch-diagram-container .mermaid {
             display: flex;
             justify-content: center;
+            align-items: center;
+        }
+
+        /* Prevent flickering during Mermaid render */
+        .arch-diagram-container .mermaid svg {
+            max-width: 100%;
+            height: auto;
         }
 
         .arch-info-grid {
@@ -5177,7 +5214,17 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        lucide.createIcons();
+        // Initialize Lucide icons when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+        
+        // Also run immediately in case DOMContentLoaded already fired
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(function() {
+                lucide.createIcons();
+            }, 1);
+        }
 
         function setLang(l) {
             document.querySelectorAll('.lang-en').forEach(function (e) {
@@ -5244,6 +5291,11 @@
                     var hasVisibleCards = sec.querySelector('.p-card:not(.hidden)');
                     sec.style.display = (filter === 'all' || hasVisibleCards) ? 'block' : 'none';
                 });
+                
+                // Re-render Lucide icons after filtering
+                setTimeout(function() {
+                    lucide.createIcons();
+                }, 100);
             });
         });
 
@@ -5284,17 +5336,25 @@
         })();
 
         // ===== ARCHITECTURE MODAL FUNCTIONS =====
+        var renderedMermaids = {};
+        
         function openArchModal(projectId) {
             var modal = document.getElementById('modal-' + projectId);
             if (modal) {
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 
-                // Initialize Mermaid for this modal
-                mermaid.init(undefined, modal.querySelectorAll('.mermaid'));
+                // Initialize Mermaid for this modal only once
+                var mermaidEl = modal.querySelector('.mermaid');
+                if (mermaidEl && !renderedMermaids[projectId]) {
+                    mermaid.init(undefined, mermaidEl);
+                    renderedMermaids[projectId] = true;
+                }
                 
                 // Refresh Lucide icons inside modal
-                lucide.createIcons();
+                setTimeout(function() {
+                    lucide.createIcons();
+                }, 50);
             }
         }
 
