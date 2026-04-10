@@ -1237,9 +1237,20 @@
         }
 
         @media (max-width: 1024px) {
-            .hero .ctr {
+            .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 48px;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .photo-frame {
+                width: 260px;
+                height: 260px;
+                margin: 0 auto;
             }
 
             .hero-sub {
@@ -1251,8 +1262,8 @@
                 justify-content: center;
             }
 
-            .hero-photo {
-                margin-top: 32px;
+            .floating-badges {
+                display: none;
             }
 
             .about-grid,
@@ -1460,6 +1471,8 @@
 </head>
 
 <body>
+    <!-- ===== SCROLL PROGRESS BAR ===== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- ===== NAVIGATION ===== -->
     <nav>
@@ -1491,8 +1504,8 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero">
-        <div class="ctr">
-            <div>
+        <div class="ctr hero-grid">
+            <div class="hero-content">
                 <div class="hero-badge">
                     <i data-lucide="shield-check"></i>
                     <span class="lang-en">Former NATO Planning Officer → AI Engineer · 15+ Years in Mission-Critical
@@ -1525,32 +1538,52 @@
                 </div>
 
                 <div class="hero-tags">
-                    <div class="hero-tags">
-                        <span class="htag hc"><i data-lucide="heart-pulse"></i> Healthcare AI</span>
-                        <span class="htag df"><i data-lucide="shield"></i> Defence AI</span>
-                        <span class="htag ra"><i data-lucide="scan-eye"></i> Responsible AI</span>
-                        <span class="htag az"><i data-lucide="cloud"></i> Azure AI-102 · Apr 2026</span>
-                    </div>
-
-                    <div class="hero-cta">
-                        <a href="#projects" class="btn btn-p lang-en">View Projects <i data-lucide="arrow-down"
-                                style="width:16px;height:16px"></i></a>
-                        <a href="#projects" class="btn btn-p lang-de">Projekte ansehen <i data-lucide="arrow-down"
-                                style="width:16px;height:16px"></i></a>
-                        <a href="#contact" class="btn btn-o lang-en">Let's Talk</a>
-                        <a href="#contact" class="btn btn-o lang-de">Kontakt aufnehmen</a>
-                        <a href="docs/Atamer_Erkal_CV_EN.pdf" class="btn btn-cv lang-en" download><i
-                                data-lucide="download" style="width:16px;height:16px"></i> Download CV</a>
-                        <a href="docs/Atamer_Erkal_CV_DE.pdf" class="btn btn-cv lang-de" download><i
-                                data-lucide="download" style="width:16px;height:16px"></i> Lebenslauf herunterladen</a>
-                    </div>
+                    <span class="htag hc"><i data-lucide="heart-pulse"></i> Healthcare AI</span>
+                    <span class="htag df"><i data-lucide="shield"></i> Defence AI</span>
+                    <span class="htag ra"><i data-lucide="scan-eye"></i> Responsible AI</span>
+                    <span class="htag az"><i data-lucide="cloud"></i> Azure AI-102 · Apr 2026</span>
                 </div>
-                <div class="hero-photo">
-                    <div class="photo-frame">
-                        <img src="images/bildjpg.jpg" alt="Atamer Erkal">
+
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-p lang-en">View Projects <i data-lucide="arrow-down"
+                            style="width:16px;height:16px"></i></a>
+                    <a href="#projects" class="btn btn-p lang-de">Projekte ansehen <i data-lucide="arrow-down"
+                            style="width:16px;height:16px"></i></a>
+                    <a href="#contact" class="btn btn-o lang-en">Let's Talk</a>
+                    <a href="#contact" class="btn btn-o lang-de">Kontakt aufnehmen</a>
+                    <a href="docs/Atamer_Erkal_CV_EN.pdf" class="btn btn-cv lang-en" download><i
+                            data-lucide="download" style="width:16px;height:16px"></i> Download CV</a>
+                    <a href="docs/Atamer_Erkal_CV_DE.pdf" class="btn btn-cv lang-de" download><i
+                            data-lucide="download" style="width:16px;height:16px"></i> Lebenslauf herunterladen</a>
+                </div>
+
+                <a href="#projects" class="scroll-indicator">
+                    <i data-lucide="chevron-down"></i>
+                </a>
+            </div>
+
+            <div class="hero-visual">
+                <div class="photo-frame">
+                    <div class="photo-glow"></div>
+                    <img src="images/profile.png" alt="Atamer Erkal - AI Engineer" class="hero-photo">
+                    <div class="photo-ring"></div>
+                </div>
+                <div class="floating-badges">
+                    <div class="float-badge nato">
+                        <i data-lucide="shield"></i>
+                        <span>NATO</span>
+                    </div>
+                    <div class="float-badge azure">
+                        <i data-lucide="cloud"></i>
+                        <span>Azure AI</span>
+                    </div>
+                    <div class="float-badge mlops">
+                        <i data-lucide="git-branch"></i>
+                        <span>MLOps</span>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <!-- ===== STATS ===== -->
@@ -1663,6 +1696,134 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== CAREER TIMELINE - ELEGANT DESIGN ===== -->
+    <section class="timeline" id="timeline">
+        <div class="ctr">
+            <div class="s-label lang-en">My Journey</div>
+            <div class="s-label lang-de">Mein Weg</div>
+            <h2 class="s-title lang-en">From NATO to AI Engineering</h2>
+            <h2 class="s-title lang-de">Von der NATO zum KI-Engineering</h2>
+
+            <div class="timeline-elegant">
+                <!-- NATO Card -->
+                <div class="timeline-card completed fade-up">
+                    <div class="card-glow nato"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-icon nato">
+                                <i data-lucide="shield"></i>
+                            </div>
+                            <div class="card-period">2009 — 2021</div>
+                        </div>
+                        <h3 class="card-title lang-en">NATO Joint Planning Officer</h3>
+                        <h3 class="card-title lang-de">NATO Joint Planungsoffizier</h3>
+                        <p class="card-desc lang-en">12 years in multinational operations, strategic resource allocation, and safety-critical command systems at NATO.</p>
+                        <p class="card-desc lang-de">12 Jahre in multinationalen Operationen, strategischer Ressourcenplanung und sicherheitskritischen Kommandosystemen bei der NATO.</p>
+                        <div class="card-tags">
+                            <span class="c-tag">Operations Planning</span>
+                            <span class="c-tag">Resource Allocation</span>
+                            <span class="c-tag">C2 Systems</span>
+                        </div>
+                    </div>
+                    <div class="card-status completed">
+                        <i data-lucide="check-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="timeline-arrow">
+                    <i data-lucide="arrow-right"></i>
+                </div>
+
+                <!-- Master's Card -->
+                <div class="timeline-card completed fade-up">
+                    <div class="card-glow edu"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-icon edu">
+                                <i data-lucide="graduation-cap"></i>
+                            </div>
+                            <div class="card-period">2014 — 2016</div>
+                        </div>
+                        <h3 class="card-title lang-en">Dual Master's Degrees</h3>
+                        <h3 class="card-title lang-de">Doppelter Master-Abschluss</h3>
+                        <p class="card-desc lang-en">Leadership & Public Relations — National Defence University. Distinguished academic performance.</p>
+                        <p class="card-desc lang-de">Führung & Öffentlichkeitsarbeit — Nationale Verteidigungsuniversität. Hervorragende akademische Leistung.</p>
+                        <div class="card-tags">
+                            <span class="c-tag">Leadership</span>
+                            <span class="c-tag">Communications</span>
+                            <span class="c-tag">Strategy</span>
+                        </div>
+                    </div>
+                    <div class="card-status completed">
+                        <i data-lucide="check-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="timeline-arrow">
+                    <i data-lucide="arrow-right"></i>
+                </div>
+
+                <!-- Program Director Card -->
+                <div class="timeline-card completed fade-up">
+                    <div class="card-glow lead"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-icon lead">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <div class="card-period">2021 — 2024</div>
+                        </div>
+                        <h3 class="card-title">Program Director</h3>
+                        <p class="card-desc lang-en">Led Clarusway IT School's Data Science program. Trained 200+ data scientists with 90% placement rate.</p>
+                        <p class="card-desc lang-de">Leitung des Data Science-Programms bei Clarusway IT School. 200+ Data Scientists ausgebildet, 90% Vermittlungsquote.</p>
+                        <div class="card-tags">
+                            <span class="c-tag">Team Leadership</span>
+                            <span class="c-tag">Curriculum Design</span>
+                            <span class="c-tag">Mentoring</span>
+                        </div>
+                    </div>
+                    <div class="card-status completed">
+                        <i data-lucide="check-circle"></i>
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="timeline-arrow">
+                    <i data-lucide="arrow-right"></i>
+                </div>
+
+                <!-- AI Engineer Card -->
+                <div class="timeline-card current fade-up">
+                    <div class="card-glow current"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-icon current">
+                                <i data-lucide="brain"></i>
+                                <div class="pulse-ring"></div>
+                            </div>
+                            <div class="card-period current">2024 — Present</div>
+                        </div>
+                        <h3 class="card-title">AI / MLOps Engineer</h3>
+                        <p class="card-desc lang-en">Building production-grade AI systems for healthcare and defence. Azure AI-102 certification in progress.</p>
+                        <p class="card-desc lang-de">Entwicklung produktionsreifer KI-Systeme für Healthcare und Defence. Azure AI-102 Zertifizierung in Arbeit.</p>
+                        <div class="card-tags">
+                            <span class="c-tag highlight">Healthcare AI</span>
+                            <span class="c-tag highlight">Defence AI</span>
+                            <span class="c-tag">MLOps</span>
+                        </div>
+                    </div>
+                    <div class="card-status current">
+                        <i data-lucide="radio"></i>
+                        <span>Current</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== CERTIFICATIONS & RECOGNITION ===== -->
     <section style="background: var(--bg-secondary); padding: 80px 0;">
         <div class="ctr">
@@ -1762,6 +1923,14 @@
                     mode, it may take 30–60s to wake up.</span>
                 <span class="lang-de">Einige Live-Demos werden auf Streamlit Community Cloud gehostet. Falls eine Demo
                     im Ruhemodus ist, kann der Start 30–60 Sekunden dauern.</span>
+            </div>
+
+            <!-- ===== PROJECT FILTERS ===== -->
+            <div class="proj-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="hc">Healthcare AI</button>
+                <button class="filter-btn" data-filter="df">Defence AI</button>
+                <button class="filter-btn" data-filter="ra">Responsible AI</button>
             </div>
         </div>
     </section>
@@ -2789,6 +2958,49 @@
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
         document.querySelectorAll('.fade-up').forEach(function (el) { obs.observe(el); });
+
+        // ===== SCROLL PROGRESS BAR =====
+        window.addEventListener('scroll', function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // ===== PROJECT FILTERING =====
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var filter = this.getAttribute('data-filter');
+
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+
+                // Filter cards
+                document.querySelectorAll('.p-card').forEach(function(card) {
+                    if (filter === 'all') {
+                        card.classList.remove('hidden');
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    } else if (card.classList.contains(filter)) {
+                        card.classList.remove('hidden');
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    } else {
+                        card.classList.add('hidden');
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.95)';
+                    }
+                });
+
+                // Hide/Show category sections
+                document.querySelectorAll('.cat-sec').forEach(function(sec) {
+                    var hasVisibleCards = sec.querySelector('.p-card:not(.hidden)');
+                    sec.style.display = (filter === 'all' || hasVisibleCards) ? 'block' : 'none';
+                });
+            });
+        });
+
     </script>
 </body>
 
