@@ -1569,6 +1569,286 @@
             color: var(--text-muted);
         }
 
+        /* === REGULATORY COMPLIANCE & ETHICS === */
+        .trust-diagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin: 48px auto;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .trust-circle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trust-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            background: rgba(21, 29, 46, 0.6);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(148, 163, 184, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .trust-circle:hover .trust-icon {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .trust-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--text-secondary);
+        }
+
+        .trust-circle.legal .trust-icon {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .trust-circle.legal .trust-icon svg {
+            stroke: #60a5fa;
+        }
+
+        .trust-circle.technical .trust-icon {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .trust-circle.technical .trust-icon svg {
+            stroke: #34d399;
+        }
+
+        .trust-circle.ethical .trust-icon {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .trust-circle.ethical .trust-icon svg {
+            stroke: #fbbf24;
+        }
+
+        .trust-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .trust-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .trust-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .trust-center-text {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .compliance-card {
+            padding: 32px;
+            background: rgba(21, 29, 46, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: var(--r-md);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compliance-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(148, 163, 184, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .compliance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .compliance-card .cc-icon.eu + h3 ~ .compliance-card::before {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .compliance-card .cc-icon.xai + h3 ~ .compliance-card::before {
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+        }
+
+        .compliance-card .cc-icon.gdpr + h3 ~ .compliance-card::before {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+        }
+
+        .compliance-card .cc-icon.nato + h3 ~ .compliance-card::before {
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+        }
+
+        .cc-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .cc-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .cc-icon.eu {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .cc-icon.eu svg {
+            stroke: #60a5fa;
+        }
+
+        .cc-icon.xai {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .cc-icon.xai svg {
+            stroke: #34d399;
+        }
+
+        .cc-icon.gdpr {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .cc-icon.gdpr svg {
+            stroke: #fbbf24;
+        }
+
+        .cc-icon.nato {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .cc-icon.nato svg {
+            stroke: #60a5fa;
+        }
+
+        .cc-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .cc-content {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            font-size: 0.88rem;
+        }
+
+        .cc-content p {
+            margin-bottom: 12px;
+        }
+
+        .cc-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .cc-project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding: 8px 14px;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #60a5fa;
+            transition: all 0.25s ease;
+        }
+
+        .cc-project-link:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateX(4px);
+        }
+
+        .cc-project-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        @media (max-width: 1024px) {
+            .compliance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-diagram {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .trust-diagram {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .trust-center {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 24px 0;
+                opacity: 0.1;
+            }
+
+            .trust-center-text {
+                font-size: 2rem;
+            }
+        }
+
         /* === CERTIFICATIONS & RECOGNITION === */
         .cert-grid {
             display: grid;
@@ -2063,6 +2343,7 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#compliance">Compliance</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#insights">Insights</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -2539,10 +2820,145 @@
         </div>
     </section>
 
+    <!-- ===== REGULATORY COMPLIANCE & ETHICS ===== -->
+    <section id="compliance" style="background: var(--bg-secondary); padding: 100px 0;">
+        <div class="ctr">
+            <div class="s-label">05 — Regulatory Compliance & Ethics</div>
+            <h2 class="s-title lang-en">Building Trustworthy AI for Regulated Environments</h2>
+            <h2 class="s-title lang-de">Vertrauenswürdige KI für regulierte Umgebungen</h2>
+            <p class="s-sub lang-en">In safety-critical domains like Defence and Healthcare, AI is not just about performance—it's about accountability, transparency, and full compliance with legal frameworks.</p>
+            <p class="s-sub lang-de">In sicherheitskritischen Domänen wie Defence und Healthcare geht es bei KI nicht nur um Leistung — es geht um Verantwortlichkeit, Transparenz und vollständige Konformität mit rechtlichen Rahmenbedingungen.</p>
+
+            <!-- Trustworthy AI Diagram -->
+            <div class="trust-diagram fade-up">
+                <div class="trust-circle legal">
+                    <div class="trust-icon"><i data-lucide="scale"></i></div>
+                    <div class="trust-label lang-en">Legal</div>
+                    <div class="trust-label lang-de">Rechtlich</div>
+                    <div class="trust-sub lang-en">EU AI Act, GDPR</div>
+                    <div class="trust-sub lang-de">EU AI Act, DSGVO</div>
+                </div>
+                <div class="trust-circle technical">
+                    <div class="trust-icon"><i data-lucide="cpu"></i></div>
+                    <div class="trust-label lang-en">Technical</div>
+                    <div class="trust-label lang-de">Technisch</div>
+                    <div class="trust-sub lang-en">MLOps, XAI</div>
+                    <div class="trust-sub lang-de">MLOps, XAI</div>
+                </div>
+                <div class="trust-circle ethical">
+                    <div class="trust-icon"><i data-lucide="heart"></i></div>
+                    <div class="trust-label lang-en">Ethical</div>
+                    <div class="trust-label lang-de">Ethisch</div>
+                    <div class="trust-sub lang-en">Bias Auditing, Fairness</div>
+                    <div class="trust-sub lang-de">Bias Auditing, Fairness</div>
+                </div>
+                <div class="trust-center">
+                    <div class="trust-center-text lang-en">Trustworthy AI</div>
+                    <div class="trust-center-text lang-de">Vertrauenswürdige KI</div>
+                </div>
+            </div>
+
+            <!-- Compliance Cards Grid -->
+            <div class="compliance-grid">
+                <!-- EU AI Act & Risk Management -->
+                <div class="compliance-card fade-up">
+                    <div class="cc-icon eu"><i data-lucide="gavel"></i></div>
+                    <h3 class="cc-title lang-en">EU AI Act & Risk Management</h3>
+                    <h3 class="cc-title lang-de">EU AI Act & Risikomanagement</h3>
+                    <div class="cc-content lang-en">
+                        <p><strong>Risk Classification:</strong> I categorize AI systems according to the EU AI Act risk levels (Unacceptable, High, Limited, Minimal). My projects like VitalNav.ai and VANGUARD are developed with "High-Risk" transparency and documentation standards in mind.</p>
+                        <p><strong>Technical Documentation:</strong> Ensuring audit-ready technical documentation, logging, and human-in-the-loop (HITL) oversight mechanisms for critical decision-support systems.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Applied in: VANGUARD, AEGIS-Cloud</span>
+                        </div>
+                    </div>
+                    <div class="cc-content lang-de">
+                        <p><strong>Risikoklassifizierung:</strong> Ich klassifiziere KI-Systeme gemäß den EU AI Act-Risikostufen (Unacceptable, High, Limited, Minimal). Meine Projekte wie VitalNav.ai und VANGUARD werden mit Transparenz- und Dokumentationsstandards für "High-Risk" entwickelt.</p>
+                        <p><strong>Technische Dokumentation:</strong> Sicherstellung von audit-fähiger technischer Dokumentation, Logging und Human-in-the-Loop (HITL) Oversight-Mechanismen für kritische Entscheidungsunterstützungssysteme.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Angewendet in: VANGUARD, AEGIS-Cloud</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explainable AI (XAI) & Model Interpretability -->
+                <div class="compliance-card fade-up">
+                    <div class="cc-icon xai"><i data-lucide="eye"></i></div>
+                    <h3 class="cc-title lang-en">Explainable AI (XAI) & Model Interpretability</h3>
+                    <h3 class="cc-title lang-de">Explainable AI (XAI) & Modellinterpretierbarkeit</h3>
+                    <div class="cc-content lang-en">
+                        <p><strong>Techniques:</strong> Utilizing SHAP, LIME, and Grad-CAM to provide visual and mathematical explanations for model predictions.</p>
+                        <p><strong>Clinical/Tactical Trust:</strong> Bridging the gap between AI output and human expertise. For SkinxAI, Grad-CAM heatmaps allow clinicians to see exactly which features the model used for classification, ensuring a reliable second opinion.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Applied in: SkinxAI, XAI Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="cc-content lang-de">
+                        <p><strong>Techniken:</strong> Nutzung von SHAP, LIME und Grad-CAM für visuelle und mathematische Erklärungen von Modellvorhersagen.</p>
+                        <p><strong>Klinisches/Taktisches Vertrauen:</strong> Überbrückung der Lücke zwischen KI-Ausgabe und menschlicher Expertise. Bei SkinxAI ermöglichen Grad-CAM-Heatmaps Klinikern zu sehen, welche Features das Modell für die Klassifizierung verwendet, und gewährleisten eine zuverlässige Zweitmeinung.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Angewendet in: SkinxAI, XAI Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Privacy & GDPR -->
+                <div class="compliance-card fade-up">
+                    <div class="cc-icon gdpr"><i data-lucide="shield-check"></i></div>
+                    <h3 class="cc-title lang-en">Data Privacy & GDPR</h3>
+                    <h3 class="cc-title lang-de">Datenschutz & DSGVO</h3>
+                    <div class="cc-content lang-en">
+                        <p><strong>Privacy-First Engineering:</strong> Implementation of robust data anonymization, PII (Personally Identifiable Information) redaction, and secure data handling pipelines using Azure AI Language and Content Safety.</p>
+                        <p><strong>Healthcare Interoperability:</strong> Designing systems compatible with HL7/FHIR standards while maintaining strict GDPR compliance in patient data processing.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Applied in: ClinicOps, Azure Healthcare NLP</span>
+                        </div>
+                    </div>
+                    <div class="cc-content lang-de">
+                        <p><strong>Privacy-First Engineering:</strong> Implementierung robuster Datenanonymisierung, PII-Redaktion (Personally Identifiable Information) und sicherer Datenhandling-Pipelines mit Azure AI Language und Content Safety.</p>
+                        <p><strong>Healthcare-Interoperabilität:</strong> Entwicklung von HL7/FHIR-kompatiblen Systemen unter strikter Einhaltung der DSGVO bei der Patientendatenverarbeitung.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Angewendet in: ClinicOps, Azure Healthcare NLP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Defence Ethics & NATO Standards -->
+                <div class="compliance-card fade-up">
+                    <div class="cc-icon nato"><i data-lucide="shield"></i></div>
+                    <h3 class="cc-title lang-en">Defence Ethics & NATO Standards</h3>
+                    <h3 class="cc-title lang-de">Savunma-Ethik & NATO-Standards</h3>
+                    <div class="cc-content lang-en">
+                        <p><strong>Responsible AI in Defence:</strong> Adhering to NATO's Principles of Responsible Use of AI: Lawfulness, Responsibility, Explainability, Traceability, Reliability, and Bias Mitigation.</p>
+                        <p><strong>Mission-Critical Safety:</strong> Developing AEGIS-Cloud with fail-safe mechanisms and tactical sub-sampling to ensure operational stability under high-stress, real-time edge conditions.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Applied in: VANGUARD, AEGIS-Cloud, SENTINEL</span>
+                        </div>
+                    </div>
+                    <div class="cc-content lang-de">
+                        <p><strong>Responsible AI in Defence:</strong> Einhaltung der NATO-Prinzipien für verantwortungsvolle KI-Nutzung: Lawfulness, Responsibility, Explainability, Traceability, Reliability und Bias Mitigation.</p>
+                        <p><strong>Mission-Critical Safety:</strong> Entwicklung von AEGIS-Cloud mit Fail-Safe-Mechanismen und taktischem Sub-Sampling für operative Stabilität unter hochbelasteten, Echtzeit-Edge-Bedingungen.</p>
+                        <div class="cc-project-link">
+                            <i data-lucide="arrow-right"></i>
+                            <span>Angewendet in: VANGUARD, AEGIS-Cloud, SENTINEL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== PROJECTS INTRO ===== -->
     <section id="projects" class="proj-intro">
         <div class="ctr">
-            <div class="s-label">04 — Projects</div>
+            <div class="s-label">06 — Projects</div>
             <h2 class="s-title lang-en">Featured Work</h2>
             <h2 class="s-title lang-de">Ausgew&auml;hlte Projekte</h2>
             <p class="s-sub lang-en">A selection of my personal projects across healthcare, defence, and responsible AI
@@ -3487,7 +3903,7 @@
     <!-- ===== INSIGHTS ===== -->
     <section id="insights">
         <div class="ctr">
-            <div class="s-label">04 — Insights</div>
+            <div class="s-label">07 — Insights</div>
             <h2 class="s-title lang-en">Perspectives &amp; Writing</h2>
             <h2 class="s-title lang-de">Perspektiven &amp; Beitr&auml;ge</h2>
             <p class="s-sub lang-en">Thoughts on AI in regulated domains — where policy meets production.</p>
@@ -3536,7 +3952,7 @@
     <!-- ===== CONTACT ===== -->
     <section id="contact" style="background: var(--bg-secondary);">
         <div class="ctr">
-            <div class="s-label" style="text-align:center;">05 — Contact</div>
+            <div class="s-label" style="text-align:center;">08 — Contact</div>
             <h2 class="s-title lang-en" style="text-align:center;">Let's Connect</h2>
             <h2 class="s-title lang-de" style="text-align:center;">Kontakt aufnehmen</h2>
             <p class="s-sub lang-en" style="text-align:center;margin:0 auto;">Open to opportunities in
