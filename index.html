@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..800&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <style>
         /* ===== CSS VARIABLES ===== */
         :root {
@@ -1372,6 +1373,220 @@
 
         .p-link.ra:hover svg {
             stroke: var(--accent-ra);
+        }
+
+        /* ===== PROJECT ACTION BUTTONS ===== */
+        .p-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--bdr);
+        }
+
+        .p-action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 8px;
+            background: rgba(21, 29, 46, 0.5);
+            border: 1px solid var(--bdr);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .p-action-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--bdr-h);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .p-action-btn i,
+        .p-action-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            transition: stroke 0.25s ease;
+        }
+
+        .p-action-btn.arch-btn:hover {
+            border-color: var(--accent-df);
+            color: var(--accent-df);
+        }
+
+        .p-action-btn.arch-btn:hover i {
+            stroke: var(--accent-df);
+        }
+
+        @media (max-width: 768px) {
+            .p-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ===== ARCHITECTURE MODAL ===== */
+        .arch-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .arch-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .arch-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            background: var(--bg-card);
+            border: 1px solid var(--bdr-h);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        .arch-modal.active .arch-modal-content {
+            transform: scale(1);
+        }
+
+        .arch-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+            border-bottom: 1px solid var(--bdr);
+        }
+
+        .arch-modal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .arch-modal-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .arch-modal-close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--bdr);
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .arch-modal-close:hover {
+            background: rgba(248, 113, 113, 0.15);
+            border-color: rgba(248, 113, 113, 0.3);
+            color: #f87171;
+        }
+
+        .arch-modal-close i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .arch-modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(90vh - 80px);
+        }
+
+        .arch-section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-df);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .arch-diagram-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--bdr);
+            border-radius: var(--r-md);
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .arch-diagram-container .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .arch-info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .arch-info-card {
+            padding: 16px;
+            background: rgba(21, 29, 46, 0.5);
+            border: 1px solid var(--bdr);
+            border-radius: 10px;
+        }
+
+        .arch-info-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .arch-info-value {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .arch-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .arch-modal-content {
+                max-height: 95vh;
+            }
+
+            .arch-modal-body {
+                max-height: calc(95vh - 80px);
+                padding: 16px;
+            }
         }
 
         .badge-cs {
@@ -3281,9 +3496,23 @@
                             <span class="tt">RAG</span>
                             <span class="tt">Streamlit</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/CodeZero" class="p-link hc" target="_blank"><i
-                                    data-lucide="github"></i> GitHub</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/CodeZero" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('vitalnav')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3347,11 +3576,23 @@
                             <span class="tt">GDPR</span>
                             <span class="tt">Streamlit</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/skin-lesion-classifier" class="p-link hc"
-                                target="_blank"><i data-lucide="github"></i> GitHub</a>
-                            <a href="https://skinxai.streamlit.app/" class="p-link hc" target="_blank"><i
-                                    data-lucide="external-link"></i> Live Demo</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/skin-lesion-classifier" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://skinxai.streamlit.app/" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('skinxai')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3418,9 +3659,23 @@
                             <span class="tt">GitHub Actions</span>
                             <span class="tt">Drift Detection</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/ClinicOps" class="p-link hc" target="_blank"><i
-                                    data-lucide="github"></i> GitHub</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/ClinicOps" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('clinicops')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3487,9 +3742,23 @@
                             <span class="tt">FHIR</span>
                             <span class="tt">Entity Linking</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/azure-healthcare-nlp-analyzer" class="p-link hc"
-                                target="_blank"><i data-lucide="github"></i> GitHub</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/azure-healthcare-nlp-analyzer" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('azurenlp')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3550,6 +3819,24 @@
                             <span class="tt">Healthcare</span>
                             <span class="tt">Time Series</span>
                             <span class="tt">Python</span>
+                        </div>
+                        <div class="p-actions">
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('healthanomaly')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3632,11 +3919,23 @@
                             <span class="tt">Streamlit</span>
                             <span class="tt">NATO C2</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/VANGUARD_Project" class="p-link df"
-                                target="_blank"><i data-lucide="github"></i> GitHub</a>
-                            <a href="https://vanguard-ai.streamlit.app/" class="p-link df" target="_blank"><i
-                                    data-lucide="external-link"></i> Live Demo</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/VANGUARD_Project" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://vanguard-ai.streamlit.app/" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('vanguard')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3704,9 +4003,23 @@
                             <span class="tt">C++</span>
                             <span class="tt">EU AI Act</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/AEGIS-Cloud" class="p-link df" target="_blank"><i
-                                    data-lucide="github"></i> GitHub</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/AEGIS-Cloud" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('aegis')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3769,6 +4082,24 @@
                             <span class="tt">Multi-Domain</span>
                             <span class="tt">Real-Time AI</span>
                             <span class="tt">NATO STANAG</span>
+                        </div>
+                        <div class="p-actions">
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('sentinel')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3851,11 +4182,23 @@
                             <span class="tt">Streamlit</span>
                             <span class="tt">XAI</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/explainable_ai_dashboard" class="p-link ra"
-                                target="_blank"><i data-lucide="github"></i> GitHub</a>
-                            <a href="https://xai-dashboard.streamlit.app/" class="p-link ra" target="_blank"><i
-                                    data-lucide="external-link"></i> Live Demo</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/explainable_ai_dashboard" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://xai-dashboard.streamlit.app/" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('xai')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -3923,11 +4266,23 @@
                             <span class="tt">XAI</span>
                             <span class="tt">Moderation</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/azure-content-safety-platform" class="p-link ra"
-                                target="_blank"><i data-lucide="github"></i> GitHub</a>
-                            <a href="https://atamererkal.github.io/content-safety-demo/" class="p-link ra"
-                                target="_blank"><i data-lucide="external-link"></i> Demo</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/azure-content-safety-platform" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://atamererkal.github.io/content-safety-demo/" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('contentsafety')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -4006,11 +4361,23 @@
                             <span class="tt">EU AI Act</span>
                             <span class="tt">Python</span>
                         </div>
-                        <div class="p-links">
-                            <a href="https://github.com/AtamerErkal/EchoBreaker" class="p-link ra" target="_blank"><i
-                                    data-lucide="github"></i> GitHub</a>
-                            <a href="https://github.com/AtamerErkal/EchoBreaker" class="p-link ra" target="_blank"><i
-                                    data-lucide="external-link"></i> Live Demo</a>
+                        <div class="p-actions">
+                            <a href="https://github.com/AtamerErkal/EchoBreaker" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('echobreaker')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -4075,15 +4442,93 @@
                             <span class="tt">High-Risk AI</span>
                             <span class="tt">Risk Classification</span>
                         </div>
+                        <div class="p-actions">
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('aiact')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
+                <!-- XAI Dashboard -->
+                <div class="p-card ra fade-up">
+                    <div class="p-img"><img src="images/XAIDashboard.png" alt="XAI-Dashboard"></div>
+                    <div class="p-body">
+                        <div class="p-dom ra">Responsible AI</div>
+                        <div class="p-name">XAI-Dashboard</div>
+                        <div class="p-tag">Explainable AI for Healthcare</div>
 
-            </div>
-        </div>
-    </div>
+                        <div class="lang-en">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Lack of transparency in AI-driven clinical decision-making
+                                    processes.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Solution</span>
+                                <p class="psi-text">Open-source XAI dashboard for model-agnostic explanations and
+                                    visualizations.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Impact</span>
+                                <p class="psi-text">Improved trust in AI-driven clinical decision-making through
+                                    transparent and explainable AI.</p>
+                            </div>
+                        </div>
 
-    <!-- ===== ROADMAP ===== -->
+                        <div class="lang-de">
+                            <div class="psi-block problem-block">
+                                <span class="psi-label problem">⬤ Problem</span>
+                                <p class="psi-text">Mangelnde Transparenz in AI-getriebenen klinischen
+                                    Entscheidungsprozessen.</p>
+                            </div>
+                            <div class="psi-block solution-block">
+                                <span class="psi-label solution">⬤ Lösung</span>
+                                <p class="psi-text">Open-Source-XAI-Dashboard für modellagnostische Erklärungen und
+                                    Visualisierungen.</p>
+                            </div>
+                            <div class="psi-block impact-block">
+                                <span class="psi-label impact">⬤ Wirkung</span>
+                                <p class="psi-text">Verbessertes Vertrauen in AI-getriebene klinische
+                                    Entscheidungsfindung durch transparente und erklärliche KI.</p>
+                            </div>
+                        </div>
+                        <div class="p-tech">
+                            <span class="tt">XAI</span>
+                            <span class="tt">Healthcare AI</span>
+                            <span class="tt">Explainable AI</span>
+                        </div>
+                        <div class="p-actions">
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="external-link"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="#" class="p-action-btn" target="_blank">
+                                <i data-lucide="play-circle"></i>
+                                <span>YouTube</span>
+                            </a>
+                            <button class="p-action-btn arch-btn" onclick="openArchModal('xaidashboard')">
+                                <i data-lucide="workflow"></i>
+                                <span>Architecture</span>
+                            </button>
+                        </div>
     <section style="background: var(--bg-secondary); padding: 64px 0;">
         <div class="ctr">
             <div class="s-label lang-en">What's Next</div>
@@ -4200,6 +4645,532 @@
         </div>
     </section>
 
+    <!-- ===== ARCHITECTURE MODALS ===== -->
+    <!-- VitalNav.ai Modal -->
+    <div id="modal-vitalnav" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">VitalNav.ai</div>
+                    <div class="arch-modal-subtitle">Pre-Hospital Emergency Triage — Azure AI Multi-Service</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('vitalnav')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[Patient Voice/Text Input<br/>100+ dil] --> B[Azure Speech Services<br/>STT + Language Detection]
+    B --> C[Azure Translator]
+    C --> D[Azure AI Search + RAG<br/>Medical Guidelines]
+    D --> E[Azure OpenAI GPT-4o<br/>Question Generation + Triage]
+    E --> F[MTS Level + Risk Score + Report]
+    F --> G[Azure Maps<br/>ETA + Hospital Routing]
+    G --> H[FastAPI Backend + SQLite]
+    H --> I[ER Command Dashboard<br/>Live GPS + Leaflet Map]
+    I --> J[Physician Review & Override]
+    style A fill:#e3f2fd
+    style J fill:#c8e6c9</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">Azure OpenAI, Azure AI Search, Azure Speech, Azure Translator, Azure Maps, FastAPI, Streamlit</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">Triage &lt;5 sec | 100+ Languages | MTS Classification | Real-time GPS Routing</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">EU AI Act High-Risk | GDPR | Azure Content Safety | PII Redaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SkinxAI Modal -->
+    <div id="modal-skinxai" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">SkinxAI</div>
+                    <div class="arch-modal-subtitle">AI Skin Lesion Classifier — Medical Imaging</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('skinxai')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart LR
+    A[Image Upload<br/>JPG/PNG] --> B[Preprocessing<br/>Resize 224×224 + Normalize]
+    B --> C[EfficientNet-B7<br/>66M params - PyTorch]
+    C --> D[Softmax Prediction<br/>7 Lesion Classes]
+    D --> E[Grad-CAM Heatmap Generator<br/>Feature Map + Gradients]
+    E --> F[Risk Stratification<br/>HIGH / MEDIUM / LOW]
+    F --> G[Streamlit Dashboard<br/>PDF + JSON Report]
+    subgraph "Explainability Layer"
+    E
+    end
+    style C fill:#f3e5f5
+    style E fill:#fff3e0</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">PyTorch, EfficientNet-B7, Grad-CAM, Streamlit, HAM10000 Dataset</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">85.2% Sensitivity | 93.4% AUC | 96.8% NPV | 7 Lesion Classes</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">GDPR | Medical Device Class IIa | XAI/Explainability | Clinical Validation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ClinicOps Modal -->
+    <div id="modal-clinicops" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">ClinicOps</div>
+                    <div class="arch-modal-subtitle">End-to-End MLOps Platform — Healthcare Operations</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('clinicops')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[Raw Patient Data<br/>Azure Blob] --> B[DVC Data Versioning]
+    B --> C[Preprocessing + Feature Eng.]
+    C --> D[Random Forest Training<br/>R²=0.918]
+    D --> E[MLflow Tracking + Registry]
+    E --> F[Docker Containerization<br/>FastAPI + Streamlit]
+    F --> G[GitHub Actions CI/CD]
+    G --> H[Azure Container Instances<br/>ACI + ACR]
+    H --> I[Live Inference + Drift Detection]
+    style E fill:#f3e5f5
+    style H fill:#e8f5e9</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">MLflow, DVC, Azure ML, Docker, GitHub Actions, Azure Container Instances, Drift Detection</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">R²=0.918 | MAE 0.68 days | 95% Cost Reduction | 5-7 min Deployments</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">EU AI Act | GDPR | MLOps Best Practices | Audit Trail | Model Registry</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Azure Healthcare NLP Modal -->
+    <div id="modal-azurenlp" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">Azure Healthcare NLP Analyzer</div>
+                    <div class="arch-modal-subtitle">Clinical Text Analysis — Azure AI Language</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('azurenlp')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart LR
+    A[Clinical Notes / Voice] --> B[Azure AI Language<br/>Text Analytics for Health]
+    B --> C[PII Redaction 98.5%]
+    C --> D[Entity Extraction<br/>Diagnosis + Medication + FHIR]
+    D --> E[Azure Translator + Voice]
+    E --> F[GDPR Compliant Output]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">Azure AI Language, Text Analytics for Health, FHIR, NLP, Entity Linking, Azure Translator</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">98.5% PII Accuracy | &lt;2 sec Processing | 50% Doc Time Reduction | 7 Languages</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">GDPR | FHIR Interoperability | HIPAA | PII Redaction | Clinical NLP</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health Anomaly Detection Modal -->
+    <div id="modal-healthanomaly" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">Health Anomaly Detection</div>
+                    <div class="arch-modal-subtitle">Clinical Metrics Monitoring — Early Warning System</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('healthanomaly')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[Clinical Time-Series Data<br/>Vitals + Labs] --> B[Statistical Preprocessing]
+    B --> C[ML Anomaly Detection<br/>Isolation Forest + LSTM]
+    C --> D[Threshold Configuration]
+    D --> E[Alert Generation<br/>Severity Scored]
+    E --> F[Clinical Dashboard<br/>Trend Analysis]
+    F --> G[Early Warning System]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">Python, Time Series Analysis, Anomaly Detection, Isolation Forest, LSTM, Streamlit</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">Real-time Monitoring | Configurable Thresholds | Trend Analysis | Early Intervention</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">GDPR | Clinical Safety | Audit Logging | Human-in-the-Loop</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VANGUARD Modal -->
+    <div id="modal-vanguard" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">VANGUARD</div>
+                    <div class="arch-modal-subtitle">Air Track Classification — NATO C2 Threat Assessment</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('vanguard')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart LR
+    A[NATO JSON Sensor Data<br/>Radar + IFF + Thermal] --> B[Feature Engineering + Scaling]
+    B --> C[XGBoost Classifier<br/>6 Threat Classes]
+    C --> D[Threat Scoring<br/>CRITICAL / HIGH / MEDIUM]
+    D --> E[Anomaly + Conflict Detection]
+    E --> F[3D Visualization<br/>Plotly + Track History]
+    F --> G[Streamlit Dashboard + MLflow]
+    style C fill:#e1f5fe</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">Python, XGBoost, MLflow, Plotly 3D, Streamlit, NATO C2 JSON, NATO STANAG</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">96.3% Accuracy | &lt;50ms Inference | 6 Threat Classes | 3D Flight Path Viz</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">NATO STANAG | EU AI Act | Human-in-the-Loop | Traceability | Reliability</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AEGIS-Cloud Modal -->
+    <div id="modal-aegis" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">AEGIS-Cloud</div>
+                    <div class="arch-modal-subtitle">Autonomous Edge Guardian Intelligence System — Counter-UAS</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('aegis')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[Camera / Sensor Input] --> B[YOLOv8 + TensorRT FP16<br/>NVIDIA Jetson - &lt;30ms]
+    B --> C[Confidence Filter >0.80 + Hostile]
+    C --> D[Moondream VLM<br/>Tactical Reasoning - async]
+    D --> E[Fusion Engine<br/>IMU + ToF]
+    E --> F[Alert + Tactical Report]
+    F --> G[Azure IoT Hub<br/>Cloud Sync + Audit Trail]
+    G --> H[Cloud Threat Evaluator<br/>VANGUARD Integration]
+    style B fill:#ffebee
+    style G fill:#e8f5e9</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">TensorRT, YOLOv8, NVIDIA Jetson, Moondream VLM, Azure IoT Hub, C++, EU AI Act</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">82% → 0-2.4% CPU | 300ms → &lt;30ms Latency | Thermal Stable | Edge Autonomy</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">EU AI Act | NATO Standards | Fail-Safe | Circuit-Breaker | Audit Trail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SENTINEL Modal -->
+    <div id="modal-sentinel" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">SENTINEL</div>
+                    <div class="arch-modal-subtitle">Multi-Domain Situational Awareness — NATO STANAG</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('sentinel')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[Multi-Domain Sensors<br/>Land + Air + Sea] --> B[Sensor Fusion Engine]
+    B --> C[Real-time AI Processing]
+    C --> D[Situational Awareness Graph]
+    D --> E[Threat Assessment Matrix]
+    E --> F[NATO C2 Integration]
+    F --> G[Command Dashboard]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">Sensor Fusion, Multi-Domain AI, Real-time Processing, NATO STANAG, Graph Databases</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">Multi-Domain Fusion | Real-time Awareness | NATO Compatible | Command Speed</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">NATO STANAG | EU AI Act | Mission-Critical | Fail-Safe Design</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- XAI Dashboard Modal -->
+    <div id="modal-xai" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">XAI Dashboard</div>
+                    <div class="arch-modal-subtitle">Explainable AI — Model Interpretability & Trust</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('xai')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[Model Input + Prediction] --> B[SHAP Global/Local Explanations]
+    B --> C[LIME Local Explanation]
+    C --> D[DiCE Counterfactuals]
+    D --> E[Interactive Streamlit Dashboard<br/>Healthcare + Defence Reports]
+    E --> F[PDF Export + Audit Trail]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">SHAP, LIME, DiCE, Counterfactuals, Streamlit, XAI, Python</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">Audit-Ready | PDF Export | Domain Reports | Multi-technique XAI</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">EU AI Act XAI Requirements | GDPR | Audit Trail | Clinical Trust</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Azure Content Safety Modal -->
+    <div id="modal-contentsafety" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">Azure Content Safety Platform</div>
+                    <div class="arch-modal-subtitle">Content Moderation — Azure AI Content Safety</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('contentsafety')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[User Content<br/>Text + Image] --> B[Azure Content Safety API]
+    B --> C[Severity Scoring 0-7]
+    C --> D[Multi-Category Detection]
+    D --> E[XAI Explanation]
+    E --> F[Animated Gauge Viz]
+    F --> G[Moderation Decision]
+    G --> H[Audit Logging]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">Azure AI Content Safety, Multi-Modal AI, XAI, Severity Scoring, Animation</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">95% Harm Reduction | 40% Fewer Appeals | &lt;500ms Response | &lt;2% False Positive</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">Content Safety | EU AI Act | Transparency | XAI Explanations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EchoBreaker Modal -->
+    <div id="modal-echobreaker" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">EchoBreaker</div>
+                    <div class="arch-modal-subtitle">Counter-Perspective Engine — Filter Bubble Detection</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('echobreaker')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[YouTube URL Input] --> B[yt-dlp Caption Extraction<br/>~5 sec]
+    B --> C[Azure OpenAI / Groq]
+    C --> D[Three Counter-Perspectives<br/>Ethical + Empirical + Logical]
+    D --> E[Algorithm vs EchoBreaker View]
+    E --> F[User Dashboard<br/>Critical Thinking Tools]
+    F --> G[Media Literacy Impact]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">FastAPI, Azure OpenAI, Groq, yt-dlp, Tailwind CSS, Python</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">~5 sec Pipeline | 3 Perspectives | Filter Bubble Breaker | Critical Thinking</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">EU AI Act | Responsible AI | Media Literacy | Algorithm Transparency</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Act Toolkit Modal -->
+    <div id="modal-aiact" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">AI-Act-Compliance-Toolkit</div>
+                    <div class="arch-modal-subtitle">EU AI Act (Aug 2026) Compliance Framework</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('aiact')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[AI System Input] --> B[Risk Classification Engine]
+    B --> C[Article 6 + Annex III Check]
+    C --> D[Documentation Generator]
+    D --> E[Conformity Assessment]
+    E --> F[Bias Audit Tools]
+    F --> G[Compliance Report]
+    G --> H[Certification Path]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">EU AI Act, Risk Classification, Documentation Gen, Bias Audit, Compliance Framework</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">Automated Classification | Faster Certification | Consistent Documentation</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">EU AI Act Article 6 | Annex III | High-Risk AI | Conformity Assessment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- XAI-Dashboard Modal -->
+    <div id="modal-xaidashboard" class="arch-modal">
+        <div class="arch-modal-content">
+            <div class="arch-modal-header">
+                <div>
+                    <div class="arch-modal-title">XAI-Dashboard</div>
+                    <div class="arch-modal-subtitle">Explainable AI for Healthcare</div>
+                </div>
+                <button class="arch-modal-close" onclick="closeArchModal('xaidashboard')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="arch-modal-body">
+                <div class="arch-section-title">Architecture & Data Flow</div>
+                <div class="arch-diagram-container">
+                    <pre class="mermaid">flowchart TD
+    A[Healthcare Model Input] --> B[SHAP Explanation Engine]
+    B --> C[LIME Local Analysis]
+    C --> D[Feature Importance Viz]
+    D --> E[Clinical Report Generator]
+    E --> F[Streamlit Dashboard]
+    F --> G[Trust & Transparency]</pre>
+                </div>
+                <div class="arch-info-grid">
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Tech Stack</div>
+                        <div class="arch-info-value">XAI, SHAP, LIME, Healthcare AI, Streamlit, Explainable AI</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Key Metrics</div>
+                        <div class="arch-info-value">Model Agnostic | Clinical Trust | Transparent AI | Healthcare Focused</div>
+                    </div>
+                    <div class="arch-info-card">
+                        <div class="arch-info-label">Compliance</div>
+                        <div class="arch-info-value">EU AI Act XAI | GDPR | Clinical Explainability | Medical Device</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="ctr">Built by Atamer Erkal &middot; &copy; 2026</div>
     </footer>
@@ -4311,6 +5282,58 @@
             window.addEventListener('scroll', updateTimeline, { passive: true });
             updateTimeline(); // Initial check
         })();
+
+        // ===== ARCHITECTURE MODAL FUNCTIONS =====
+        function openArchModal(projectId) {
+            var modal = document.getElementById('modal-' + projectId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Initialize Mermaid for this modal
+                mermaid.init(undefined, modal.querySelectorAll('.mermaid'));
+                
+                // Refresh Lucide icons inside modal
+                lucide.createIcons();
+            }
+        }
+
+        function closeArchModal(projectId) {
+            var modal = document.getElementById('modal-' + projectId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal on backdrop click
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('arch-modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.arch-modal.active').forEach(function(modal) {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: false,
+            theme: 'dark',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
 
     </script>
 </body>
