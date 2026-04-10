@@ -991,6 +991,26 @@
             width: fit-content;
         }
 
+        .proj-filters-warning {
+            margin-top: 20px;
+            padding: 12px 18px;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .proj-filters-warning i {
+            width: 18px;
+            height: 18px;
+            stroke: #fbbf24;
+            flex-shrink: 0;
+        }
+
         .filter-btn {
             padding: 8px 18px;
             background: transparent;
@@ -3169,6 +3189,12 @@
                 <button class="filter-btn" data-filter="hc">Healthcare AI</button>
                 <button class="filter-btn" data-filter="df">Defence AI</button>
                 <button class="filter-btn" data-filter="ra">Responsible AI</button>
+            </div>
+
+            <div class="proj-filters-warning">
+                <i data-lucide="alert-circle"></i>
+                <span class="lang-en">Scroll down to see projects by category</span>
+                <span class="lang-de">Scrollen Sie nach unten, um Projekte nach Kategorie anzuzeigen</span>
             </div>
         </div>
     </section>
