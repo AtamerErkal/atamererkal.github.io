@@ -1496,20 +1496,87 @@
 
         /* ===== CONTACT ===== */
         .con-box {
-            max-width: 560px;
-            margin: 40px auto 0;
+            max-width: 700px;
+            margin: 48px auto 0;
             text-align: center;
         }
 
         .con-links {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
             transform: translateY(24px);
             transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .con-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 24px 20px;
+            background: rgba(21, 29, 46, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
+        }
+
+        .con-link:hover {
+            background: rgba(21, 29, 46, 0.8);
+            border-color: rgba(148, 163, 184, 0.2);
+            color: var(--text-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .con-link i {
+            width: 32px;
+            height: 32px;
+            stroke: var(--text-muted);
+            transition: stroke 0.3s ease;
+        }
+
+        .con-link:hover i {
+            stroke: var(--accent-df);
+        }
+
+        .con-link span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .con-link:hover span {
+            color: var(--text-primary);
         }
 
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .con-links {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .con-link {
+                flex-direction: row;
+                justify-content: center;
+                gap: 16px;
+                padding: 16px 24px;
+            }
+
+            .con-link i {
+                width: 24px;
+                height: 24px;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -4075,12 +4142,18 @@
                 Bereich <strong>Healthcare AI</strong> und <strong>Defence AI</strong>.</p>
             <div class="con-box">
                 <div class="con-links">
-                    <a href="mailto:atamererkal.eu@gmail.com" class="con-link"><i data-lucide="mail"></i>
-                        atamererkal.eu@gmail.com</a>
-                    <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="con-link"><i
-                            data-lucide="linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/AtamerErkal" target="_blank" class="con-link"><i
-                            data-lucide="github"></i> GitHub</a>
+                    <a href="mailto:atamererkal.eu@gmail.com" class="con-link">
+                        <i data-lucide="mail"></i>
+                        <span>atamererkal.eu@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/atamererkal" target="_blank" class="con-link">
+                        <i data-lucide="linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/AtamerErkal" target="_blank" class="con-link">
+                        <i data-lucide="github"></i>
+                        <span>GitHub</span>
+                    </a>
                 </div>
             </div>
         </div>
