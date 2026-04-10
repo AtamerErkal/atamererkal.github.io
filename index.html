@@ -594,11 +594,19 @@
 
         .sk-g {
             padding: 28px;
-            background: var(--bg-card);
+            background: rgba(21, 29, 46, 0.6);
+            backdrop-filter: blur(20px);
             border-radius: var(--r-md);
-            border: 1px solid var(--bdr);
+            border: 1px solid rgba(148, 163, 184, 0.08);
             position: relative;
             overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sk-g:hover {
+            transform: translateY(-4px);
+            border-color: rgba(148, 163, 184, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .sk-g::before {
@@ -662,26 +670,65 @@
         }
 
         .sk-title {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            margin-bottom: 14px;
+            margin-bottom: 18px;
+            letter-spacing: -0.01em;
+        }
+
+        .sk-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03), transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .sk-g:hover .sk-glow {
+            opacity: 1;
+        }
+
+        .sk-cats {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .sk-cat-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
         }
 
         .sk-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 5px;
         }
 
         .sk-tag {
-            padding: 4px 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--bdr);
-            border-radius: 6px;
-            font-size: 0.72rem;
+            padding: 3px 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 4px;
+            font-size: 0.7rem;
             font-weight: 500;
             font-family: 'JetBrains Mono', monospace;
             color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .sk-tag:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(148, 163, 184, 0.2);
+            color: var(--text-primary);
         }
 
         /* ===== PROJECTS ===== */
@@ -1188,45 +1235,6 @@
 
         .con-links {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .con-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--bdr);
-            border-radius: var(--r-sm);
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .con-link svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .con-link:hover {
-            border-color: var(--bdr-h);
-            background: var(--bg-card-hover);
-        }
-
-        footer {
-            padding: 36px 0;
-            text-align: center;
-            border-top: 1px solid var(--bdr);
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .fade-up {
-            opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
@@ -2084,7 +2092,7 @@
                         <div class="node-connector"></div>
                         <div class="node-card current">
                             <div class="node-year current-badge">2020 — Present</div>
-                            <h3 class="node-title">ML Engineer & MLOps Lead</h3>
+                            <h3 class="node-title">AI/ML Engineer & MLOps Lead</h3>
                             <p class="node-desc lang-en">Clarusway — Germany & USA. End-to-end ML pipelines (MLflow, DVC, Azure ML), production AI systems, Explainable AI for healthcare & defence, GDPR/EU AI Act compliance.</p>
                             <p class="node-desc lang-de">Clarusway — Deutschland & USA. End-to-End ML-Pipelines (MLflow, DVC, Azure ML), produktionsreife KI-Systeme, Explainable AI für Healthcare & Defence, GDPR/EU AI Act Compliance.</p>
                             <div class="node-stats">
@@ -2230,36 +2238,61 @@
             <h2 class="s-title lang-de">Technologien &amp; Expertise</h2>
             <div class="sk-grid">
                 <div class="sk-g ml fade-up">
+                    <div class="sk-glow"></div>
                     <div class="sk-ico"><i data-lucide="brain"></i></div>
                     <div class="sk-title">AI / ML &amp; MLOps</div>
-                    <div class="sk-tags"><span class="sk-tag">Python</span><span class="sk-tag">PyTorch</span><span
-                            class="sk-tag">TensorFlow</span><span class="sk-tag">Scikit-learn</span><span
-                            class="sk-tag">XGBoost</span><span class="sk-tag">EfficientNet</span><span
-                            class="sk-tag">YOLOv8</span><span class="sk-tag">TensorRT</span><span
-                            class="sk-tag">CNNs</span><span class="sk-tag">Azure ML</span><span
-                            class="sk-tag">MLflow</span><span class="sk-tag">DVC</span><span
-                            class="sk-tag">Docker</span><span class="sk-tag">GitHub Actions</span><span
-                            class="sk-tag">CI/CD</span><span class="sk-tag">Model Monitoring</span></div>
+                    <div class="sk-cats">
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Frameworks</div>
+                            <div class="sk-tags"><span class="sk-tag">Python</span><span class="sk-tag">PyTorch</span><span class="sk-tag">TensorFlow</span><span class="sk-tag">Scikit-learn</span><span class="sk-tag">XGBoost</span></div>
+                        </div>
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Models</div>
+                            <div class="sk-tags"><span class="sk-tag">EfficientNet</span><span class="sk-tag">YOLOv8</span><span class="sk-tag">CNNs</span><span class="sk-tag">TensorRT</span></div>
+                        </div>
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">MLOps</div>
+                            <div class="sk-tags"><span class="sk-tag">Azure ML</span><span class="sk-tag">MLflow</span><span class="sk-tag">DVC</span><span class="sk-tag">Docker</span><span class="sk-tag">GitHub Actions</span><span class="sk-tag">CI/CD</span></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="sk-g dm fade-up">
+                    <div class="sk-glow"></div>
                     <div class="sk-ico"><i data-lucide="target"></i></div>
                     <div class="sk-title">Domain Expertise</div>
-                    <div class="sk-tags"><span class="sk-tag">Medical Imaging</span><span class="sk-tag">Clinical
-                            Decision Support</span><span class="sk-tag">EHR Integration</span><span
-                            class="sk-tag">HL7/FHIR</span><span class="sk-tag">NATO Operations</span><span
-                            class="sk-tag">Threat Assessment</span><span class="sk-tag">C2/ISR Systems</span><span
-                            class="sk-tag">Counter-UAS</span><span class="sk-tag">Edge AI (SWaP-C)</span><span
-                            class="sk-tag">Sensor Fusion</span><span class="sk-tag">Real-Time AI</span><span
-                            class="sk-tag">VLM Reasoning</span></div>
+                    <div class="sk-cats">
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Healthcare</div>
+                            <div class="sk-tags"><span class="sk-tag">Medical Imaging</span><span class="sk-tag">Clinical Decision Support</span><span class="sk-tag">EHR Integration</span><span class="sk-tag">HL7/FHIR</span></div>
+                        </div>
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Defence</div>
+                            <div class="sk-tags"><span class="sk-tag">NATO Operations</span><span class="sk-tag">Threat Assessment</span><span class="sk-tag">C2/ISR Systems</span><span class="sk-tag">Counter-UAS</span></div>
+                        </div>
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Edge AI</div>
+                            <div class="sk-tags"><span class="sk-tag">SWaP-C</span><span class="sk-tag">Sensor Fusion</span><span class="sk-tag">Real-Time AI</span><span class="sk-tag">VLM Reasoning</span></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="sk-g cp fade-up">
+                    <div class="sk-glow"></div>
                     <div class="sk-ico"><i data-lucide="scale"></i></div>
                     <div class="sk-title">Regulatory &amp; Compliance</div>
-                    <div class="sk-tags"><span class="sk-tag">EU AI Act</span><span class="sk-tag">GDPR</span><span
-                            class="sk-tag">SHAP</span><span class="sk-tag">LIME</span><span
-                            class="sk-tag">Grad-CAM</span><span class="sk-tag">Fairlearn</span><span class="sk-tag">Bias
-                            Auditing</span><span class="sk-tag">Data Anonymization</span><span class="sk-tag">NATO
-                            STANAG</span></div>
+                    <div class="sk-cats">
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Regulations</div>
+                            <div class="sk-tags"><span class="sk-tag">EU AI Act</span><span class="sk-tag">GDPR</span><span class="sk-tag">NATO STANAG</span></div>
+                        </div>
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Explainability</div>
+                            <div class="sk-tags"><span class="sk-tag">SHAP</span><span class="sk-tag">LIME</span><span class="sk-tag">Grad-CAM</span></div>
+                        </div>
+                        <div class="sk-cat">
+                            <div class="sk-cat-title">Fairness</div>
+                            <div class="sk-tags"><span class="sk-tag">Fairlearn</span><span class="sk-tag">Bias Auditing</span><span class="sk-tag">Anonymization</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
