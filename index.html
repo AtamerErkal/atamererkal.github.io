@@ -99,6 +99,15 @@
             align-items: center;
         }
 
+        nav {
+            background: rgba(15, 21, 32, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
         nav .ctr {
             display: flex;
             align-items: center;
@@ -107,65 +116,101 @@
         }
 
         .nav-logo {
-            font-weight: 700;
-            font-size: 1.05rem;
+            font-weight: 800;
+            font-size: 1.1rem;
             letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 8px;
             list-style: none;
         }
 
         .nav-links a {
-            font-size: 0.82rem;
-            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
             color: var(--text-muted);
-            transition: color 0.2s;
+            border-radius: 8px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .nav-links a svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover svg {
+            opacity: 1;
         }
 
         .lang-toggle {
             display: flex;
             gap: 2px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--bdr);
-            border-radius: 8px;
-            padding: 3px;
+            background: rgba(21, 29, 46, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 10px;
+            padding: 4px;
+            backdrop-filter: blur(8px);
         }
 
         .lang-btn {
-            padding: 5px 12px;
+            padding: 6px 14px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 0.75rem;
             font-weight: 700;
             cursor: pointer;
             background: transparent;
             color: var(--text-muted);
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: inherit;
             letter-spacing: 0.03em;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .lang-btn.active {
             background: var(--accent-df);
             color: #fff;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
         }
 
         .mob-btn {
             display: none;
-            background: none;
-            border: none;
+            background: rgba(21, 29, 46, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 10px;
             color: var(--text-primary);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            padding: 4px;
+            padding: 10px 14px;
+            backdrop-filter: blur(8px);
+            transition: all 0.25s ease;
+        }
+
+        .mob-btn:hover {
+            border-color: rgba(148, 163, 184, 0.25);
+            background: rgba(21, 29, 46, 0.8);
         }
 
         /* ===== HERO SECTION ===== */
@@ -1503,10 +1548,11 @@
             top: var(--nh);
             left: 0;
             right: 0;
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--bdr);
+            background: rgba(15, 21, 32, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
             z-index: 999;
-            padding: 16px 24px;
+            padding: 20px 24px;
         }
 
         .mob-nav.open {
@@ -1514,15 +1560,31 @@
         }
 
         .mob-nav a {
-            display: block;
-            padding: 12px 0;
-            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
             color: var(--text-secondary);
-            border-bottom: 1px solid var(--bdr);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            transition: all 0.25s ease;
         }
 
-        .mob-nav a:last-child {
-            border-bottom: none;
+        .mob-nav a:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-primary);
+        }
+
+        .mob-nav a svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--text-muted);
+        }
+
+        .mob-nav a:hover svg {
+            stroke: var(--text-primary);
         }
 
         /* === AVAILABILITY BAR === */
@@ -2341,12 +2403,12 @@
         <div class="ctr">
             <a class="nav-logo" href="#">Atamer Erkal</a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#compliance">Compliance</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#insights">Insights</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about"><i data-lucide="user"></i>About</a></li>
+                <li><a href="#skills"><i data-lucide="brain"></i>Skills</a></li>
+                <li><a href="#compliance"><i data-lucide="scale"></i>Compliance</a></li>
+                <li><a href="#projects"><i data-lucide="folder"></i>Projects</a></li>
+                <li><a href="#insights"><i data-lucide="book-open"></i>Insights</a></li>
+                <li><a href="#contact"><i data-lucide="mail"></i>Contact</a></li>
                 <li>
                     <div class="lang-toggle">
                         <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
@@ -2354,15 +2416,16 @@
                     </div>
                 </li>
             </ul>
-            <button class="mob-btn" onclick="toggleMob()">&#9776;</button>
+            <button class="mob-btn" onclick="toggleMob()"><i data-lucide="menu"></i></button>
         </div>
     </nav>
     <div class="mob-nav" id="mobNav">
-        <a href="#about" onclick="closeMob()">About</a>
-        <a href="#skills" onclick="closeMob()">Skills</a>
-        <a href="#projects" onclick="closeMob()">Projects</a>
-        <a href="#insights" onclick="closeMob()">Insights</a>
-        <a href="#contact" onclick="closeMob()">Contact</a>
+        <a href="#about" onclick="closeMob()"><i data-lucide="user"></i>About</a>
+        <a href="#skills" onclick="closeMob()"><i data-lucide="brain"></i>Skills</a>
+        <a href="#compliance" onclick="closeMob()"><i data-lucide="scale"></i>Compliance</a>
+        <a href="#projects" onclick="closeMob()"><i data-lucide="folder"></i>Projects</a>
+        <a href="#insights" onclick="closeMob()"><i data-lucide="book-open"></i>Insights</a>
+        <a href="#contact" onclick="closeMob()"><i data-lucide="mail"></i>Contact</a>
     </div>
 
     <!-- ===== HERO ===== -->
