@@ -1462,6 +1462,17 @@
             color: var(--text-muted);
         }
 
+        .cert-section-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--bdr);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         @media (max-width: 768px) {
             .cert-grid {
                 grid-template-columns: 1fr;
@@ -1982,22 +1993,22 @@
                     <div class="a-card">
                         <div class="a-icon edu"><i data-lucide="graduation-cap"></i></div>
                         <div>
-                            <div class="a-card-t">Electronics Engineering BSc</div>
-                            <div class="a-card-d">Naval Officer Training</div>
+                            <div class="a-card-t">B.Sc. Electrical Engineering</div>
+                            <div class="a-card-d">National Defence University, Istanbul (1998 – 2002) · Officer Training</div>
                         </div>
                     </div>
                     <div class="a-card">
                         <div class="a-icon edu"><i data-lucide="book-open"></i></div>
                         <div>
-                            <div class="a-card-t">Dual Master's Degrees</div>
-                            <div class="a-card-d">Leadership &amp; Public Relations — National Defence University</div>
+                            <div class="a-card-t">M.A. Management &amp; Leadership</div>
+                            <div class="a-card-d">National Defence University (2010 – 2012) · Essay Competition Winner</div>
                         </div>
                     </div>
                     <div class="a-card">
                         <div class="a-icon crt"><i data-lucide="cloud"></i></div>
                         <div>
                             <div class="a-card-t">Azure AI Engineer — AI-102</div>
-                            <div class="a-card-d">Scheduled April 2026</div>
+                            <div class="a-card-d">Scheduled May 2026</div>
                         </div>
                     </div>
                     <div class="a-card">
@@ -2034,75 +2045,67 @@
                         <div class="node-dot nato"><i data-lucide="shield"></i></div>
                         <div class="node-connector"></div>
                         <div class="node-card nato">
-                            <div class="node-year">2009 — 2021</div>
-                            <h3 class="node-title lang-en">NATO Joint Planning Officer</h3>
-                            <h3 class="node-title lang-de">NATO Joint Planungsoffizier</h3>
-                            <p class="node-desc lang-en">12 years in multinational operations, strategic resource allocation, and safety-critical command systems.</p>
-                            <p class="node-desc lang-de">12 Jahre in multinationalen Operationen, strategischer Ressourcenplanung und sicherheitskritischen Systemen.</p>
+                            <div class="node-year">2002 — 2017</div>
+                            <h3 class="node-title">Planning Officer & Electrical Engineer</h3>
+                            <p class="node-desc lang-en">NATO & Naval Headquarters — UK & Turkey. Mission-critical environments, data-driven operational planning, quantitative analysis under security constraints.</p>
+                            <p class="node-desc lang-de">NATO & Marinehauptquartier — UK & Türkei. Missionskritische Umgebungen, datengesteuerte operative Planung, quantitative Analyse unter Sicherheitsauflagen.</p>
                             <div class="node-tags">
-                                <span>Operations</span>
-                                <span>C2 Systems</span>
                                 <span>NATO</span>
+                                <span>Operations Planning</span>
+                                <span>Data Analysis</span>
+                                <span>Mission-Critical</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Node 2: Master's -->
+                    <!-- Node 2: Master's (during NATO) -->
                     <div class="t-node right fade-up" data-index="1">
                         <div class="node-dot edu"><i data-lucide="graduation-cap"></i></div>
                         <div class="node-connector"></div>
                         <div class="node-card edu">
-                            <div class="node-year">2014 — 2016</div>
-                            <h3 class="node-title lang-en">Dual Master's Degrees</h3>
-                            <h3 class="node-title lang-de">Doppelter Master</h3>
-                            <p class="node-desc lang-en">Leadership & Public Relations — National Defence University. Distinguished academic performance.</p>
-                            <p class="node-desc lang-de">Führung & Öffentlichkeitsarbeit — Nationale Verteidigungsuniversität. Hervorragende Leistung.</p>
+                            <div class="node-year">2010 — 2012</div>
+                            <h3 class="node-title">M.A. Management & Leadership</h3>
+                            <p class="node-desc lang-en">National Defence University, Istanbul. Award: Winner of university-wide article competition (Thesis/Management Essay).</p>
+                            <p class="node-desc lang-de">Nationale Verteidigungsuniversität, Istanbul. Auszeichnung: Gewinner des universitären Artikelwettbewerbs (Thesis/Management Essay).</p>
                             <div class="node-tags">
                                 <span>Leadership</span>
                                 <span>Strategy</span>
-                                <span>Communications</span>
+                                <span>Management</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Node 3: Program Director -->
-                    <div class="t-node left fade-up" data-index="2">
-                        <div class="node-dot lead"><i data-lucide="users"></i></div>
-                        <div class="node-connector"></div>
-                        <div class="node-card lead">
-                            <div class="node-year">2021 — 2024</div>
-                            <h3 class="node-title">Program Director</h3>
-                            <p class="node-desc lang-en">Led Clarusway Data Science program. Trained 200+ data scientists with 90% placement rate.</p>
-                            <p class="node-desc lang-de">Leitung Data Science-Programm. 200+ Data Scientists ausgebildet, 90% Vermittlungsquote.</p>
-                            <div class="node-stats">
-                                <div class="n-stat">
-                                    <span class="n-num">200+</span>
-                                    <span class="n-label">Trained</span>
-                                </div>
-                                <div class="n-stat">
-                                    <span class="n-num">90%</span>
-                                    <span class="n-label">Placement</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Node 4: AI Engineer (Current) -->
-                    <div class="t-node right current fade-up" data-index="3">
+                    <!-- Node 3: ML Engineer (Current) -->
+                    <div class="t-node left current fade-up" data-index="2">
                         <div class="node-dot current">
                             <i data-lucide="brain"></i>
                             <div class="current-pulse"></div>
                         </div>
                         <div class="node-connector"></div>
                         <div class="node-card current">
-                            <div class="node-year current-badge">2024 — Present</div>
-                            <h3 class="node-title">AI / MLOps Engineer</h3>
-                            <p class="node-desc lang-en">Building production-grade AI systems for healthcare and defence. Azure AI-102 in progress.</p>
-                            <p class="node-desc lang-de">Entwicklung produktionsreifer KI-Systeme für Healthcare und Defence. Azure AI-102 in Arbeit.</p>
-                            <div class="node-tags highlight">
+                            <div class="node-year current-badge">2020 — Present</div>
+                            <h3 class="node-title">ML Engineer & MLOps Lead</h3>
+                            <p class="node-desc lang-en">Clarusway — Germany & USA. End-to-end ML pipelines (MLflow, DVC, Azure ML), production AI systems, Explainable AI for healthcare & defence, GDPR/EU AI Act compliance.</p>
+                            <p class="node-desc lang-de">Clarusway — Deutschland & USA. End-to-End ML-Pipelines (MLflow, DVC, Azure ML), produktionsreife KI-Systeme, Explainable AI für Healthcare & Defence, GDPR/EU AI Act Compliance.</p>
+                            <div class="node-stats">
+                                <div class="n-stat">
+                                    <span class="n-num">100+</span>
+                                    <span class="n-label">Mentored</span>
+                                </div>
+                                <div class="n-stat">
+                                    <span class="n-num">90%</span>
+                                    <span class="n-label">Placement</span>
+                                </div>
+                                <div class="n-stat">
+                                    <span class="n-num">&lt;30ms</span>
+                                    <span class="n-label">Inference</span>
+                                </div>
+                            </div>
+                            <div class="node-tags highlight" style="margin-top: 12px;">
                                 <span>Healthcare AI</span>
                                 <span>Defence AI</span>
                                 <span>MLOps</span>
+                                <span>Azure ML</span>
                             </div>
                         </div>
                     </div>
@@ -2111,41 +2114,109 @@
         </div>
     </section>
 
-    <!-- ===== CERTIFICATIONS & RECOGNITION ===== -->
+    <!-- ===== CERTIFICATIONS & TRAINING ===== -->
     <section style="background: var(--bg-secondary); padding: 80px 0;">
         <div class="ctr">
-            <div class="s-label">02 — Recognition</div>
-            <h2 class="s-title lang-en">Certifications &amp; Awards</h2>
-            <h2 class="s-title lang-de">Zertifizierungen &amp; Auszeichnungen</h2>
+            <div class="s-label">02 — Credentials</div>
+            <h2 class="s-title lang-en">Certificates &amp; Training</h2>
+            <h2 class="s-title lang-de">Zertifikate &amp; Weiterbildung</h2>
+            
+            <div class="cert-section-title lang-en">Professional Certificates</div>
+            <div class="cert-section-title lang-de">Berufliche Zertifikate</div>
             <div class="cert-grid">
                 <div class="cert-card fade-up">
                     <div class="cert-ico azure"><i data-lucide="cloud"></i></div>
                     <div>
-                        <div class="cert-t">Azure AI Engineer — AI-102</div>
-                        <div class="cert-d">Scheduled April 2026</div>
+                        <div class="cert-t">Microsoft AI Engineer Associate (AI-102)</div>
+                        <div class="cert-d">Scheduled May 2026</div>
                     </div>
                 </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico blue"><i data-lucide="settings"></i></div>
+                    <div>
+                        <div class="cert-t">Microsoft AI on Azure &amp; Azure ML</div>
+                        <div class="cert-d">Cloud-based ML &amp; AI services</div>
+                    </div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico green"><i data-lucide="bar-chart"></i></div>
+                    <div>
+                        <div class="cert-t">Power BI &amp; Excel for Data Analysis</div>
+                        <div class="cert-d">Data visualization &amp; analytics</div>
+                    </div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico gold"><i data-lucide="code-2"></i></div>
+                    <div>
+                        <div class="cert-t">DataCamp Data Scientist with Python</div>
+                        <div class="cert-d">Python, ML, Statistics</div>
+                    </div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico gold"><i data-lucide="git-branch"></i></div>
+                    <div>
+                        <div class="cert-t">DataCamp MLOps &amp; CI/CD for ML</div>
+                        <div class="cert-d">Deployment pipelines &amp; automation</div>
+                    </div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico blue"><i data-lucide="layout"></i></div>
+                    <div>
+                        <div class="cert-t">Agile with Jira (Atlassian)</div>
+                        <div class="cert-d">Project management &amp; agile workflows</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cert-section-title lang-en" style="margin-top: 48px;">Further Training</div>
+            <div class="cert-section-title lang-de" style="margin-top: 48px;">Weiterbildung</div>
+            <div class="cert-grid">
+                <div class="cert-card fade-up">
+                    <div class="cert-ico blue"><i data-lucide="database"></i></div>
+                    <div>
+                        <div class="cert-t">DataJarLabs — Data Science &amp; Analytics</div>
+                        <div class="cert-d">2018 – 2019</div>
+                    </div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico blue"><i data-lucide="shield"></i></div>
+                    <div>
+                        <div class="cert-t">NATO School (Germany)</div>
+                        <div class="cert-d">Comprehensive Operations Planning</div>
+                    </div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico blue"><i data-lucide="globe"></i></div>
+                    <div>
+                        <div class="cert-t">Ankara University</div>
+                        <div class="cert-d">International Relations (Further Qualification)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cert-section-title lang-en" style="margin-top: 48px;">Awards & Recognition</div>
+            <div class="cert-section-title lang-de" style="margin-top: 48px;">Auszeichnungen</div>
+            <div class="cert-grid">
                 <div class="cert-card fade-up">
                     <div class="cert-ico gold"><i data-lucide="trophy"></i></div>
                     <div>
                         <div class="cert-t">Best DS Bootcamp 2021 &amp; 2022</div>
-                        <div class="cert-d">Clarusway IT School — Program Director</div>
+                        <div class="cert-d">Clarusway IT School — Excellence in program leadership</div>
                     </div>
                 </div>
                 <div class="cert-card fade-up">
-                    <div class="cert-ico blue"><i data-lucide="medal"></i></div>
+                    <div class="cert-ico green"><i data-lucide="pen-tool"></i></div>
+                    <div>
+                        <div class="cert-t">Essay Competition Winner</div>
+                        <div class="cert-d">National Defence University — Thesis/Management Essay</div>
+                    </div>
+                </div>
+                <div class="cert-card fade-up">
+                    <div class="cert-ico blue"><i data-lucide="award"></i></div>
                     <div>
                         <div class="cert-t">Honor — Naval Forces Commander</div>
                         <div class="cert-d lang-en">Distinguished service recognition</div>
-                        <div class="cert-d lang-de">&Uuml;berragende Dienstleistungsauszeichnung</div>
-                    </div>
-                </div>
-                <div class="cert-card fade-up">
-                    <div class="cert-ico green"><i data-lucide="pen-line"></i></div>
-                    <div>
-                        <div class="cert-t">Essay Winner — Defence University</div>
-                        <div class="cert-d lang-en">National Defence University academic award</div>
-                        <div class="cert-d lang-de">Akademischer Preis der Landesverteidigungsakademie</div>
+                        <div class="cert-d lang-de">Auszeichnung für hervorragende Dienstleistung</div>
                     </div>
                 </div>
             </div>
