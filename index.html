@@ -1398,11 +1398,14 @@
             color: var(--text-muted);
             font-size: 0.7rem;
             font-weight: 500;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
         }
 
-        /* Only linked buttons have hover effects */
+        /* LINK buttons - full hover effect */
+        a.p-action-btn {
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         a.p-action-btn:hover {
             background: var(--bg-card-hover);
             border-color: var(--bdr-h);
@@ -1410,45 +1413,40 @@
             transform: translateY(-2px);
         }
 
-        /* Button (non-link) - no hover transform, only color change */
+        a.p-action-btn.arch-btn:hover {
+            border-color: var(--accent-df);
+            color: var(--accent-df);
+        }
+
+        /* BUTTON (non-link) - minimal hover, no transform */
+        button.p-action-btn {
+            cursor: default;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
         button.p-action-btn:hover {
             color: var(--text-secondary);
         }
 
-        button.p-action-btn {
-            cursor: default;
+        button.p-action-btn.arch-btn {
+            cursor: pointer;
         }
 
         button.p-action-btn.arch-btn:hover {
             border-color: var(--accent-df);
             color: var(--accent-df);
-            background: rgba(21, 29, 46, 0.5);
-            transform: none;
-            cursor: pointer;
         }
 
-        .p-action-btn i,
-        .p-action-btn svg {
+        /* Icons */
+        .p-action-btn svg,
+        .p-action-btn i {
             width: 18px;
             height: 18px;
             stroke: currentColor;
-            transition: stroke 0.25s ease;
         }
 
-        button.p-action-btn.arch-btn:hover i,
+        a.p-action-btn.arch-btn:hover svg,
         button.p-action-btn.arch-btn:hover svg {
-            stroke: var(--accent-df);
-        }
-
-        a.p-action-btn.arch-btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-df);
-            color: var(--accent-df);
-            transform: translateY(-2px);
-        }
-
-        a.p-action-btn.arch-btn:hover i,
-        a.p-action-btn.arch-btn:hover svg {
             stroke: var(--accent-df);
         }
 
@@ -1488,14 +1486,12 @@
             border-radius: var(--r-lg);
             overflow-y: auto;
             overflow-x: hidden;
-            transform: scale(0.95);
-            transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+            opacity: 0;
+            transition: opacity 0.2s ease;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
-            will-change: transform, opacity;
         }
 
         .arch-modal.active .arch-modal-content {
-            transform: scale(1);
             opacity: 1;
         }
 
@@ -5341,10 +5337,9 @@
         function openArchModal(projectId) {
             var modal = document.getElementById('modal-' + projectId);
             if (modal) {
-                modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 
-                // Initialize Mermaid for this modal only once
+                // Initialize Mermaid first (before showing modal)
                 var mermaidEl = modal.querySelector('.mermaid');
                 if (mermaidEl && !renderedMermaids[projectId]) {
                     mermaid.init(undefined, mermaidEl);
@@ -5352,8 +5347,11 @@
                 }
                 
                 // Refresh Lucide icons inside modal
+                lucide.createIcons();
+                
+                // Show modal after a short delay to let Mermaid render
                 setTimeout(function() {
-                    lucide.createIcons();
+                    modal.classList.add('active');
                 }, 50);
             }
         }
