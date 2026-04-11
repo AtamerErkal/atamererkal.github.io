@@ -1943,6 +1943,48 @@
             section {
                 padding: 64px 0;
             }
+
+            /* Mobile modal optimizations */
+            .arch-modal-content {
+                padding: 16px;
+                max-height: 90vh;
+            }
+
+            .arch-modal-body {
+                padding: 16px;
+                font-size: 16px;
+            }
+
+            .arch-diagram-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .arch-diagram-container .mermaid svg {
+                min-width: 100%;
+                width: auto;
+            }
+
+            .arch-diagram-container .mermaid svg text {
+                font-size: 14px !important;
+            }
+
+            /* Touch target optimization */
+            .p-btn, .arch-close-btn {
+                min-height: 44px;
+                min-width: 44px;
+                padding: 12px 16px;
+                font-size: 16px;
+            }
+
+            /* Font size adjustments */
+            .arch-title {
+                font-size: 20px;
+            }
+
+            .arch-desc {
+                font-size: 14px;
+            }
         }
 
         .mob-nav {
