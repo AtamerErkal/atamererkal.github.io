@@ -4699,7 +4699,7 @@
             <div class="arch-modal-body">
                 <div class="arch-section-title">Architecture & Data Flow</div>
                 <div class="arch-diagram-container">
-                    <pre class="mermaid">flowchart LR
+                    <pre class="mermaid">flowchart TD
     A[Image Upload<br/>JPG/PNG] --> B[Preprocessing<br/>Resize 224×224 + Normalize]
     B --> C[EfficientNet-B7<br/>66M params - PyTorch]
     C --> D[Softmax Prediction<br/>7 Lesion Classes]
@@ -4786,7 +4786,7 @@
             <div class="arch-modal-body">
                 <div class="arch-section-title">Architecture & Data Flow</div>
                 <div class="arch-diagram-container">
-                    <pre class="mermaid">flowchart LR
+                    <pre class="mermaid">flowchart TD
     A[Clinical Notes / Voice] --> B[Azure AI Language<br/>Text Analytics for Health]
     B --> C[PII Redaction 98.5%]
     C --> D[Entity Extraction<br/>Diagnosis + Medication + FHIR]
@@ -4863,7 +4863,7 @@
             <div class="arch-modal-body">
                 <div class="arch-section-title">Architecture & Data Flow</div>
                 <div class="arch-diagram-container">
-                    <pre class="mermaid">flowchart LR
+                    <pre class="mermaid">flowchart TD
     A[NATO JSON Sensor Data<br/>Radar + IFF + Thermal] --> B[Feature Engineering + Scaling]
     B --> C[XGBoost Classifier<br/>6 Threat Classes]
     C --> D[Threat Scoring<br/>CRITICAL / HIGH / MEDIUM]
