@@ -1577,6 +1577,24 @@
             height: auto;
         }
 
+        /* Make Mermaid diagram text more readable */
+        .arch-diagram-container .mermaid text {
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            fill: var(--text-primary) !important;
+        }
+
+        .arch-diagram-container .mermaid .nodeLabel {
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            fill: var(--text-primary) !important;
+        }
+
+        .arch-diagram-container .mermaid .edgeLabel {
+            font-size: 12px !important;
+            fill: var(--text-secondary) !important;
+        }
+
         .arch-info-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
