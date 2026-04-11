@@ -2064,6 +2064,54 @@
             stroke: var(--text-primary);
         }
 
+        .mob-nav-extra {
+            margin-top: 16px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mob-lang-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mob-lang-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .mob-cv-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            color: #34d399;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .mob-cv-btn:active {
+            transform: scale(0.98);
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .mob-cv-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
         /* === AVAILABILITY BAR === */
         .hero-availability {
             display: inline-flex;
@@ -2894,8 +2942,8 @@
                 </li>
                 <li>
                     <div class="lang-toggle">
-                        <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
-                        <button class="lang-btn" id="btnDE" onclick="setLang('de')">DE</button>
+                        <button class="lang-btn active btn-en" onclick="setLang('en')">EN</button>
+                        <button class="lang-btn btn-de" onclick="setLang('de')">DE</button>
                     </div>
                 </li>
             </ul>
@@ -2911,6 +2959,22 @@
         <a href="#projects" onclick="closeMob()"><i data-lucide="folder"></i><span class="lang-en">Projects</span><span class="lang-de">Projekte</span></a>
         <a href="#insights" onclick="closeMob()"><i data-lucide="book-open"></i><span class="lang-en">Insights</span><span class="lang-de">Einblicke</span></a>
         <a href="#contact" onclick="closeMob()"><i data-lucide="mail"></i><span class="lang-en">Contact</span><span class="lang-de">Kontakt</span></a>
+        
+        <div class="mob-nav-extra">
+            <div class="mob-lang-row">
+                <span class="mob-lang-label">Language</span>
+                <div class="lang-toggle">
+                    <button class="lang-btn active btn-en" onclick="setLang('en')">EN</button>
+                    <button class="lang-btn btn-de" onclick="setLang('de')">DE</button>
+                </div>
+            </div>
+            <a href="docs/Atamer_Erkal_Healthcare_Defence_AI_CV_EN_April2026.pdf" class="mob-cv-btn lang-en" download>
+                <i data-lucide="download"></i> Download CV (EN)
+            </a>
+            <a href="docs/Atamer_Erkal_Healthcare_Defence_AI_CV_DE_April2026.pdf" class="mob-cv-btn lang-de" download>
+                <i data-lucide="download"></i> Lebenslauf herunterladen (DE)
+            </a>
+        </div>
     </div>
 
     <!-- ===== HERO ===== -->
@@ -5222,8 +5286,8 @@
             document.querySelectorAll('.lang-de').forEach(function (e) {
                 if (l === 'de') { e.classList.remove('lang-hidden'); } else { e.classList.add('lang-hidden'); }
             });
-            document.getElementById('btnEN').classList.toggle('active', l === 'en');
-            document.getElementById('btnDE').classList.toggle('active', l === 'de');
+            document.querySelectorAll('.btn-en').forEach(function(b) { b.classList.toggle('active', l === 'en'); });
+            document.querySelectorAll('.btn-de').forEach(function(b) { b.classList.toggle('active', l === 'de'); });
             document.documentElement.lang = l;
         }
         setLang('en');
