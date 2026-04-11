@@ -5232,25 +5232,20 @@
         })();
 
         // ===== ARCHITECTURE MODAL FUNCTIONS =====
-        // Pre-render all Mermaid diagrams on page load to prevent flickering
-        function preRenderMermaids() {
-            document.querySelectorAll('.arch-modal .mermaid').forEach(function(el) {
-                try {
-                    mermaid.init(undefined, el);
-                } catch(e) {
-                    console.log('Mermaid pre-render error (can be ignored):', e);
-                }
-            });
-        }
-        
-        // Pre-render after a short delay to ensure Mermaid is loaded
-        setTimeout(preRenderMermaids, 500);
+        var renderedMermaids = {};
         
         function openArchModal(projectId) {
             var modal = document.getElementById('modal-' + projectId);
             if (modal) {
                 document.body.style.overflow = 'hidden';
                 modal.classList.add('active');
+                
+                // Render Mermaid diagram when modal opens
+                var mermaidEl = modal.querySelector('.mermaid');
+                if (mermaidEl && !renderedMermaids[projectId]) {
+                    mermaid.init(undefined, mermaidEl);
+                    renderedMermaids[projectId] = true;
+                }
             }
         }
 
