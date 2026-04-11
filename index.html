@@ -1578,21 +1578,27 @@
         }
 
         /* Make Mermaid diagram text more readable */
-        .arch-diagram-container .mermaid text {
-            font-size: 14px !important;
-            font-weight: 500 !important;
-            fill: var(--text-primary) !important;
-        }
-
-        .arch-diagram-container .mermaid .nodeLabel {
-            font-size: 13px !important;
+        .arch-diagram-container .mermaid svg text {
+            font-size: 15px !important;
             font-weight: 600 !important;
-            fill: var(--text-primary) !important;
+            fill: #edf2f7 !important;
         }
 
-        .arch-diagram-container .mermaid .edgeLabel {
-            font-size: 12px !important;
-            fill: var(--text-secondary) !important;
+        .arch-diagram-container .mermaid svg .node rect,
+        .arch-diagram-container .mermaid svg .node polygon,
+        .arch-diagram-container .mermaid svg .node circle {
+            fill: #1a2540 !important;
+            stroke: #3b82f6 !important;
+            stroke-width: 2px !important;
+        }
+
+        .arch-diagram-container .mermaid svg .edgePath path {
+            stroke: #94a3b8 !important;
+            stroke-width: 2px !important;
+        }
+
+        .arch-diagram-container .mermaid svg .arrowheadPath {
+            fill: #94a3b8 !important;
         }
 
         .arch-info-grid {
@@ -5296,16 +5302,21 @@
         // Initialize Mermaid
         mermaid.initialize({ 
             startOnLoad: false,
-            theme: 'dark',
-            fontSize: 16,
-            fontFamily: 'Arial, sans-serif',
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#1a2540',
+                primaryTextColor: '#edf2f7',
+                primaryBorderColor: '#3b82f6',
+                lineColor: '#94a3b8',
+                secondaryColor: '#0f1520',
+                tertiaryColor: '#151d2e',
+                fontSize: '16px'
+            },
             flowchart: {
                 useMaxWidth: true,
                 htmlLabels: true,
                 curve: 'basis',
-                fontSize: 16,
-                nodeSpacing: 50,
-                rankSpacing: 50
+                padding: 20
             }
         });
 
