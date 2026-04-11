@@ -159,26 +159,23 @@
         }
 
         .nav-cv-btn {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white !important;
-            padding: 10px 18px !important;
-            border-radius: 10px !important;
-            font-weight: 700 !important;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            color: var(--text-muted) !important;
         }
 
         .nav-cv-btn:hover {
-            background: linear-gradient(135deg, #2563eb, #7c3aed) !important;
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
-            transform: translateY(-2px) !important;
+            color: var(--text-primary) !important;
+            background: rgba(59, 130, 246, 0.12) !important;
         }
 
         .nav-cv-btn svg {
             width: 15px !important;
             height: 15px !important;
+            opacity: 0.7 !important;
+        }
+
+        .nav-cv-btn:hover svg {
             opacity: 1 !important;
-            stroke: white !important;
+            stroke: #3b82f6 !important;
         }
 
         .nav-links a:hover svg {
@@ -2892,7 +2889,7 @@
                 <li><a href="#insights"><i data-lucide="book-open"></i>Insights</a></li>
                 <li><a href="#contact"><i data-lucide="mail"></i>Contact</a></li>
                 <li>
-                    <a href="docs/Atamer_Erkal_Healthcare_Defence_AI_CV_EN_April2026.pdf" class="nav-cv-btn lang-en" download><i data-lucide="download"></i>Download CV</a>
+                    <a href="docs/Atamer_Erkal_Healthcare_Defence_AI_CV_EN_April2026.pdf" class="nav-cv-btn lang-en" download><i data-lucide="download"></i>CV</a>
                     <a href="docs/Atamer_Erkal_Healthcare_Defence_AI_CV_DE_April2026.pdf" class="nav-cv-btn lang-de" download><i data-lucide="download"></i>Lebenslauf</a>
                 </li>
                 <li>
