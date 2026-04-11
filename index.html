@@ -1400,41 +1400,48 @@
             font-weight: 500;
         }
 
-        /* LINK buttons - full hover effect */
-        a.p-action-btn {
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        /* LINK buttons - full hover effect with high specificity */
+        .p-actions a.p-action-btn {
+            cursor: pointer !important;
+            transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease !important;
         }
 
-        a.p-action-btn:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--bdr-h);
-            color: var(--text-primary);
-            transform: translateY(-2px);
+        .p-actions a.p-action-btn:hover {
+            background-color: var(--bg-card-hover) !important;
+            border-color: var(--bdr-h) !important;
+            color: var(--text-primary) !important;
+            transform: translateY(-2px) !important;
         }
 
-        a.p-action-btn.arch-btn:hover {
-            border-color: var(--accent-df);
-            color: var(--accent-df);
+        .p-actions a.p-action-btn.arch-btn:hover {
+            border-color: var(--accent-df) !important;
+            color: var(--accent-df) !important;
         }
 
-        /* BUTTON (non-link) - minimal hover, no transform */
-        button.p-action-btn {
-            cursor: default;
-            transition: color 0.2s ease, border-color 0.2s ease;
+        /* BUTTON (non-link) - NO hover effects, static appearance */
+        .p-actions button.p-action-btn {
+            cursor: default !important;
+            transition: none !important;
+            transform: none !important;
         }
 
-        button.p-action-btn:hover {
-            color: var(--text-secondary);
+        .p-actions button.p-action-btn:hover {
+            background-color: rgba(21, 29, 46, 0.5) !important;
+            border-color: var(--bdr) !important;
+            color: var(--text-muted) !important;
+            transform: none !important;
         }
 
-        button.p-action-btn.arch-btn {
-            cursor: pointer;
+        .p-actions button.p-action-btn.arch-btn {
+            cursor: pointer !important;
+            transition: border-color 0.2s ease, color 0.2s ease !important;
         }
 
-        button.p-action-btn.arch-btn:hover {
-            border-color: var(--accent-df);
-            color: var(--accent-df);
+        .p-actions button.p-action-btn.arch-btn:hover {
+            background-color: rgba(21, 29, 46, 0.5) !important;
+            border-color: var(--accent-df) !important;
+            color: var(--accent-df) !important;
+            transform: none !important;
         }
 
         /* Icons */
@@ -1484,15 +1491,15 @@
             background: var(--bg-card);
             border: 1px solid var(--bdr-h);
             border-radius: var(--r-lg);
-            overflow-y: auto;
-            overflow-x: hidden;
-            opacity: 0;
-            transition: opacity 0.2s ease;
+            overflow: visible;
+            opacity: 1;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
         }
 
-        .arch-modal.active .arch-modal-content {
-            opacity: 1;
+        .arch-modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(90vh - 80px);
         }
 
         .arch-modal-header {
@@ -1541,11 +1548,6 @@
             height: 18px;
         }
 
-        .arch-modal-body {
-            padding: 24px;
-            max-height: none;
-            overflow-y: visible;
-        }
 
         .arch-section-title {
             font-size: 0.9rem;
@@ -5332,27 +5334,25 @@
         })();
 
         // ===== ARCHITECTURE MODAL FUNCTIONS =====
-        var renderedMermaids = {};
+        // Pre-render all Mermaid diagrams on page load to prevent flickering
+        function preRenderMermaids() {
+            document.querySelectorAll('.arch-modal .mermaid').forEach(function(el) {
+                try {
+                    mermaid.init(undefined, el);
+                } catch(e) {
+                    console.log('Mermaid pre-render error (can be ignored):', e);
+                }
+            });
+        }
+        
+        // Pre-render after a short delay to ensure Mermaid is loaded
+        setTimeout(preRenderMermaids, 500);
         
         function openArchModal(projectId) {
             var modal = document.getElementById('modal-' + projectId);
             if (modal) {
                 document.body.style.overflow = 'hidden';
-                
-                // Initialize Mermaid first (before showing modal)
-                var mermaidEl = modal.querySelector('.mermaid');
-                if (mermaidEl && !renderedMermaids[projectId]) {
-                    mermaid.init(undefined, mermaidEl);
-                    renderedMermaids[projectId] = true;
-                }
-                
-                // Refresh Lucide icons inside modal
-                lucide.createIcons();
-                
-                // Show modal after a short delay to let Mermaid render
-                setTimeout(function() {
-                    modal.classList.add('active');
-                }, 50);
+                modal.classList.add('active');
             }
         }
 
