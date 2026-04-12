@@ -5,70 +5,72 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Content Safety Demo &mdash; Atamer Erkal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
---bg:#060c1a;--bg2:#0d1425;--bg3:#131c30;--bg4:#1a2540;
---accent:#00e5c3;--accent2:#00d4ff;
---green:#00e5a0;--green-bg:rgba(0,229,160,.08);--green-glow:rgba(0,229,160,.2);
---yellow:#ffbe2e;--yellow-bg:rgba(255,190,46,.08);--yellow-glow:rgba(255,190,46,.2);
---red:#ff4757;--red-bg:rgba(255,71,87,.08);--red-glow:rgba(255,71,87,.2);
---blue:#4da6ff;--blue-bg:rgba(77,166,255,.08);
---purple:#a78bfa;
---txt:#eaf0ff;--txt2:#8b9dc3;--txt3:#5a6d8a;
---border:rgba(138,165,210,.07);--radius:14px;
+--bg:#0a0f1a;--bg2:#111827;--bg3:#1a2540;--bg4:#1e293b;
+--accent:#3b82f6;--accent2:#8b5cf6;
+--green:#10b981;--green-bg:rgba(16,185,129,.1);--green-glow:rgba(16,185,129,.25);
+--yellow:#f59e0b;--yellow-bg:rgba(245,158,11,.1);--yellow-glow:rgba(245,158,11,.25);
+--red:#ef4444;--red-bg:rgba(239,68,68,.1);--red-glow:rgba(239,68,68,.25);
+--blue:#3b82f6;--blue-bg:rgba(59,130,246,.1);
+--purple:#8b5cf6;
+--txt:#f1f5f9;--txt2:#94a3b8;--txt3:#64748b;
+--border:rgba(148,163,184,.1);--radius:12px;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt2);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;top:-20%;left:-10%;width:60%;height:60%;background:radial-gradient(circle,rgba(0,229,195,.03) 0%,transparent 70%);pointer-events:none;z-index:0}
-body::after{content:"";position:fixed;bottom:-20%;right:-10%;width:50%;height:50%;background:radial-gradient(circle,rgba(77,166,255,.025) 0%,transparent 70%);pointer-events:none;z-index:0}
-.wrap{max-width:1260px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt2);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;top:-20%;left:-10%;width:60%;height:60%;background:radial-gradient(circle,rgba(59,130,246,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+body::after{content:"";position:fixed;bottom:-20%;right:-10%;width:50%;height:50%;background:radial-gradient(circle,rgba(139,92,246,.03) 0%,transparent 70%);pointer-events:none;z-index:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
 
 /* Header */
-header{padding:1rem 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,12,26,.93);backdrop-filter:blur(20px);z-index:100}
-header .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
-.hdr-left{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
-.hdr-logo{font-weight:800;font-size:1.15rem;color:var(--accent);text-decoration:none;letter-spacing:-.3px}
-.hdr-dot{width:4px;height:4px;border-radius:50%;background:var(--txt3);display:inline-block}
-.hdr-title{font-size:.8rem;color:var(--txt3);font-weight:500}
-.hdr-live{padding:.2rem .55rem;border-radius:20px;font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--green-bg);color:var(--green);border:1px solid rgba(0,229,160,.2);display:flex;align-items:center;gap:.35rem}
+header{padding:0;height:64px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,15,26,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);z-index:100}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:100%;flex-wrap:wrap;gap:.5rem}
+.hdr-left{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.hdr-logo{font-weight:800;font-size:1.2rem;text-decoration:none;letter-spacing:-0.02em;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdr-title{font-size:.85rem;color:var(--txt3);font-weight:500}
+.hdr-live{padding:.35rem .7rem;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,.25);display:flex;align-items:center;gap:.4rem;box-shadow:0 0 12px var(--green-glow)}
 .hdr-live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.back-link{font-size:.78rem;color:var(--txt3);text-decoration:none;transition:.2s}
-.back-link:hover{color:var(--accent)}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px var(--green)}50%{opacity:.5;box-shadow:0 0 4px transparent}}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border-radius:8px;font-size:.8rem;font-weight:600;color:var(--txt3);text-decoration:none;transition:all .2s;border:1px solid var(--border)}
+.back-link:hover{color:var(--txt);background:var(--bg3);border-color:rgba(59,130,246,.3)}
 
 /* Hero */
-.hero{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--border)}
-.hero h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--txt);letter-spacing:-.5px;margin-bottom:.4rem}
-.hero-sub{max-width:660px;font-size:.88rem;line-height:1.7;margin-bottom:.7rem}
-.htags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.8rem}
-.htag{padding:.22rem .55rem;border-radius:5px;font-size:.67rem;font-weight:600;letter-spacing:.3px}
-.htag-a{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(77,166,255,.15)}
-.htag-x{background:rgba(167,139,250,.08);color:var(--purple);border:1px solid rgba(167,139,250,.15)}
-.htag-r{background:var(--green-bg);color:var(--green);border:1px solid rgba(0,229,160,.15)}
-.api-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .75rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:.72rem;color:var(--txt3)}
-.api-badge strong{color:var(--txt2)}
+.hero{padding:3rem 0 2rem;border-bottom:1px solid var(--border)}
+.hero h1{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--txt);letter-spacing:-0.02em;margin-bottom:.6rem}
+.hero-sub{max-width:620px;font-size:.9rem;line-height:1.7;margin-bottom:1rem;color:var(--txt2)}
+.htags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
+.htag{padding:.4rem .75rem;border-radius:20px;font-size:.75rem;font-weight:600;letter-spacing:.2px;display:inline-flex;align-items:center;gap:.4rem}
+.htag-a{background:var(--blue-bg);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.htag-x{background:rgba(139,92,246,.1);color:#a78bfa;border:1px solid rgba(139,92,246,.2)}
+.htag-r{background:var(--green-bg);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.api-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:.8rem;color:var(--txt3)}
+.api-badge strong{color:var(--txt)}
 
 /* Tabs */
-.tabs{display:flex;gap:.3rem;margin:1.5rem 0 1rem;border-bottom:1px solid var(--border)}
-.tab-btn{padding:.6rem 1.2rem;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--txt3);font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s}
-.tab-btn:hover{color:var(--txt2)}
-.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tabs{display:flex;gap:.5rem;margin:2rem 0 1.5rem;padding:.35rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;width:fit-content}
+.tab-btn{padding:.6rem 1.25rem;background:transparent;border:none;border-radius:8px;color:var(--txt3);font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.tab-btn:hover{color:var(--txt2);background:rgba(255,255,255,.03)}
+.tab-btn.active{color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);box-shadow:0 4px 15px rgba(59,130,246,.3)}
 .tc{display:none}.tc.active{display:block}
 
 /* Grid */
-.grid{display:grid;grid-template-columns:300px 1fr;gap:0;min-height:55vh}
-.side{border-right:1px solid var(--border);padding-right:1.2rem;overflow-y:auto;max-height:70vh}
+.grid{display:grid;grid-template-columns:280px 1fr;gap:0;min-height:55vh}
+.side{border-right:1px solid var(--border);padding-right:1.5rem;overflow-y:auto;max-height:70vh;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.side::-webkit-scrollbar{width:6px}
+.side::-webkit-scrollbar-track{background:transparent}
+.side::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 .pnl{padding-left:1.5rem}
 
 /* Scenario btns */
-.cg{margin-bottom:1.2rem}
-.cg-label{font-size:.65rem;font-weight:700;color:var(--txt3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.4rem;padding-left:.2rem}
-.sb{width:100%;text-align:left;padding:.55rem .7rem;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--txt2);font-size:.8rem;font-family:inherit;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.5rem;margin-bottom:.15rem}
-.sb:hover{background:var(--bg3);border-color:var(--border)}
-.sb.on{background:var(--bg4);border-color:rgba(0,229,195,.12);color:var(--txt);box-shadow:0 0 20px rgba(0,229,195,.04)}
-.dt{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cg{margin-bottom:1.5rem}
+.cg-label{font-size:.75rem;font-weight:700;color:var(--txt3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.6rem;padding-left:.2rem}
+.sb{width:100%;text-align:left;padding:.85rem 1rem;background:transparent;border:1px solid transparent;border-radius:10px;color:var(--txt2);font-size:.85rem;font-family:inherit;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.6rem;margin-bottom:.2rem}
+.sb:hover{background:var(--bg3);border-color:var(--border);color:var(--txt)}
+.sb.on{background:var(--bg4);border-color:rgba(59,130,246,.4);color:var(--txt);box-shadow:0 0 20px rgba(59,130,246,.1),inset 0 1px 0 rgba(255,255,255,.05)}
+.dt{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .dt-g{background:var(--green)}.dt-y{background:var(--yellow)}.dt-r{background:var(--red)}.dt-b{background:var(--blue)}
 
 /* Empty */
@@ -76,22 +78,26 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 .empty-icon{font-size:3rem;margin-bottom:.8rem;opacity:.4}
 
 /* Input box */
-.ibox{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1rem;position:relative;overflow:hidden}
-.ibox::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);border-radius:2px 0 0 2px}
-.ibox-label{font-size:.65rem;font-weight:700;color:var(--txt3);letter-spacing:1px;text-transform:uppercase;margin-bottom:.4rem;padding-left:.5rem}
-.ibox-text{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--txt);line-height:1.75;padding-left:.5rem}
-.hl-r{background:rgba(255,71,87,.15);color:var(--red);padding:.1rem .3rem;border-radius:3px;font-weight:600}
-.hl-y{background:rgba(255,190,46,.12);color:var(--yellow);padding:.1rem .3rem;border-radius:3px;font-weight:600}
-.hl-b{background:rgba(77,166,255,.12);color:var(--blue);padding:.1rem .3rem;border-radius:3px;font-weight:600}
+.ibox{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
+.ibox::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--accent),var(--accent2));border-radius:2px 0 0 2px}
+.ibox-label{font-size:.7rem;font-weight:700;color:var(--txt3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.5rem;padding-left:.5rem}
+.ibox-text{font-family:'JetBrains Mono',monospace;font-size:.875rem;color:var(--txt);line-height:1.8;padding-left:.5rem}
+.hl-r{background:rgba(239,68,68,.15);color:#f87171;padding:.15rem .4rem;border-radius:4px;font-weight:600}
+.hl-y{background:rgba(245,158,11,.15);color:#fbbf24;padding:.15rem .4rem;border-radius:4px;font-weight:600}
+.hl-b{background:rgba(59,130,246,.15);color:#60a5fa;padding:.15rem .4rem;border-radius:4px;font-weight:600}
 
 /* Decision */
-.dec{padding:.8rem 1.1rem;border-radius:var(--radius);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;border:1px solid;position:relative;overflow:hidden}
-.dec::after{content:"";position:absolute;inset:0;opacity:.03;pointer-events:none}
-.dec-i{font-size:1.5rem;z-index:1}.dec-t{z-index:1}
-.dec-l{font-size:1rem;font-weight:700}.dec-s{font-size:.78rem;margin-top:.1rem}
-.dec-ap{background:var(--green-bg);border-color:rgba(0,229,160,.15)}.dec-ap .dec-l{color:var(--green)}.dec-ap .dec-s{color:rgba(0,229,160,.6)}.dec-ap::after{background:linear-gradient(90deg,var(--green),transparent)}
-.dec-rv{background:var(--yellow-bg);border-color:rgba(255,190,46,.15)}.dec-rv .dec-l{color:var(--yellow)}.dec-rv .dec-s{color:rgba(255,190,46,.6)}.dec-rv::after{background:linear-gradient(90deg,var(--yellow),transparent)}
-.dec-bl{background:var(--red-bg);border-color:rgba(255,71,87,.15)}.dec-bl .dec-l{color:var(--red)}.dec-bl .dec-s{color:rgba(255,71,87,.6)}.dec-bl::after{background:linear-gradient(90deg,var(--red),transparent)}
+.dec{padding:1.25rem 1.5rem;border-radius:var(--radius);margin-bottom:1.25rem;display:flex;align-items:center;gap:1rem;border:1px solid;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.dec::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;opacity:.5}
+.dec-i{font-size:1.75rem;z-index:1}.dec-t{z-index:1;flex:1}
+.dec-l{font-size:1.1rem;font-weight:700;letter-spacing:-.2px}.dec-s{font-size:.85rem;margin-top:.15rem}
+.dec-ap{background:var(--green-bg);border-color:rgba(16,185,129,.25)}.dec-ap .dec-l{color:#34d399}.dec-ap .dec-s{color:rgba(52,211,153,.7)}.dec-ap::before{background:linear-gradient(90deg,var(--green),transparent)}
+.dec-ap .dec-i{color:#34d399}
+.dec-rv{background:var(--yellow-bg);border-color:rgba(245,158,11,.25)}.dec-rv .dec-l{color:#fbbf24}.dec-rv .dec-s{color:rgba(251,191,36,.7)}.dec-rv::before{background:linear-gradient(90deg,var(--yellow),transparent)}
+.dec-rv .dec-i{color:#fbbf24}
+.dec-bl{background:var(--red-bg);border-color:rgba(239,68,68,.25)}.dec-bl .dec-l{color:#f87171}.dec-bl .dec-s{color:rgba(248,113,113,.7)}.dec-bl::before{background:linear-gradient(90deg,var(--red),transparent)}
+.dec-bl .dec-i{color:#f87171;animation:pulse-decision 2s infinite}
+@keyframes pulse-decision{0%,100%{opacity:1}50%{opacity:.6}}
 
 /* Gauges */
 .gauges{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-bottom:1rem}
@@ -113,16 +119,17 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 .xai-k{font-weight:600;color:var(--txt)}.xai-v{color:var(--txt2);margin-top:.1rem}
 
 /* Pipeline */
-.pipeline{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin:2rem 0}
-.pipeline-title{font-size:1rem;font-weight:700;color:var(--txt);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
-.pipe-steps{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:.5rem}
-.pipe-step{flex:1;min-width:140px;padding:.8rem;background:var(--bg3);border:1px solid var(--border);text-align:center;position:relative}
-.pipe-step:first-child{border-radius:var(--radius) 0 0 var(--radius)}
-.pipe-step:last-child{border-radius:0 var(--radius) var(--radius) 0}
-.pipe-step:not(:last-child)::after{content:"\25B6";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:.7rem;z-index:2;background:var(--bg2);padding:2px}
-.pipe-icon{font-size:1.5rem;margin-bottom:.4rem}
-.pipe-name{font-size:.75rem;font-weight:700;color:var(--txt);margin-bottom:.2rem}
-.pipe-desc{font-size:.65rem;color:var(--txt3);line-height:1.4}
+.pipeline{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin:2rem 0}
+.pipeline-title{font-size:1.1rem;font-weight:700;color:var(--txt);margin-bottom:1.5rem;letter-spacing:-.2px}
+.pipe-steps{display:flex;align-items:center;gap:.5rem;overflow-x:auto;padding:.5rem 0}
+.pipe-step{flex:1;min-width:160px;padding:1rem;background:var(--bg3);border:1px solid var(--border);border-radius:10px;text-align:center;transition:all .3s;position:relative}
+.pipe-step:hover{background:var(--bg4);border-color:rgba(59,130,246,.3)}
+.pipe-icon{width:40px;height:40px;margin:0 auto .75rem;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)}
+.pipe-icon svg{width:20px;height:20px;stroke:var(--accent)}
+.pipe-name{font-size:.8rem;font-weight:700;color:var(--txt);margin-bottom:.25rem}
+.pipe-desc{font-size:.7rem;color:var(--txt3);line-height:1.5}
+.pipe-arrow{flex-shrink:0;width:24px;display:flex;align-items:center;justify-content:center;color:var(--accent);opacity:.5}
+.pipe-arrow svg{width:16px;height:16px}
 
 /* Image tab */
 .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
@@ -140,13 +147,32 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 .img-result-info{flex:1}
 
 /* Scale */
-.sc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;margin:1.5rem 0}
-.sc-t{font-size:.68rem;font-weight:700;color:var(--txt3);letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem}
-.sc-r{display:flex;align-items:center;gap:.6rem;padding:.2rem 0;font-size:.78rem}
-.sc-n{font-family:'JetBrains Mono',monospace;font-weight:500;width:36px;color:var(--txt2)}
+.sc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin:2rem 0}
+.sc-t{font-size:.8rem;font-weight:700;color:var(--txt3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.25rem}
+.sc-bar{height:8px;background:var(--bg3);border-radius:4px;margin-bottom:1rem;position:relative;display:flex;overflow:hidden}
+.sc-segment{flex:1;position:relative}
+.sc-segment:not(:last-child)::after{content:"";position:absolute;right:0;top:0;bottom:0;width:2px;background:var(--bg)}
+.sc-segment.s0{background:var(--green)}
+.sc-segment.s1{background:linear-gradient(90deg,var(--green),rgba(16,185,129,.6))}
+.sc-segment.s2{background:linear-gradient(90deg,rgba(16,185,129,.6),var(--yellow))}
+.sc-segment.s3{background:var(--yellow)}
+.sc-segment.s4{background:linear-gradient(90deg,var(--yellow),var(--red))}
+.sc-segment.s5{background:var(--red)}
+.sc-segment.s6{background:linear-gradient(90deg,var(--red),#dc2626)}
+.sc-segment.s7{background:#dc2626}
+.sc-labels{display:flex;gap:.5rem;flex-wrap:wrap}
+.sc-label{padding:.5rem 1rem;border-radius:20px;font-size:.75rem;font-weight:600}
+.sc-label.g{background:var(--green-bg);color:#34d399;border:1px solid rgba(16,185,129,.2)}
+.sc-label.y{background:var(--yellow-bg);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.sc-label.r{background:var(--red-bg);color:#f87171;border:1px solid rgba(239,68,68,.2)}
 
-.ft{border-top:1px solid var(--border);padding:1.5rem 0;text-align:center}
-.ft p{font-size:.75rem;color:var(--txt3)}.ft a{color:var(--accent);text-decoration:none}
+/* Footer */
+.ft{border-top:1px solid var(--border);padding:1.5rem 0;margin-top:2rem;background:linear-gradient(180deg,transparent,rgba(59,130,246,.02))}
+.ft .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-left{font-size:.8rem;color:var(--txt3);display:flex;align-items:center;gap:.75rem}
+.ft-right{font-size:.8rem;color:var(--txt3)}
+.ft a{color:var(--accent);text-decoration:none;transition:opacity .2s}
+.ft a:hover{opacity:.8}
 
 .fi{animation:fadeIn .35s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -178,20 +204,20 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 <span class="hdr-title">Content Safety Platform</span>
 <span class="hdr-live">Live Demo</span>
 </div>
-<a href="https://atamererkal.github.io" class="back-link">&larr; Portfolio</a>
+<a href="https://atamererkal.github.io" class="back-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Back to Portfolio</a>
 </div>
 </header>
 
 <section class="hero">
 <div class="wrap">
-<h1>&#128737; Content Safety Platform</h1>
-<p class="hero-sub">Explore real Azure AI Content Safety results with Explainable AI. Every result below is a genuine API response &mdash; see exactly how AI-powered moderation works across text and images with transparent, auditable decision explanations.</p>
+<h1>Content Safety Platform</h1>
+<p class="hero-sub">Real Azure AI Content Safety results with Explainable AI. See how AI-powered moderation works with transparent, auditable decision explanations.</p>
 <div class="htags">
-<span class="htag htag-a">Azure AI Content Safety</span>
-<span class="htag htag-x">Explainable AI (XAI)</span>
-<span class="htag htag-r">Real API Results</span>
+<span class="htag htag-a"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Azure AI Content Safety</span>
+<span class="htag htag-x"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Explainable AI (XAI)</span>
+<span class="htag htag-r"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Real API Results</span>
 </div>
-<div class="api-badge">&#9889; <strong>Real Azure API responses</strong> &mdash; West Europe endpoint &mdash; March 17, 2026</div>
+<div class="api-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><strong>Real Azure API responses</strong> &mdash; West Europe endpoint</div>
 </div>
 </section>
 
@@ -199,21 +225,26 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 
 <!-- Pipeline -->
 <div class="pipeline">
-<div class="pipeline-title">&#9881; How It Works &mdash; Analysis Pipeline</div>
+<div class="pipeline-title">How It Works &mdash; Analysis Pipeline</div>
 <div class="pipe-steps">
-<div class="pipe-step"><div class="pipe-icon">&#128228;</div><div class="pipe-name">Input</div><div class="pipe-desc">Text or image submitted for analysis</div></div>
-<div class="pipe-step"><div class="pipe-icon">&#128256;</div><div class="pipe-name">Pre-Processing</div><div class="pipe-desc">Normalization, resizing, encoding</div></div>
-<div class="pipe-step"><div class="pipe-icon">&#129302;</div><div class="pipe-name">Azure AI Engine</div><div class="pipe-desc">Multi-model ensemble detection &lt;500ms</div></div>
-<div class="pipe-step"><div class="pipe-icon">&#128202;</div><div class="pipe-name">Category Scoring</div><div class="pipe-desc">Hate, Violence, Self-Harm, Sexual (0-7)</div></div>
-<div class="pipe-step"><div class="pipe-icon">&#128161;</div><div class="pipe-name">Decision Engine</div><div class="pipe-desc">Approve / Review / Block</div></div>
-<div class="pipe-step"><div class="pipe-icon">&#129504;</div><div class="pipe-name">XAI Report</div><div class="pipe-desc">Explainable AI with evidence &amp; audit trail</div></div>
+<div class="pipe-step"><div class="pipe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="pipe-name">Input</div><div class="pipe-desc">Text or image submitted</div></div>
+<div class="pipe-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="pipe-step"><div class="pipe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg></div><div class="pipe-name">Pre-Processing</div><div class="pipe-desc">Normalize & encode</div></div>
+<div class="pipe-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="pipe-step"><div class="pipe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12 2.1 9.9"/><path d="M12 12v10"/></svg></div><div class="pipe-name">Azure AI Engine</div><div class="pipe-desc">Multi-model detection</div></div>
+<div class="pipe-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="pipe-step"><div class="pipe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="pipe-name">Category Scoring</div><div class="pipe-desc">4 categories, 0-7 scale</div></div>
+<div class="pipe-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="pipe-step"><div class="pipe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="pipe-name">Decision Engine</div><div class="pipe-desc">Approve/Review/Block</div></div>
+<div class="pipe-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+<div class="pipe-step"><div class="pipe-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class="pipe-name">XAI Report</div><div class="pipe-desc">Explainable results</div></div>
 </div>
 </div>
 
 <!-- Tabs -->
 <div class="tabs">
-<button class="tab-btn active" onclick="switchTab('text')">&#128196; Text Analysis</button>
-<button class="tab-btn" onclick="switchTab('image')">&#128247; Image Moderation</button>
+<button class="tab-btn active" onclick="switchTab('text')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Text Analysis</button>
+<button class="tab-btn" onclick="switchTab('image')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Image Moderation</button>
 </div>
 
 <!-- TEXT TAB -->
@@ -221,7 +252,7 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 <div class="grid">
 <div class="side" id="sb"></div>
 <div class="pnl" id="pn">
-<div class="empty"><div><div class="empty-icon">&#128270;</div><div style="font-size:1rem;color:var(--txt);font-weight:600;margin-bottom:.3rem">Select a scenario</div><div style="font-size:.85rem;color:var(--txt3)">Click any example to see real Azure AI analysis with keyword highlighting and XAI.</div></div></div>
+<div class="empty"><div><div class="empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div style="font-size:1rem;color:var(--txt);font-weight:600;margin-bottom:.3rem">Select a scenario</div><div style="font-size:.85rem;color:var(--txt3)">Click any example to see real Azure AI analysis with keyword highlighting and XAI.</div></div></div>
 </div>
 </div>
 </div>
@@ -236,15 +267,27 @@ header .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 <!-- Scale -->
 <div class="sc">
 <div class="sc-t">Severity Scale &mdash; Azure Content Safety</div>
-<div class="sc-r"><span class="sc-n">0</span><span style="color:var(--green);font-weight:600">&#10003; Safe</span><span style="color:var(--txt3)">&mdash; No harmful content</span></div>
-<div class="sc-r"><span class="sc-n">1-2</span><span style="color:var(--green);font-weight:600">&#10003; Low</span><span style="color:var(--txt3)">&mdash; Auto-approve with logging</span></div>
-<div class="sc-r"><span class="sc-n">3-4</span><span style="color:var(--yellow);font-weight:600">&#9888; Medium</span><span style="color:var(--txt3)">&mdash; Flag for human review</span></div>
-<div class="sc-r"><span class="sc-n">5-6</span><span style="color:var(--red);font-weight:600">&#128683; High</span><span style="color:var(--txt3)">&mdash; Auto-block immediately</span></div>
-<div class="sc-r"><span class="sc-n">7</span><span style="color:var(--red);font-weight:600">&#128683; Severe</span><span style="color:var(--txt3)">&mdash; Block + alert team</span></div>
+<div class="sc-bar">
+<div class="sc-segment s0"></div>
+<div class="sc-segment s1"></div>
+<div class="sc-segment s2"></div>
+<div class="sc-segment s3"></div>
+<div class="sc-segment s4"></div>
+<div class="sc-segment s5"></div>
+<div class="sc-segment s6"></div>
+<div class="sc-segment s7"></div>
+</div>
+<div class="sc-labels">
+<span class="sc-label g">0 Safe &mdash; Auto-approve</span>
+<span class="sc-label g">1-2 Low &mdash; Log</span>
+<span class="sc-label y">3-4 Medium &mdash; Review</span>
+<span class="sc-label r">5-6 High &mdash; Block</span>
+<span class="sc-label r">7 Severe &mdash; Alert</span>
+</div>
 </div>
 </div>
 
-<footer class="ft"><div class="wrap"><p>Built by <a href="https://atamererkal.github.io">Atamer Erkal</a> &middot; <a href="https://github.com/AtamerErkal/azure-content-safety-platform">GitHub</a> &middot; Azure AI Content Safety &middot; Explainable AI</p></div></footer>
+<footer class="ft"><div class="wrap"><div class="ft-left">Built by <a href="https://atamererkal.github.io">Atamer Erkal</a><a href="https://github.com/AtamerErkal/azure-content-safety-platform">GitHub</a></div><div class="ft-right">Azure AI Content Safety &middot; Explainable AI</div></div></footer>
 
 <script>
 var D=[
