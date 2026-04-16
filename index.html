@@ -5647,23 +5647,36 @@
 
     </script>
 <script>
-  // Section Viewed Tracking
+  // Advanced Section + Scroll Tracking
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
-        const sectionName = entry.target.id || entry.target.getAttribute('class') || 'unknown-section';
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+        const sectionName = entry.target.id || entry.target.classList[0] || 'unknown';
         plausible('Section Viewed', { 
           props: { 
-            section: sectionName 
+            section: sectionName,
+            visibility: Math.round(entry.intersectionRatio * 100) + '%'
           } 
         });
         sectionObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: [0.35, 0.6] });
 
-  document.querySelectorAll('section[id]').forEach(section => {
-    sectionObserver.observe(section);
+  document.querySelectorAll('section[id], .project-card').forEach(el => {
+    sectionObserver.observe(el);
+  });
+
+  let timeOnSite = 0;
+  const timer = setInterval(() => {
+    timeOnSite += 1;
+    if (timeOnSite % 10 === 0) { // her 10 saniyede bir raporla
+      plausible('Time on Site', { props: { seconds: timeOnSite } });
+    }
+  }, 1000);
+
+  window.addEventListener('beforeunload', () => {
+    plausible('Time on Site', { props: { seconds: timeOnSite, final: true } });
   });
 </script>
 </body>
