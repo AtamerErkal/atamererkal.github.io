@@ -5646,6 +5646,26 @@
         });
 
     </script>
+<script>
+  // Section Viewed Tracking
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+        const sectionName = entry.target.id || entry.target.getAttribute('class') || 'unknown-section';
+        plausible('Section Viewed', { 
+          props: { 
+            section: sectionName 
+          } 
+        });
+        sectionObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('section[id]').forEach(section => {
+    sectionObserver.observe(section);
+  });
+</script>
 </body>
 
 </html>
