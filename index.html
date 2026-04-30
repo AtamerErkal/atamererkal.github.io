@@ -1484,6 +1484,41 @@
             stroke: var(--accent-df);
         }
 
+        /* YouTube button */
+        .p-actions a.p-action-btn.youtube-btn {
+            background-color: rgba(255, 0, 0, 0.1) !important;
+            border-color: rgba(255, 0, 0, 0.3) !important;
+            color: #ff4444 !important;
+        }
+
+        .p-actions a.p-action-btn.youtube-btn:hover {
+            background-color: rgba(255, 0, 0, 0.2) !important;
+            border-color: #ff2222 !important;
+            color: #ff6666 !important;
+        }
+
+        /* Brochure / PDF buttons */
+        .p-actions a.p-action-btn.brochure-btn {
+            background-color: rgba(16, 185, 129, 0.1) !important;
+            border-color: rgba(16, 185, 129, 0.3) !important;
+            color: #10b981 !important;
+        }
+
+        .p-actions a.p-action-btn.brochure-btn:hover {
+            background-color: rgba(16, 185, 129, 0.2) !important;
+            border-color: #10b981 !important;
+            color: #34d399 !important;
+        }
+
+        /* Brochure cell: two lang-aware links stacked in one grid cell */
+        .p-brochure-cell {
+            display: grid;
+        }
+
+        .p-brochure-cell > a {
+            grid-area: 1 / 1;
+        }
+
         @media (max-width: 768px) {
             .p-actions {
                 grid-template-columns: repeat(2, 1fr);
@@ -1822,7 +1857,7 @@
 
         .con-links {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 16px;
             transform: translateY(24px);
             transition: opacity 0.5s ease, transform 0.5s ease;
@@ -3638,36 +3673,26 @@
                         <div class="lang-en">
                             <div class="psi-block problem-block">
                                 <span class="psi-label problem">⬤ Problem</span>
-                                <p class="psi-text">
-                                    <strong>In emergency situations, several critical problems occur:</strong>
-                                    <br>
-                                      - Overcrowded emergency rooms with long waiting times<br>
-                                      - Hospitals have almost no medical information until the patient physically arrives<br>
-                                      - Language barriers between patients and medical staff during critical moments<br>
-                                      - Lack of preparation time for doctors and nurses before patient arrival
+                                <p class="psi-text">In emergency situations, several critical problems occur:<br>
+                                    • <strong>Overcrowded emergency rooms</strong> with long waiting times<br>
+                                    • Hospitals have almost <strong>no medical information</strong> until the patient physically arrives<br>
+                                    • <strong>Language barriers</strong> between patients and medical staff during critical moments<br>
+                                    • <strong>Lack of preparation time</strong> for doctors and nurses before patient arrival
                                 </p>
                             </div>
                         
                             <div class="psi-block solution-block">
                                 <span class="psi-label solution">⬤ Solution</span>
-                                <p class="psi-text">
-                                    <strong>VitalNav.ai</strong> solves these problems with two connected applications:
-                                    <br>
-                                    - The <strong>Patient App</strong> enables users to describe symptoms in their own language using voice or selection 
-                                    It asks smart, adaptive questions and performs AI-powered triage using RAG-grounded clinical reasoning with GPT-5-4.
-                                    <br><br>
-                                    - The <strong>Hospital Dashboard</strong> receives real-time patient data, triage level, and explainable AI insights 
-                                    <strong>before</strong> the patient arrives, allowing ER teams to prepare beds, alert specialists, and ready equipment in advance.
+                                <p class="psi-text"><strong>VitalNav.ai</strong> solves these problems with two connected applications:<br>
+                                    • The <strong>Patient App</strong> enables users to describe symptoms in their own language using voice or selection. It asks smart, adaptive questions and performs AI-powered triage using RAG-grounded clinical reasoning with GPT-4o.<br>
+                                    • The <strong>Hospital Dashboard</strong> receives real-time patient data, triage level, and explainable AI insights before the patient arrives, allowing ER teams to prepare beds, alert specialists, and ready equipment in advance.
                                 </p>
                             </div>
                         
                             <div class="psi-block impact-block">
                                 <span class="psi-label impact">⬤ Impact</span>
-                                <p class="psi-text">
-                                    <strong>Every minute matters in an emergency</strong>
-                                    <br>
-                                    By delivering accurate patient information minutes earlier, VitalNav.ai gives hospital teams precious time to prepare. 
-                                    This means faster treatment for critical cases, reduced waiting times in emergency rooms, and a significantly higher chance of saving lives when every second counts.
+                                <p class="psi-text"><strong>Every minute matters in an emergency.</strong><br>
+                                    By delivering accurate patient information minutes earlier, VitalNav.ai gives hospital teams precious time to prepare. This means <strong>faster treatment</strong> for critical cases, <strong>reduced waiting times</strong> in emergency rooms, and a significantly higher chance of <strong>saving lives</strong> when every second counts.
                                 </p>
                             </div>
                         </div>
@@ -3718,10 +3743,10 @@
                             <span class="tt">Azure Content Safety</span>
                             <span class="tt">RAG</span>
                         </div>
-                        <div class="p-actions">
+                        <div class="p-actions" style="grid-template-columns: repeat(5, 1fr);">
                             <!-- GitHub -->
-                            <a href="https://github.com/AtamerErkal/CodeZero" 
-                               class="p-action-btn" 
+                            <a href="https://github.com/AtamerErkal/CodeZero"
+                               class="p-action-btn"
                                target="_blank"
                                onclick="plausible('Project - GitHub', {props: {project: 'VitalNav.ai'}})">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -3734,10 +3759,10 @@
                                 <i data-lucide="external-link"></i>
                                 <span>Live Demo</span>
                             </button>
-                        
+
                             <!-- YouTube -->
-                            <a href="https://youtu.be/7YuHKKsN0xk" 
-                               class="p-action-btn" 
+                            <a href="https://youtu.be/7YuHKKsN0xk"
+                               class="p-action-btn youtube-btn"
                                target="_blank"
                                onclick="plausible('Project - YouTube', {props: {project: 'VitalNav.ai'}})">
                                 <i data-lucide="play-circle"></i>
@@ -3750,6 +3775,16 @@
                                 <i data-lucide="workflow"></i>
                                 <span>Architecture</span>
                             </button>
+                            <div class="p-brochure-cell">
+                                <a href="docs/VitalNav_AI_Brochure_EN.pdf" class="p-action-btn brochure-btn lang-en" target="_blank">
+                                    <i data-lucide="file-text"></i>
+                                    <span>Brochure</span>
+                                </a>
+                                <a href="docs/VitalNav_AI_Broschuere_DE.pdf" class="p-action-btn brochure-btn lang-de" target="_blank">
+                                    <i data-lucide="file-text"></i>
+                                    <span>Broschüre</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -4955,6 +4990,11 @@
                             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                         </svg>
                         <span>GitHub</span>
+                    </a>
+                    <a href="https://cal.com/atamererkal/intro-call-ai-engineering-healthcare-ai" target="_blank" class="con-link">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+                        <span class="lang-en">Book a Call</span>
+                        <span class="lang-de">Termin buchen</span>
                     </a>
                 </div>
             </div>
