@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atamer Erkal | AI Solution Architect &amp; Technical AI PM</title>
+    <meta name="description"
+        content="AI Solution Architect and Technical AI Product Manager for healthcare and regulated environments. Former NATO Planning Officer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg: #fafdfb;
+            --bg-soft: #f0fdf6;
+            --bg-card: #ffffff;
+            --text: #0f172a;
+            --text-soft: #475569;
+            --text-mute: #94a3b8;
+            --hc: #059669;
+            --hc-soft: #d1fae5;
+            --hc-ink: #065f46;
+            --df: #2563eb;
+            --df-soft: #dbeafe;
+            --bdr: #e2e8f0;
+            --bdr-soft: #f1f5f9;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+            --shadow: 0 4px 24px rgba(6, 95, 70, 0.06);
+            --shadow-lg: 0 12px 40px rgba(6, 95, 70, 0.08);
+            --r: 14px;
+            --mw: 1100px;
+            --nh: 64px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nh) + 24px); }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+
+        .ctr { max-width: var(--mw); margin: 0 auto; padding: 0 28px; }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            height: var(--nh);
+            background: rgba(250, 253, 251, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--bdr);
+            z-index: 100;
+            display: flex; align-items: center;
+        }
+        nav .ctr { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        .logo { font-weight: 700; font-size: 1.05rem; color: var(--hc-ink); letter-spacing: -0.01em; }
+        .logo span { color: var(--text-mute); font-weight: 400; margin-left: 4px; }
+        .nav-r { display: flex; align-items: center; gap: 18px; }
+        .nav-l { display: flex; gap: 4px; }
+        .nav-l a {
+            padding: 8px 14px; font-size: 0.86rem; font-weight: 500;
+            color: var(--text-soft); border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-l a:hover { color: var(--hc-ink); background: var(--hc-soft); }
+        .lang {
+            display: flex; gap: 2px; background: #fff;
+            border: 1px solid var(--bdr); border-radius: 8px; padding: 3px;
+        }
+        .lang button {
+            padding: 5px 11px; font-size: 0.74rem; font-weight: 600;
+            background: transparent; border: none; cursor: pointer;
+            border-radius: 6px; color: var(--text-mute);
+            font-family: inherit;
+        }
+        .lang button.active { background: var(--hc); color: #fff; }
+
+        /* ===== HERO ===== */
+        .hero { padding: calc(var(--nh) + 80px) 0 80px; position: relative; overflow: hidden; }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 50% at 20% 20%, rgba(16, 185, 129, 0.08), transparent 60%),
+                        radial-gradient(ellipse 50% 40% at 90% 70%, rgba(37, 99, 235, 0.04), transparent 60%);
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1.3fr 1fr;
+            gap: 60px; align-items: center; position: relative;
+        }
+        .pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 7px 14px; background: var(--hc-soft); color: var(--hc-ink);
+            border-radius: 100px; font-size: 0.78rem; font-weight: 600;
+            margin-bottom: 22px;
+        }
+        .pill svg { width: 14px; height: 14px; }
+        .hero h1 {
+            font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+            font-weight: 700; line-height: 1.1;
+            letter-spacing: -0.03em; margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--hc); }
+        .hero-lede {
+            font-size: 1.08rem; color: var(--text-soft);
+            line-height: 1.65; margin-bottom: 32px; max-width: 540px;
+        }
+        .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 22px; border-radius: 10px;
+            font-size: 0.9rem; font-weight: 600;
+            border: 1px solid transparent; cursor: pointer;
+            font-family: inherit; transition: all 0.2s;
+        }
+        .btn svg { width: 16px; height: 16px; }
+        .btn-pri { background: var(--hc); color: #fff; }
+        .btn-pri:hover { background: var(--hc-ink); transform: translateY(-1px); box-shadow: var(--shadow); }
+        .btn-sec { background: #fff; color: var(--text); border-color: var(--bdr); }
+        .btn-sec:hover { border-color: var(--hc); color: var(--hc-ink); }
+        .hero-photo { display: flex; justify-content: center; }
+        .photo-wrap {
+            position: relative; width: 280px; height: 280px;
+            border-radius: 50%; overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: var(--shadow-lg), 0 0 0 1px var(--hc-soft);
+        }
+        .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .meta {
+            display: flex; flex-wrap: wrap; gap: 16px;
+            margin-top: 28px; font-size: 0.84rem; color: var(--text-mute);
+        }
+        .meta span { display: inline-flex; align-items: center; gap: 6px; }
+        .meta svg { width: 14px; height: 14px; }
+        .meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--hc); }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 80px 0; }
+        .s-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+        .s-tag {
+            display: inline-block; padding: 5px 12px;
+            background: var(--hc-soft); color: var(--hc-ink);
+            border-radius: 100px; font-size: 0.74rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .s-head h2 {
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
+            font-weight: 700; letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+        .s-head p { color: var(--text-soft); font-size: 1rem; }
+
+        /* ===== WHAT I DO ===== */
+        .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .role {
+            background: var(--bg-card); border: 1px solid var(--bdr);
+            border-radius: var(--r); padding: 32px 28px;
+            transition: all 0.25s;
+        }
+        .role:hover { border-color: var(--hc); transform: translateY(-3px); box-shadow: var(--shadow); }
+        .role-ico {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--hc-soft); color: var(--hc);
+            display: grid; place-items: center; margin-bottom: 18px;
+        }
+        .role-ico svg { width: 22px; height: 22px; }
+        .role h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+        .role p { color: var(--text-soft); font-size: 0.92rem; line-height: 1.6; }
+
+        /* ===== ARC ===== */
+        #arc { background: var(--bg-soft); }
+        .arc {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 0; position: relative; max-width: 900px; margin: 0 auto;
+        }
+        .arc::before {
+            content: ''; position: absolute; top: 38px; left: 12%; right: 12%;
+            height: 2px; background: linear-gradient(90deg, var(--hc) 0%, var(--df) 100%);
+            opacity: 0.3;
+        }
+        .arc-step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+        .arc-dot {
+            width: 76px; height: 76px; border-radius: 50%;
+            background: #fff; border: 2px solid var(--hc);
+            display: grid; place-items: center; margin: 0 auto 18px;
+            color: var(--hc); box-shadow: var(--shadow);
+        }
+        .arc-dot.df { border-color: var(--df); color: var(--df); }
+        .arc-dot svg { width: 28px; height: 28px; }
+        .arc-y { font-size: 0.78rem; color: var(--text-mute); font-weight: 600; margin-bottom: 6px; }
+        .arc-t { font-size: 1rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+        .arc-d { font-size: 0.86rem; color: var(--text-soft); line-height: 1.55; }
+
+        /* ===== SPLIT TIMELINE (Journey) ===== */
+        .split-tl { display: grid; grid-template-columns: 1fr 2px 1fr; gap: 0 28px; max-width: 900px; margin: 0 auto; align-items: start; }
+        .split-col { display: flex; flex-direction: column; gap: 14px; }
+        .split-center-line { background: linear-gradient(to bottom, var(--hc), var(--hc-ink)); border-radius: 2px; align-self: stretch; }
+        .split-card { background: #fff; border: 1px solid var(--bdr); border-radius: var(--r); padding: 16px 18px; transition: box-shadow .2s; position: relative; }
+        .split-card:hover { box-shadow: var(--shadow-lg); }
+        .split-card.edu   { background: #ECFDF5; border-color: rgba(5,150,105,.22); }
+        .split-card.award { background: #FFFBEB; border-color: rgba(180,83,9,.22); }
+        .split-card.cert  { background: #EFF6FF; border-color: rgba(37,99,235,.22); }
+        .split-card.cur   { border-color: var(--hc-ink); border-left: 3px solid var(--hc-ink); }
+        .sc-date { position: absolute; top: 13px; right: 14px; font-size: .65rem; font-weight: 700; color: var(--text-mute); letter-spacing: .04em; white-space: nowrap; }
+        .sc-badge { font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; margin-bottom: 6px; }
+        .sc-badge.pro  { color: var(--hc); }
+        .sc-badge.edu  { color: var(--hc-ink); }
+        .sc-badge.ach  { color: #B45309; }
+        .sc-badge.cert { color: var(--df); }
+        .sc-title { font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 2px; line-height: 1.3; }
+        .sc-place { font-size: .74rem; color: var(--text-mute); margin-bottom: 7px; }
+        .sc-desc  { font-size: .78rem; color: var(--text-soft); line-height: 1.6; }
+        .sc-tags  { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+        .sc-tag       { background: rgba(5,150,105,.1);  color: var(--hc-ink); border-radius: 100px; padding: 2px 9px; font-size: .67rem; font-weight: 600; }
+        .sc-tag.grn   { background: rgba(5,150,105,.13); color: var(--hc-ink); }
+        .sc-tag.amb   { background: rgba(180,83,9,.12);  color: #B45309; }
+        .sc-tag.sky   { background: rgba(37,99,235,.1);  color: var(--df); }
+        .split-col:first-of-type .split-card::before,
+        .split-col:last-of-type  .split-card::before { content: ''; position: absolute; top: 24px; width: 28px; height: 1px; background: rgba(5,150,105,.35); }
+        .split-col:first-of-type .split-card::before { right: -28px; }
+        .split-col:last-of-type  .split-card::before { left:  -28px; }
+        .split-col:first-of-type .split-card::after,
+        .split-col:last-of-type  .split-card::after { content: ''; position: absolute; top: 21px; width: 7px; height: 7px; border-radius: 50%; background: var(--hc); border: 2px solid var(--bg-soft); z-index: 1; }
+        .split-col:first-of-type .split-card::after { right: -3px; }
+        .split-col:last-of-type  .split-card::after { left:  -3px; }
+        .split-col .split-card.award::after { background: #B45309; }
+        .split-col .split-card.cert::after  { background: var(--df); }
+        .split-col .split-card.cur::after   { background: var(--hc-ink); }
+        @media (max-width: 768px) {
+            .split-tl { grid-template-columns: 1fr; }
+            .split-center-line { display: none; }
+            .split-col:first-of-type .split-card::before,
+            .split-col:last-of-type  .split-card::before,
+            .split-col:first-of-type .split-card::after,
+            .split-col:last-of-type  .split-card::after { display: none; }
+        }
+
+        /* ===== WORK ===== */
+        .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .proj {
+            background: var(--bg-card); border: 1px solid var(--bdr);
+            border-radius: var(--r); overflow: hidden;
+            transition: all 0.25s; display: flex; flex-direction: column;
+        }
+        .proj:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--hc-soft); }
+        .proj-img { aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-soft); }
+        .proj-img img { width: 100%; height: 100%; object-fit: cover; }
+        .proj-body { padding: 24px 24px 22px; flex: 1; display: flex; flex-direction: column; }
+        .proj-cat {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+            text-transform: uppercase; color: var(--hc-ink);
+            margin-bottom: 8px;
+        }
+        .proj-cat.df { color: var(--df); }
+        .proj-cat .ldot { width: 6px; height: 6px; border-radius: 50%; background: var(--hc); }
+        .proj-cat.df .ldot { background: var(--df); }
+        .proj h3 { font-size: 1.18rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+        .proj-line { color: var(--text-soft); font-size: 0.92rem; margin-bottom: 18px; line-height: 1.55; flex: 1; }
+        .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+        .ttag {
+            font-size: 0.72rem; padding: 4px 10px;
+            background: var(--bdr-soft); color: var(--text-soft);
+            border-radius: 6px; font-weight: 500;
+        }
+        .proj-act { display: flex; gap: 10px; flex-wrap: wrap; }
+        .proj-act a {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 7px 13px; font-size: 0.78rem; font-weight: 600;
+            border: 1px solid var(--bdr); border-radius: 8px;
+            color: var(--text-soft); transition: all 0.2s;
+        }
+        .proj-act a:hover { border-color: var(--hc); color: var(--hc-ink); background: var(--hc-soft); }
+        .proj-act a svg { width: 13px; height: 13px; }
+
+        /* ===== APPROACH ===== */
+        .ap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .ap {
+            padding: 26px 22px; background: var(--bg-card);
+            border: 1px solid var(--bdr); border-radius: var(--r);
+            position: relative;
+        }
+        .ap-num {
+            font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+            font-weight: 700; color: var(--hc); letter-spacing: 0.06em;
+            margin-bottom: 12px;
+        }
+        .ap h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+        .ap p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.55; }
+
+        /* ===== COMPLIANCE STRIP ===== */
+        #compliance { background: var(--bg-soft); }
+        .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .comp {
+            background: #fff; border: 1px solid var(--bdr);
+            border-radius: var(--r); padding: 24px;
+            display: flex; gap: 14px; align-items: flex-start;
+        }
+        .comp-ico {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--hc-soft); color: var(--hc);
+            display: grid; place-items: center; flex-shrink: 0;
+        }
+        .comp-ico svg { width: 20px; height: 20px; }
+        .comp h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.01em; }
+        .comp p { font-size: 0.84rem; color: var(--text-soft); line-height: 1.5; }
+
+        /* ===== CONTACT ===== */
+        #contact { text-align: center; padding: 100px 0 80px; }
+        .cta-card {
+            max-width: 620px; margin: 0 auto;
+            background: linear-gradient(135deg, var(--hc) 0%, #047857 100%);
+            color: #fff; padding: 48px 36px; border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+        .cta-card h2 { font-size: 1.7rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+        .cta-card p { color: rgba(255, 255, 255, 0.9); margin-bottom: 28px; font-size: 0.98rem; }
+        .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 22px; background: #fff; color: var(--hc-ink);
+            border-radius: 10px; font-weight: 600; font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+        .cta-btn.ghost {
+            background: transparent; color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .cta-btn.ghost:hover { background: rgba(255, 255, 255, 0.1); }
+        .cta-btn svg { width: 16px; height: 16px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 32px 0; border-top: 1px solid var(--bdr);
+            text-align: center; color: var(--text-mute);
+            font-size: 0.84rem;
+        }
+
+        /* ===== LANG TOGGLE ===== */
+        .lang-de { display: none; }
+        body.de .lang-en { display: none; }
+        body.de .lang-de { display: initial; }
+        body.de div.lang-de, body.de p.lang-de, body.de h1.lang-de, body.de h2.lang-de { display: block; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 880px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-photo { order: -1; }
+            .photo-wrap { width: 200px; height: 200px; }
+            .hero-cta, .meta { justify-content: center; }
+            .role-grid, .work-grid, .arc, .ap-grid, .comp-grid {
+                grid-template-columns: 1fr;
+            }
+            .arc::before { display: none; }
+            .nav-l { display: none; }
+            .ctr { padding: 0 20px; }
+            section { padding: 60px 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav>
+        <div class="ctr">
+            <div class="logo">Atamer Erkal<span>· AI Solutions</span></div>
+            <div class="nav-r">
+                <div class="nav-l">
+                    <a href="#what">What I Do</a>
+                    <a href="#work">Work</a>
+                    <a href="#arc">Journey</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="lang">
+                    <button class="active" onclick="setLang('en', this)">EN</button>
+                    <button onclick="setLang('de', this)">DE</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="ctr hero-grid">
+            <div>
+                <div class="pill">
+                    <i data-lucide="shield-check"></i>
+                    <span class="lang-en">Former NATO Planning Officer · 15+ Years in Mission-Critical Systems</span>
+                    <span class="lang-de">Ehemaliger NATO-Planungsoffizier · 15+ Jahre in missionskritischen Systemen</span>
+                </div>
+                <h1>
+                    <span class="lang-en">AI Solution Architect for <span>Healthcare</span> &amp; Regulated Domains</span>
+                    <span class="lang-de">KI-Lösungsarchitekt für <span>Healthcare</span> &amp; regulierte Bereiche</span>
+                </h1>
+                <p class="hero-lede lang-en">
+                    I bridge clinical, operational, and engineering teams to design and deliver AI systems that ship — production-ready, EU AI Act compliant, and built for trust.
+                </p>
+                <p class="hero-lede lang-de">
+                    Ich verbinde klinische, operative und technische Teams, um KI-Systeme zu entwerfen und zu liefern, die in Produktion gehen — EU AI Act-konform und auf Vertrauen ausgelegt.
+                </p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-pri">
+                        <i data-lucide="message-circle"></i>
+                        <span class="lang-en">Get in touch</span>
+                        <span class="lang-de">Kontakt</span>
+                    </a>
+                    <a href="docs/Atamer_Erkal_Healthcare_Defence_AI_CV_EN_April2026.pdf" target="_blank" class="btn btn-sec">
+                        <i data-lucide="file-text"></i>
+                        <span class="lang-en">Download CV</span>
+                        <span class="lang-de">Lebenslauf</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <div class="photo-wrap">
+                    <img src="images/bildjpg.jpg" alt="Atamer Erkal">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT I DO -->
+    <section id="what">
+        <div class="ctr">
+            <div class="s-head">
+                <span class="s-tag">What I Do</span>
+                <h2 class="lang-en">Three roles, one mindset: ship AI that earns trust</h2>
+                <h2 class="lang-de">Drei Rollen, eine Haltung: KI liefern, die Vertrauen schafft</h2>
+                <p class="lang-en">I operate at the intersection of strategy, architecture, and delivery — wherever the gap between idea and production is widest.</p>
+                <p class="lang-de">Ich arbeite an der Schnittstelle von Strategie, Architektur und Umsetzung — dort, wo die Lücke zwischen Idee und Produktion am größten ist.</p>
+            </div>
+
+            <div class="role-grid">
+                <div class="role">
+                    <div class="role-ico"><i data-lucide="layers"></i></div>
+                    <h3 class="lang-en">AI Solution Architect</h3>
+                    <h3 class="lang-de">KI-Lösungsarchitekt</h3>
+                    <p class="lang-en">Designing end-to-end AI systems for healthcare and regulated environments. Cloud, edge, MLOps, and compliance — as one coherent architecture.</p>
+                    <p class="lang-de">End-to-End-KI-Systeme für Healthcare und regulierte Umgebungen. Cloud, Edge, MLOps und Compliance — als eine kohärente Architektur.</p>
+                </div>
+                <div class="role">
+                    <div class="role-ico"><i data-lucide="compass"></i></div>
+                    <h3 class="lang-en">Technical AI Product Manager</h3>
+                    <h3 class="lang-de">Technical AI Product Manager</h3>
+                    <p class="lang-en">Translating clinical and operational needs into AI roadmaps. Discovery, prioritization, stakeholder alignment, and outcomes that matter.</p>
+                    <p class="lang-de">Klinische und operative Anforderungen in KI-Roadmaps übersetzen. Discovery, Priorisierung, Stakeholder-Alignment und messbare Ergebnisse.</p>
+                </div>
+                <div class="role">
+                    <div class="role-ico"><i data-lucide="scan-eye"></i></div>
+                    <h3 class="lang-en">Applied AI &amp; Compliance</h3>
+                    <h3 class="lang-de">Applied AI &amp; Compliance</h3>
+                    <p class="lang-en">EU AI Act and GDPR-aligned AI delivery. Explainable models, audit-ready documentation, and human-in-the-loop oversight by design.</p>
+                    <p class="lang-de">KI-Lieferung im Einklang mit EU AI Act und DSGVO. Erklärbare Modelle, audit-fähige Dokumentation und Human-in-the-Loop by Design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREER ARC -->
+    <section id="arc">
+        <div class="ctr">
+            <div class="s-head">
+                <span class="s-tag">Journey</span>
+                <h2 class="lang-en">From NATO Planning to Healthcare AI</h2>
+                <h2 class="lang-de">Von der NATO-Planung zur Healthcare-KI</h2>
+                <p class="lang-en">A career built on systems thinking, high-stakes decision-making, and turning complex requirements into working solutions.</p>
+                <p class="lang-de">Eine Karriere aufgebaut auf Systemdenken, Entscheidungen unter Druck und der Umsetzung komplexer Anforderungen in funktionierende Lösungen.</p>
+            </div>
+
+            <div class="split-tl">
+                <!-- LEFT COLUMN: Education, Awards, Certifications -->
+                <div class="split-col">
+                    <div class="split-card edu">
+                        <span class="sc-date">2002</span>
+                        <div class="sc-badge edu lang-en">Education</div>
+                        <div class="sc-badge edu lang-de">Ausbildung</div>
+                        <strong>B.Sc. Naval Sciences</strong>
+                        <p class="lang-en">Turkish Naval Academy — Mathematics &amp; Physics honours track.</p>
+                        <p class="lang-de">Türkische Marineakademie — Schwerpunkt Mathematik &amp; Physik.</p>
+                    </div>
+                    <div class="split-card edu">
+                        <span class="sc-date">2012</span>
+                        <div class="sc-badge edu lang-en">Education</div>
+                        <div class="sc-badge edu lang-de">Ausbildung</div>
+                        <strong>M.A. Management &amp; Leadership</strong>
+                        <p class="lang-en">Kadir Has University — Organizational strategy and leadership in complex systems.</p>
+                        <p class="lang-de">Kadir-Has-Universität — Organisationsstrategie und Führung in komplexen Systemen.</p>
+                    </div>
+                    <div class="split-card award">
+                        <span class="sc-date">2017</span>
+                        <div class="sc-badge ach lang-en">Award</div>
+                        <div class="sc-badge ach lang-de">Auszeichnung</div>
+                        <strong>Naval Commander Award</strong>
+                        <p class="lang-en">Recognized for outstanding performance in joint operational planning and analytical contributions at Naval HQ.</p>
+                        <p class="lang-de">Ausgezeichnet für herausragende Leistungen in der gemeinsamen Einsatzplanung beim Marine-HQ.</p>
+                    </div>
+                    <div class="split-card award">
+                        <span class="sc-date">2022</span>
+                        <div class="sc-badge ach lang-en">Award</div>
+                        <div class="sc-badge ach lang-de">Auszeichnung</div>
+                        <strong>Best DS Bootcamp 2021 &amp; 2022</strong>
+                        <p class="lang-en">SwitchUp recognition for program design and outcomes as Program Director at Clarusway.</p>
+                        <p class="lang-de">SwitchUp-Auszeichnung für Programmdesign und Ergebnisse als Program Director bei Clarusway.</p>
+                    </div>
+                    <div class="split-card cert">
+                        <span class="sc-date">2024</span>
+                        <div class="sc-badge cert lang-en">Certifications</div>
+                        <div class="sc-badge cert lang-de">Zertifikate</div>
+                        <strong>Azure AI Engineer Associate (AI-102)</strong>
+                        <p class="lang-en">Microsoft · Azure AI Foundry · Prompt Engineering · AI Agents · Copilot Studio</p>
+                        <p class="lang-de">Microsoft · Azure AI Foundry · Prompt Engineering · KI-Agenten · Copilot Studio</p>
+                    </div>
+                </div>
+
+                <!-- CENTER LINE -->
+                <div class="split-center-line"></div>
+
+                <!-- RIGHT COLUMN: Career milestones -->
+                <div class="split-col">
+                    <div class="split-card">
+                        <span class="sc-date">2002 — 2017</span>
+                        <div class="sc-badge pro lang-en">Military Career</div>
+                        <div class="sc-badge pro lang-de">Militärische Laufbahn</div>
+                        <strong>NATO &amp; Naval HQ — Joint Planner</strong>
+                        <p class="lang-en">Data-informed operational planning, structured quantitative analysis under time pressure, and analytical decision support across multinational operations.</p>
+                        <p class="lang-de">Datengestützte Einsatzplanung, strukturierte quantitative Analyse unter Zeitdruck und analytische Entscheidungsunterstützung in multinationalen Operationen.</p>
+                    </div>
+                    <div class="split-card cur">
+                        <span class="sc-date">2018 — 2022</span>
+                        <div class="sc-badge pro lang-en">Career Transition</div>
+                        <div class="sc-badge pro lang-de">Karrierewechsel</div>
+                        <strong>Full-Time Data Science &amp; ML Upskilling</strong>
+                        <p class="lang-en">Intensive reskilling in Python, statistics, machine learning, and data engineering — transitioning from operational planning to data-driven roles.</p>
+                        <p class="lang-de">Intensives Reskilling in Python, Statistik, Machine Learning und Data Engineering — Wechsel von operativer Planung zu datengetriebenen Rollen.</p>
+                    </div>
+                    <div class="split-card cur">
+                        <span class="sc-date">2020 — 2022</span>
+                        <div class="sc-badge pro lang-en">Career</div>
+                        <div class="sc-badge pro lang-de">Karriere</div>
+                        <strong>Data Scientist &amp; Program Director, Clarusway</strong>
+                        <p class="lang-en">Designed data science curriculum end-to-end. Owned program architecture, instructor hiring, and learner outcomes at scale.</p>
+                        <p class="lang-de">Data-Science-Curriculum end-to-end konzipiert. Programmarchitektur, Instructor-Hiring und Lernergebnisse in großem Maßstab verantwortet.</p>
+                    </div>
+                    <div class="split-card cur">
+                        <span class="sc-date lang-en">2023 — Present</span>
+                        <span class="sc-date lang-de">2023 — Heute</span>
+                        <div class="sc-badge pro lang-en">Current Role</div>
+                        <div class="sc-badge pro lang-de">Aktuelle Rolle</div>
+                        <strong>Applied AI Engineer — Healthcare &amp; Regulated AI</strong>
+                        <p class="lang-en">Building PoCs and MVPs for healthcare AI systems. Azure-based architecture, EU AI Act compliance, explainable models, and human-in-the-loop design.</p>
+                        <p class="lang-de">PoCs und MVPs für Healthcare-KI-Systeme. Azure-Architektur, EU-KI-Act-Konformität, erklärbare Modelle und Human-in-the-Loop-Design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section id="work">
+        <div class="ctr">
+            <div class="s-head">
+                <span class="s-tag">Selected Work</span>
+                <h2 class="lang-en">Projects designed end-to-end</h2>
+                <h2 class="lang-de">End-to-End konzipierte Projekte</h2>
+                <p class="lang-en">A short selection — discovery, architecture, delivery, and the outcomes that mattered.</p>
+                <p class="lang-de">Eine kurze Auswahl — Discovery, Architektur, Umsetzung und die Ergebnisse, die zählen.</p>
+            </div>
+
+            <div class="work-grid">
+                <!-- VitalNav -->
+                <article class="proj">
+                    <div class="proj-img"><img src="images/VitalNav.png" alt="VitalNav.ai"></div>
+                    <div class="proj-body">
+                        <div class="proj-cat"><span class="ldot"></span>Healthcare · Flagship</div>
+                        <h3>VitalNav.ai</h3>
+                        <p class="proj-line lang-en">Pre-hospital triage system that gives ER teams patient context minutes before arrival. Designed the multi-service Azure architecture and the patient/clinician product flow.</p>
+                        <p class="proj-line lang-de">Pr&auml;klinisches Triage-System, das ER-Teams Patientenkontext Minuten vor der Ankunft liefert. Multi-Service-Azure-Architektur und Patienten-/Kliniker-Flow konzipiert.</p>
+                        <div class="proj-tags">
+                            <span class="ttag">Azure OpenAI</span>
+                            <span class="ttag">RAG</span>
+                            <span class="ttag">Multi-service</span>
+                            <span class="ttag">EU AI Act</span>
+                        </div>
+                        <div class="proj-act">
+                            <a href="https://github.com/AtamerErkal/CodeZero" target="_blank"><i data-lucide="github"></i>Code</a>
+                            <a href="https://youtu.be/7YuHKKsN0xk" target="_blank"><i data-lucide="play-circle"></i>Demo</a>
+                            <a href="docs/VitalNav_AI_Brochure_EN.pdf" target="_blank" class="lang-en"><i data-lucide="file-text"></i>Brochure</a>
+                            <a href="docs/VitalNav_AI_Broschuere_DE.pdf" target="_blank" class="lang-de"><i data-lucide="file-text"></i>Brosch&uuml;re</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SkinxAI -->
+                <article class="proj">
+                    <div class="proj-img"><img src="images/SkinXAI.png" alt="SkinxAI"></div>
+                    <div class="proj-body">
+                        <div class="proj-cat"><span class="ldot"></span>Healthcare · Imaging</div>
+                        <h3>SkinxAI</h3>
+                        <p class="proj-line lang-en">Dermatoscopic lesion classifier with explainability built into the clinical workflow. 85.2% sensitivity, 93.4% AUC — a credible second opinion where specialist time is scarce.</p>
+                        <p class="proj-line lang-de">Klassifikator f&uuml;r dermatoskopische L&auml;sionen mit Erkl&auml;rbarkeit im klinischen Workflow. 85,2% Sensitivit&auml;t, 93,4% AUC — eine glaubw&uuml;rdige Zweitmeinung, wo Facharztzeit knapp ist.</p>
+                        <div class="proj-tags">
+                            <span class="ttag">EfficientNet</span>
+                            <span class="ttag">Grad-CAM</span>
+                            <span class="ttag">XAI</span>
+                            <span class="ttag">GDPR</span>
+                        </div>
+                        <div class="proj-act">
+                            <a href="https://github.com/AtamerErkal/skin-lesion-classifier" target="_blank"><i data-lucide="github"></i>Code</a>
+                            <a href="https://skin-lesion-classifier-two.vercel.app/" target="_blank"><i data-lucide="external-link"></i>Live</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- ClinicOps -->
+                <article class="proj">
+                    <div class="proj-img"><img src="images/ClinicOps.png" alt="ClinicOps"></div>
+                    <div class="proj-body">
+                        <div class="proj-cat"><span class="ldot"></span>Healthcare · MLOps</div>
+                        <h3>ClinicOps</h3>
+                        <p class="proj-line lang-en">End-to-end MLOps platform for hospital length-of-stay prediction. Designed the lifecycle: model registry, drift monitoring, and CI/CD that holds up under audit.</p>
+                        <p class="proj-line lang-de">End-to-End-MLOps-Plattform f&uuml;r LOS-Prognosen. Lifecycle entworfen: Model Registry, Drift-Monitoring und audit-festes CI/CD.</p>
+                        <div class="proj-tags">
+                            <span class="ttag">MLflow</span>
+                            <span class="ttag">Azure ML</span>
+                            <span class="ttag">CI/CD</span>
+                            <span class="ttag">Drift Detection</span>
+                        </div>
+                        <div class="proj-act">
+                            <a href="#" target="_blank"><i data-lucide="workflow"></i>Architecture</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- XAI Dashboard -->
+                <article class="proj">
+                    <div class="proj-img"><img src="images/XAI.png" alt="Explainable AI Dashboard"></div>
+                    <div class="proj-body">
+                        <div class="proj-cat"><span class="ldot"></span>Healthcare · Responsible AI</div>
+                        <h3>Explainable AI Dashboard</h3>
+                        <p class="proj-line lang-en">Model interpretability platform for clinical AI systems. SHAP, LIME, and Grad-CAM in one workflow — clinicians see why the model decided what it decided.</p>
+                        <p class="proj-line lang-de">Model-Interpretierbarkeits-Plattform f&uuml;r klinische KI-Systeme. SHAP, LIME und Grad-CAM in einem Workflow — Kliniker sehen, warum das Modell entschieden hat.</p>
+                        <div class="proj-tags">
+                            <span class="ttag">SHAP</span>
+                            <span class="ttag">LIME</span>
+                            <span class="ttag">Grad-CAM</span>
+                            <span class="ttag">XAI</span>
+                        </div>
+                        <div class="proj-act">
+                            <a href="https://github.com/AtamerErkal" target="_blank"><i data-lucide="github"></i>Code</a>
+                            <a href="#"><i data-lucide="workflow"></i>Architecture</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPLIANCE STRIP -->
+    <section id="compliance">
+        <div class="ctr">
+            <div class="s-head">
+                <span class="s-tag">Built for Trust</span>
+                <h2 class="lang-en">Compliance is part of the design</h2>
+                <h2 class="lang-de">Compliance ist Teil des Designs</h2>
+                <p class="lang-en">In healthcare, AI is only as useful as it is trusted. I design with these constraints from day one.</p>
+                <p class="lang-de">Im Healthcare-Bereich ist KI nur so n&uuml;tzlich wie das Vertrauen, das sie genie&szlig;t. Ich entwerfe mit diesen Einschr&auml;nkungen von Anfang an.</p>
+            </div>
+            <div class="comp-grid">
+                <div class="comp">
+                    <div class="comp-ico"><i data-lucide="gavel"></i></div>
+                    <div>
+                        <h4>EU AI Act</h4>
+                        <p class="lang-en">Risk classification, audit-ready documentation, human-in-the-loop oversight.</p>
+                        <p class="lang-de">Risikoklassifikation, audit-f&auml;hige Dokumentation, Human-in-the-Loop.</p>
+                    </div>
+                </div>
+                <div class="comp">
+                    <div class="comp-ico"><i data-lucide="shield-check"></i></div>
+                    <div>
+                        <h4>GDPR &amp; Privacy</h4>
+                        <p class="lang-en">Anonymization, PII redaction, HL7/FHIR-aligned data flows.</p>
+                        <p class="lang-de">Anonymisierung, PII-Redaktion, HL7/FHIR-konforme Datenfl&uuml;sse.</p>
+                    </div>
+                </div>
+                <div class="comp">
+                    <div class="comp-ico"><i data-lucide="eye"></i></div>
+                    <div>
+                        <h4>Explainable AI</h4>
+                        <p class="lang-en">SHAP, LIME, Grad-CAM — clinical and tactical decisions earn their trust.</p>
+                        <p class="lang-de">SHAP, LIME, Grad-CAM — klinische und taktische Entscheidungen verdienen ihr Vertrauen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section id="approach">
+        <div class="ctr">
+            <div class="s-head">
+                <span class="s-tag">How I Work</span>
+                <h2 class="lang-en">Discovery to delivery, with the same hands</h2>
+                <h2 class="lang-de">Von Discovery bis Delivery — aus einer Hand</h2>
+            </div>
+            <div class="ap-grid">
+                <div class="ap">
+                    <div class="ap-num">01 — DISCOVER</div>
+                    <h4 class="lang-en">Listen first</h4>
+                    <h4 class="lang-de">Zuerst zuh&ouml;ren</h4>
+                    <p class="lang-en">Workshops with clinicians, operators, and stakeholders. The right problem before the right tool.</p>
+                    <p class="lang-de">Workshops mit Klinikern, Operatoren und Stakeholdern. Erst das richtige Problem, dann das richtige Werkzeug.</p>
+                </div>
+                <div class="ap">
+                    <div class="ap-num">02 — ARCHITECT</div>
+                    <h4 class="lang-en">Design for production</h4>
+                    <h4 class="lang-de">F&uuml;r die Produktion entwerfen</h4>
+                    <p class="lang-en">Architecture that holds: cloud or edge, MLOps, compliance baked in from day one.</p>
+                    <p class="lang-de">Belastbare Architektur: Cloud oder Edge, MLOps, Compliance von Anfang an integriert.</p>
+                </div>
+                <div class="ap">
+                    <div class="ap-num">03 — DELIVER</div>
+                    <h4 class="lang-en">Ship and measure</h4>
+                    <h4 class="lang-de">Ausliefern und messen</h4>
+                    <p class="lang-en">Iterate with monitoring, drift detection, and human-in-the-loop where it counts.</p>
+                    <p class="lang-de">Iterieren mit Monitoring, Drift Detection und Human-in-the-Loop, wo es z&auml;hlt.</p>
+                </div>
+                <div class="ap">
+                    <div class="ap-num">04 — OWN</div>
+                    <h4 class="lang-en">See it through</h4>
+                    <h4 class="lang-de">Bis zum Ende dabei</h4>
+                    <p class="lang-en">Stakeholder reviews, audit support, and continuous improvement after launch.</p>
+                    <p class="lang-de">Stakeholder-Reviews, Audit-Unterst&uuml;tzung und kontinuierliche Verbesserung nach dem Launch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="ctr">
+            <div class="cta-card">
+                <h2 class="lang-en">Let's build trustworthy AI together</h2>
+                <h2 class="lang-de">Lassen Sie uns vertrauensw&uuml;rdige KI gemeinsam bauen</h2>
+                <p class="lang-en">Open to AI Solution Architect, Technical AI Product Manager, and Applied AI roles in Germany &amp; Remote.</p>
+                <p class="lang-de">Offen f&uuml;r Rollen als KI-L&ouml;sungsarchitekt, Technical AI Product Manager und Applied AI in Deutschland &amp; Remote.</p>
+                <div class="cta-btns">
+                    <a href="mailto:atamererkal.eu@gmail.com" class="cta-btn">
+                        <i data-lucide="mail"></i>Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/atamererkal/" target="_blank" class="cta-btn ghost">
+                        <i data-lucide="linkedin"></i>LinkedIn
+                    </a>
+                    <a href="https://github.com/AtamerErkal" target="_blank" class="cta-btn ghost">
+                        <i data-lucide="github"></i>GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="ctr">
+            &copy; 2026 Atamer Erkal · <span class="lang-en">Built for clarity, designed for trust</span><span class="lang-de">Auf Klarheit gebaut, auf Vertrauen ausgelegt</span>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function setLang(lang, btn) {
+            document.body.classList.toggle('de', lang === 'de');
+            document.querySelectorAll('.lang button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
