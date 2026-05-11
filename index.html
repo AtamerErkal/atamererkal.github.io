@@ -317,7 +317,8 @@
         .photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
         @media (max-width: 768px) {
             .hero-grid { flex-direction: column-reverse; gap: 32px; }
-            .photo-wrap { width: 160px; height: 160px; }
+            .hero-photo { justify-content: center; }
+            .photo-wrap { width: 140px; height: 184px; }
         }
 
         /* ARCH MODALS */
@@ -356,8 +357,23 @@
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(12px); padding: 16px 24px; gap: 12px; border-bottom: 1px solid var(--border); box-shadow: 0 8px 24px rgba(15,23,42,.08); }
+            .nav-links.open a { font-size: .95rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
+            .nav-inner { position: relative; flex-wrap: wrap; }
+            .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; margin-right: 4px; }
+            .hamburger span { display: block; width: 22px; height: 2px; background: var(--text1); border-radius: 2px; transition: all .25s; }
+            .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.open span:nth-child(2) { opacity: 0; }
+            .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
             .p-grid { grid-template-columns: 1fr; }
             .hero-stats { gap: 28px; }
+        }
+        @media (max-width: 768px) {
+            section { padding: 52px 0; }
+            .hero-inner { padding: 52px 0; }
+        }
+        @media (min-width: 769px) {
+            .hamburger { display: none; }
         }
     </style>
 </head>
@@ -367,14 +383,17 @@
     <nav>
         <div class="nav-inner">
             <a href="#" class="nav-logo">AE.</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#journey">Journey</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" onclick="closeNav()">About</a>
+                <a href="#journey" onclick="closeNav()">Journey</a>
+                <a href="#skills" onclick="closeNav()">Skills</a>
+                <a href="#projects" onclick="closeNav()">Projects</a>
+                <a href="#contact" onclick="closeNav()">Contact</a>
             </div>
             <div class="nav-right">
+                <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
                 <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
                 <button class="lang-btn" id="btnDE" onclick="setLang('de')">DE</button>
             </div>
@@ -639,7 +658,7 @@
                     <div class="sk-group">
                         <div class="sk-group-t">Generative AI &amp; Agents</div>
                         <div class="sk-tags">
-                            <span class="sk-tag">Azure OpenAI (GPT-4o mini)</span><span class="sk-tag">Azure AI Foundry</span>
+                            <span class="sk-tag">Azure OpenAI (GPT 5.4-mini)</span><span class="sk-tag">Azure AI Foundry</span>
                             <span class="sk-tag">Prompt Engineering</span><span class="sk-tag">RAG</span>
                             <span class="sk-tag">AI Agents &amp; Agentic Workflows</span>
                         </div>
@@ -742,14 +761,14 @@
                             <span class="tag azure">Azure AI</span>
                         </div>
                         <div class="p-name">VitalNav.ai</div>
-                        <div class="p-sub lang-en">Multi-Service Azure AI · GPT-4o mini · Real-Time Triage</div>
-                        <div class="p-sub lang-de">Azure AI Multi-Service · GPT-4o mini · Echtzeit-Triage</div>
+                        <div class="p-sub lang-en">Multi-Service Azure AI · GPT 5.4-mini · Real-Time Triage</div>
+                        <div class="p-sub lang-de">Azure AI Multi-Service · GPT 5.4-mini · Echtzeit-Triage</div>
                         <div class="psi">
                             <div class="psi-row"><span class="psi-l p">P</span><span class="psi-t lang-en">Emergency teams receive <strong>no patient data before arrival</strong> — language barriers and zero prep time delay critical decisions.</span><span class="psi-t lang-de">Notaufnahmeteams erhalten <strong>keine Patientendaten vor Ankunft</strong> — Sprachbarrieren und fehlende Vorbereitungszeit verzögern kritische Entscheidungen.</span></div>
-                            <div class="psi-row"><span class="psi-l s">S</span><span class="psi-t lang-en">RAG-grounded AI triage (GPT-4o mini + Azure multi-service) in any language, streaming structured pre-arrival reports to a live dashboard.</span><span class="psi-t lang-de">RAG-gestützte KI-Triage (GPT-4o mini + Azure Multi-Service) in jeder Sprache mit strukturierten Vorankunftsberichten an ein Live-Dashboard.</span></div>
+                            <div class="psi-row"><span class="psi-l s">S</span><span class="psi-t lang-en">RAG-grounded AI triage (GPT 5.4-mini + Azure multi-service) in any language, streaming structured pre-arrival reports to a live dashboard.</span><span class="psi-t lang-de">RAG-gestützte KI-Triage (GPT 5.4-mini + Azure Multi-Service) in jeder Sprache mit strukturierten Vorankunftsberichten an ein Live-Dashboard.</span></div>
                             <div class="psi-row"><span class="psi-l i">I</span><span class="psi-t lang-en">Teams gain <strong>critical preparation minutes</strong> before patient arrival — faster treatment, reduced overcrowding, higher survival odds.</span><span class="psi-t lang-de">Teams gewinnen <strong>wertvolle Vorbereitungsminuten</strong> — schnellere Behandlung, weniger Überfüllung, höhere Überlebenschancen.</span></div>
                         </div>
-                        <div class="p-tech"><span class="p-tt">Azure OpenAI GPT-4o mini</span><span class="p-tt">Azure AI Search</span><span class="p-tt">RAG</span><span class="p-tt">Azure Speech</span><span class="p-tt">Azure Translator</span></div>
+                        <div class="p-tech"><span class="p-tt">Azure OpenAI GPT 5.4-mini</span><span class="p-tt">Azure AI Search</span><span class="p-tt">RAG</span><span class="p-tt">Azure Speech</span><span class="p-tt">Azure Translator</span></div>
                         <div class="p-actions">
                             <a href="https://github.com/AtamerErkal/CodeZero" target="_blank" class="p-btn">
                                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -1039,7 +1058,7 @@
     A[Patient Voice/Text Input] --> B[Azure Speech STT + Language Detection]
     B --> C[Azure Translator]
     C --> D[Azure AI Search + RAG Medical Guidelines]
-    D --> E[Azure OpenAI GPT-4o mini Triage]
+    D --> E[Azure OpenAI GPT 5.4-mini Triage]
     E --> F[MTS Level + Risk Score + Report]
     F --> G[Azure Maps ETA + Hospital Routing]
     G --> H[FastAPI Backend + SQLite]
@@ -1269,6 +1288,17 @@
 
     <script>
         lucide.createIcons();
+
+        function toggleNav() {
+            const nav = document.getElementById('navLinks');
+            const btn = document.getElementById('hamburger');
+            nav.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+        function closeNav() {
+            document.getElementById('navLinks').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('open');
+        }
 
         function setLang(lang) {
             document.body.classList.toggle('de', lang === 'de');
