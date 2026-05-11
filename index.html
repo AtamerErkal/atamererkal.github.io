@@ -48,7 +48,7 @@
             width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px;
             display: flex; align-items: center; justify-content: space-between; gap: 16px;
         }
-        .nav-logo { font-weight: 800; font-size: 1.15rem; color: var(--accent); letter-spacing: -.02em; }
+        .nav-logo { font-weight: 800; font-size: 1.05rem; color: var(--accent); letter-spacing: -.02em; }
         .nav-links { display: flex; gap: 24px; }
         .nav-links a { font-size: .875rem; font-weight: 500; color: var(--text2); transition: color .2s; }
         .nav-links a:hover { color: var(--accent); }
@@ -360,8 +360,8 @@
             .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(12px); padding: 16px 24px; gap: 12px; border-bottom: 1px solid var(--border); box-shadow: 0 8px 24px rgba(15,23,42,.08); }
             .nav-links.open a { font-size: .95rem; padding: 8px 0; border-bottom: 1px solid var(--border); }
             .nav-inner { position: relative; flex-wrap: wrap; }
-            .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; margin-right: 4px; }
-            .hamburger span { display: block; width: 22px; height: 2px; background: var(--text1); border-radius: 2px; transition: all .25s; }
+            .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 9px 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; margin-left: 6px; }
+            .hamburger span { display: block; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; transition: all .25s; }
             .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
             .hamburger.open span:nth-child(2) { opacity: 0; }
             .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -382,7 +382,7 @@
     <!-- NAV -->
     <nav>
         <div class="nav-inner">
-            <a href="#" class="nav-logo">AE.</a>
+            <a href="#" class="nav-logo">Atamer Erkal</a>
             <div class="nav-links" id="navLinks">
                 <a href="#about" onclick="closeNav()">About</a>
                 <a href="#journey" onclick="closeNav()">Journey</a>
@@ -391,11 +391,11 @@
                 <a href="#contact" onclick="closeNav()">Contact</a>
             </div>
             <div class="nav-right">
+                <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btnDE" onclick="setLang('de')">DE</button>
                 <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
-                <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
-                <button class="lang-btn" id="btnDE" onclick="setLang('de')">DE</button>
             </div>
         </div>
     </nav>
